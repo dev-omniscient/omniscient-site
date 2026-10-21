@@ -1,5 +1,23 @@
 // Header menus, the phone menu, the header line on scroll, and scroll reveals. No library.
 (function () {
+  // Scroll reveals. These run first and mark the page with rv-on; without it, a timer in the head shows everything.
+  var reveals = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+  document.documentElement.classList.add("rv-on");
+})();
+
+(function () {
   var header = document.querySelector(".site-header");
   if (!header) return;
 
@@ -76,7 +94,9 @@
     document.querySelectorAll(".sheet a").forEach(function (a) {
       a.addEventListener("click", function () { toggleSheet(false); });
     });
-    window.matchMedia("(min-width: 1024px)").addEventListener("change", function (m) { if (m.matches) toggleSheet(false); });
+    var wide = window.matchMedia("(min-width: 1024px)");
+    var onWide = function (m) { if (m.matches) toggleSheet(false); };
+    if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
   }
 
   // The tour: the sidebar follows the scroll. The last section or feature whose top has passed a line a third of the
@@ -122,18 +142,4 @@
     update();
   }
 
-  // Scroll reveals
-  var reveals = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-in");
-      io.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-  reveals.forEach(function (el) { io.observe(el); });
 })();
