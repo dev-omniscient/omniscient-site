@@ -22,6 +22,7 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
 | `assets/logos/` | Logos of the tools Omniscient works with. |
 | `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image. |
+| `tools/export-app.mjs` | Copies the home page and assets into the Omniscient app, which serves the live site. |
 | `tools/layout.mjs` | Copies the partials into every page, stamps the CSS and JS links and rebuilds `sitemap.xml`. |
 | `.htaccess` | 404 page, https/www redirects, icon redirects, unknown paths to the app. |
 
@@ -47,7 +48,18 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
 The `.htaccess` rules only run on Hostinger.
 
-Push to `main` and Hostinger deploys it.
+## Going live
+
+Today `tryomniscient.com` is served by the Omniscient app on Render, not by Hostinger. The app serves this repo's home
+page on `/` (its `src/app/route.ts`) and its `public/assets/` as files. To publish a change to the home page:
+
+1. Run `node tools/layout.mjs` here.
+2. Run `node tools/export-app.mjs ../omniscient`. It copies `index.html` to the app's `public/site/index.html` and
+   `assets/` to `public/assets/`.
+3. Commit in the app repo and push its `main`. Render deploys it.
+
+`/privacy` and `/terms` on the live site are still the app's own pages. The Hostinger steps below only apply if
+`tryomniscient.com` is moved to Hostinger later.
 
 ## Where the words come from
 
@@ -68,7 +80,7 @@ Like the app's `src/proxy.ts`, any path with no page here goes to the same path 
 `https://app.tryomniscient.com/today`, and the query string comes along. Real files and folders are served here.
 A missing file (a path that ends in `.png`, `.js` and so on) gets `404.html`.
 
-## Hostinger setup
+## Hostinger setup (not in use)
 
 1. **Add the site.** In hPanel, go to Websites → Add website, and add `tryomniscient.com` as an empty site.
    Do not install WordPress. If WordPress is already there, remove it first, so `public_html` is empty.
@@ -88,7 +100,7 @@ If LiteSpeed Cache is on for the site, purge it after a deploy.
 
 ## DNS
 
-- `tryomniscient.com` and `www.tryomniscient.com` point to Hostinger. Use the A record (and the `www` CNAME) that
+- Today `tryomniscient.com` goes through Cloudflare to the app on Render. To move it to Hostinger, use the A record (and the `www` CNAME) that
   hPanel shows for the site. `.htaccess` sends `www` to the bare domain.
 - `app.tryomniscient.com` is a CNAME to `omniscient-web.fly.dev` (the app on Fly.io). Run
   `fly certs add app.tryomniscient.com --app omniscient-web` and add any record it asks for. Do not point it at Hostinger.
@@ -98,5 +110,5 @@ If LiteSpeed Cache is on for the site, purge it after a deploy.
 
 ## Running cost
 
-$0 extra a month at every stage (Beta 50 reps, Growth 500 reps). The site runs on the Hostinger plan we already pay
+$0 extra a month at every stage (Beta 50 reps, Growth 500 reps). The home page runs inside the Omniscient app on Render, which we already pay
 for. It has no server code, no database and no paid service.
