@@ -1,4 +1,4 @@
-// Puts the shared head, header and footer into every page, stamps the CSS links, then writes sitemap.xml.
+// Puts the shared head, header and footer into every page, stamps the CSS and JS links, then writes sitemap.xml.
 // Edit partials/*.html or assets/*.css, then run: node tools/layout.mjs
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -8,7 +8,7 @@ const root = new URL("..", import.meta.url).pathname;
 const read = (f) => readFileSync(join(root, "partials", f), "utf8").trim();
 const parts = { head: read("head.html"), header: read("header.html"), footer: read("footer.html") };
 
-// Each CSS link gets ?v=<hash of the file>, so a changed file skips the browser cache.
+// Each CSS and JS link gets ?v=<hash of the file>, so a changed file skips the browser cache.
 const version = (name) => createHash("sha1").update(readFileSync(join(root, "assets", name))).digest("hex").slice(0, 8);
 
 const skip = new Set(["node_modules", ".git", "partials", "tools", "assets"]);
@@ -28,7 +28,7 @@ for (const file of files) {
     const re = new RegExp(`<!-- ${name}:start -->[\\s\\S]*?<!-- ${name}:end -->`);
     html = html.replace(re, () => `<!-- ${name}:start -->\n${content}\n<!-- ${name}:end -->`);
   }
-  html = html.replace(/href="\/assets\/([\w.-]+\.css)(\?v=\w+)?"/g, (_, name) => `href="/assets/${name}?v=${version(name)}"`);
+  html = html.replace(/(href|src)="\/assets\/([\w.-]+\.(?:css|js))(\?v=\w+)?"/g, (_, attr, name) => `${attr}="/assets/${name}?v=${version(name)}"`);
   writeFileSync(file, html);
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
   const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);

@@ -4,15 +4,17 @@
 <!-- head:start -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/brand/icon.svg" type="image/svg+xml" sizes="any">
 <link rel="apple-touch-icon" href="/assets/brand/apple-icon.png" type="image/png" sizes="180x180">
 <meta name="application-name" content="Omniscient">
-<meta name="theme-color" content="#0943b0">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/base.css?v=3d9437e7">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/base.css?v=6a48af50">
+<script src="/assets/site.js?v=c21245f2" defer></script>
 <!-- head:end -->
 <title>Terms of Service · Omniscient</title>
 <meta name="description" content="The CRM that fills itself in.">
@@ -31,22 +33,136 @@
 <div class="site">
 <header class="site-header">
   <div class="wrap site-header__in">
-    <a class="site-header__logo" href="/" aria-label="Omniscient home"><span class="logo"><svg class="mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M30 30H4A26 26 0 0 1 30 4ZM34 30V4A26 26 0 0 1 60 30ZM34 34H60A26 26 0 0 1 34 60ZM30 34V60H4V34Z"/></svg><span class="logo__word">Omniscient</span></span></a>
+    <a class="site-header__logo" href="/" aria-label="Omniscient home"><span class="logo"><svg class="mark" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 26V6A20 20 0 0 1 30 26ZM54 26V6A20 20 0 0 0 34 26Z" fill="#0943b0"/><rect x="8" y="16" width="48" height="44" rx="18" fill="#0943b0"/><circle cx="22.5" cy="33" r="9.5" fill="#fff"/><circle cx="41.5" cy="33" r="9.5" fill="#fff"/><circle cx="22.5" cy="33" r="4.4" fill="#0b1a3d"/><circle cx="41.5" cy="33" r="4.4" fill="#0b1a3d"/><path d="M32 43l3.2 3.6L32 50l-3.2-3.4z" fill="#c9d8f5"/></svg><span class="logo__word">Omniscient</span></span></a>
     <nav class="site-nav" aria-label="Main">
-      <a href="/#product">Product</a>
-      <a href="/#meetings">Meetings</a>
-      <a href="/#agents">Agents</a>
-      <a href="/#fields">Customize</a>
-      <a href="/#engineering">Developers</a>
-      <a href="/#pricing">Pricing</a>
+      <ul class="nav">
+        <li class="nav__group">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-product">Product<svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel" id="menu-product">
+            <div class="menu">
+              <div class="menu__col">
+                <span class="menu__label">Revenue</span>
+                <a class="menu__item" href="/product/lead-scouting/"><b>B2B Lead Scouting</b><small>Find the right buyers and see why they fit</small></a>
+                <a class="menu__item" href="/product/linkedin-outreach/"><b>LinkedIn Outreach</b><small>LinkedIn campaigns you approve before they send</small></a>
+                <a class="menu__item" href="/product/unified-inbox/"><b>Unified Inbox</b><small>Every reply in one place, next to the record</small></a>
+              </div>
+              <div class="menu__col">
+                <span class="menu__label">CRM</span>
+                <a class="menu__item" href="/product/single-source-of-truth/"><b>Single Source of Truth</b><small>Everything about every account, connected</small></a>
+                <a class="menu__item" href="/product/call-meeting-intelligence/"><b>Call &amp; Meeting Intelligence</b><small>Every email, call and meeting, captured and summed up</small></a>
+                <a class="menu__item" href="/product/self-driving-crm/"><b>Self-Driving CRM</b><small>Records that update themselves</small></a>
+                <a class="menu__item" href="/product/data-model/"><b>Data Model</b><small>Shape it to fit your business</small></a>
+                <a class="menu__item" href="/product/reporting-forecasts/"><b>Reporting &amp; Forecasts</b><small>Pipeline numbers in real time</small></a>
+              </div>
+              <div class="menu__col">
+                <span class="menu__label">Deal Room</span>
+                <a class="menu__item" href="/product/deal-room/"><b>Deal Room</b><small>A private website for every deal</small></a>
+                <a class="menu__item" href="/product/content-experiences/"><b>Content Experiences</b><small>Turn your content into journeys buyers want to finish</small></a>
+                <a class="menu__item" href="/product/proposals/"><b>Interactive Proposals</b><small>Proposals buyers can explore, price and act on</small></a>
+              </div>
+              <div class="menu__col">
+                <span class="menu__label">Ecosystem</span>
+                <a class="menu__item" href="/integrations/"><b>Apps</b><small>Gmail, Outlook, Slack, Zoom and more</small></a>
+                <a class="menu__item" href="/switch/"><b>One-Click Switch</b><small>Bring your CRM over in one click</small></a>
+                <a class="menu__item" href="/developers/"><b>Developer Platform</b><small>Build on Omniscient</small></a>
+                <a class="menu__item" href="/suite/"><b>The Suite</b><small>Works with Claritia and Arrowsterr</small></a>
+              </div>
+              <div class="menu__aside">
+                <span class="menu__label">Omniscient for</span>
+                <a class="menu__link" href="/for/founders/">Founders</a>
+                <a class="menu__link" href="/for/agencies/">Agencies</a>
+                <a class="menu__link" href="/for/sales-teams/">Sales teams</a>
+                <span class="menu__label">Get started</span>
+                <a class="menu__link" href="/start/">Omniscient 101</a>
+                <a class="menu__link" href="mailto:hello@tryomniscient.com?subject=Omniscient%20demo">Book a demo</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav__group">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-resources">Resources<svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__panel nav__panel--resources" id="menu-resources">
+            <div class="menu menu--resources">
+              <div class="menu__col">
+                <span class="menu__label">Learn</span>
+                <a class="menu__item" href="/help/"><b>Help center</b><small>Learn every feature</small></a>
+                <a class="menu__item" href="/guides/"><b>Guides</b><small>Omniscient, explained</small></a>
+                <a class="menu__item" href="/templates/"><b>Templates</b><small>Deal Room sites and workflow playbooks</small></a>
+                <a class="menu__item" href="/developers/docs/"><b>Developer docs</b><small>Start building on Omniscient</small></a>
+              </div>
+              <div class="menu__aside">
+                <span class="menu__label">Company</span>
+                <a class="menu__link" href="/changelog/">Changelog</a>
+                <a class="menu__link" href="/blog/">Blog</a>
+                <a class="menu__link" href="/compare/">Compare</a>
+                <a class="menu__link" href="/#security">Security</a>
+                <a class="menu__link" href="/about/">About</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav__link" href="/#pricing">Pricing</a></li>
+      </ul>
     </nav>
     <div class="site-actions">
       <a class="site-actions__signin" href="https://app.tryomniscient.com/today">Sign in</a>
-      <a class="btn btn--outline btn--sm site-actions__demo" href="mailto:hello@tryomniscient.com?subject=Omniscient%20demo">Book a demo</a>
-      <a class="btn btn--ink btn--sm site-actions__start" href="https://app.tryomniscient.com/today">Start free <span class="nudge" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost site-actions__demo" href="mailto:hello@tryomniscient.com?subject=Omniscient%20demo">Book a demo</a>
+      <a class="btn btn--primary site-actions__start" href="https://app.tryomniscient.com/today">Start free <span class="nudge" aria-hidden="true">→</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu">
+        <svg class="i-open" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-close" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
 </header>
+<div class="sheet" id="sheet">
+  <div class="sheet__body">
+    <details>
+      <summary>Product<svg class="" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="sheet__group">
+        <span class="sheet__label">Revenue</span>
+        <a href="/product/lead-scouting/">B2B Lead Scouting</a>
+        <a href="/product/linkedin-outreach/">LinkedIn Outreach</a>
+        <a href="/product/unified-inbox/">Unified Inbox</a>
+        <span class="sheet__label">CRM</span>
+        <a href="/product/single-source-of-truth/">Single Source of Truth</a>
+        <a href="/product/call-meeting-intelligence/">Call &amp; Meeting Intelligence</a>
+        <a href="/product/self-driving-crm/">Self-Driving CRM</a>
+        <a href="/product/data-model/">Data Model</a>
+        <a href="/product/reporting-forecasts/">Reporting &amp; Forecasts</a>
+        <span class="sheet__label">Deal Room</span>
+        <a href="/product/deal-room/">Deal Room</a>
+        <a href="/product/content-experiences/">Content Experiences</a>
+        <a href="/product/proposals/">Interactive Proposals</a>
+        <span class="sheet__label">Ecosystem</span>
+        <a href="/integrations/">Apps</a>
+        <a href="/switch/">One-Click Switch</a>
+        <a href="/developers/">Developer Platform</a>
+        <a href="/suite/">The Suite</a>
+      </div>
+    </details>
+    <details>
+      <summary>Resources<svg class="" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="sheet__group">
+        <a href="/help/">Help center</a>
+        <a href="/guides/">Guides</a>
+        <a href="/templates/">Templates</a>
+        <a href="/developers/docs/">Developer docs</a>
+        <a href="/changelog/">Changelog</a>
+        <a href="/blog/">Blog</a>
+        <a href="/compare/">Compare</a>
+        <a href="/#security">Security</a>
+        <a href="/about/">About</a>
+      </div>
+    </details>
+    <a class="sheet__plain" href="/#pricing">Pricing</a>
+    <a class="sheet__plain" href="https://app.tryomniscient.com/today">Sign in</a>
+  </div>
+  <div class="sheet__foot">
+    <a class="btn btn--ghost btn--lg" href="mailto:hello@tryomniscient.com?subject=Omniscient%20demo">Book a demo</a>
+    <a class="btn btn--primary btn--lg" href="https://app.tryomniscient.com/today">Start free</a>
+  </div>
+</div>
 <!-- header:end -->
 <main id="main" class="site-main">
 <div class="reading">
@@ -100,45 +216,65 @@
 <footer class="site-footer">
   <div class="wrap site-footer__in">
     <div class="site-footer__brand">
-      <span class="logo"><svg class="mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M30 30H4A26 26 0 0 1 30 4ZM34 30V4A26 26 0 0 1 60 30ZM34 34H60A26 26 0 0 1 34 60ZM30 34V60H4V34Z"/></svg><span class="logo__word">Omniscient</span></span>
-      <p>The CRM that fills itself in. For teams who would rather sell than type.</p>
-      <p class="site-footer__status"><span class="dot dot--live mk-pulse"></span>All systems running</p>
+      <span class="logo"><svg class="mark" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 26V6A20 20 0 0 1 30 26ZM54 26V6A20 20 0 0 0 34 26Z" fill="#0943b0"/><rect x="8" y="16" width="48" height="44" rx="18" fill="#0943b0"/><circle cx="22.5" cy="33" r="9.5" fill="#fff"/><circle cx="41.5" cy="33" r="9.5" fill="#fff"/><circle cx="22.5" cy="33" r="4.4" fill="#0b1a3d"/><circle cx="41.5" cy="33" r="4.4" fill="#0b1a3d"/><path d="M32 43l3.2 3.6L32 50l-3.2-3.4z" fill="#c9d8f5"/></svg><span class="logo__word">Omniscient</span></span>
+      <p>One system, from first hello to closed deal.</p>
     </div>
-    <nav class="site-footer__col" aria-label="Product">
-      <p class="label-mono">Product</p>
+    <nav class="site-footer__col" aria-label="Revenue">
+      <h2>Revenue</h2>
       <ul>
-        <li><a href="/#up-next">Up next</a></li>
-        <li><a href="/#meetings">Meetings</a></li>
-        <li><a href="/#ask">Ask Omniscient</a></li>
-        <li><a href="/#records">Accounts and opportunities</a></li>
-        <li><a href="/#fields">Fields</a></li>
-        <li><a href="/#agents">Agents</a></li>
+        <li><a href="/product/lead-scouting/">B2B Lead Scouting</a></li>
+        <li><a href="/product/linkedin-outreach/">LinkedIn Outreach</a></li>
+        <li><a href="/product/unified-inbox/">Unified Inbox</a></li>
       </ul>
     </nav>
-    <nav class="site-footer__col" aria-label="Developers">
-      <p class="label-mono">Developers</p>
+    <nav class="site-footer__col" aria-label="CRM">
+      <h2>CRM</h2>
       <ul>
-        <li><a href="/#engineering">Context graph</a></li>
-        <li><a href="/#engineering">API and MCP</a></li>
-        <li><a href="/#security">Security</a></li>
-        <li><a href="/#compare">Compared</a></li>
+        <li><a href="/product/single-source-of-truth/">Single Source of Truth</a></li>
+        <li><a href="/product/call-meeting-intelligence/">Call &amp; Meeting Intelligence</a></li>
+        <li><a href="/product/self-driving-crm/">Self-Driving CRM</a></li>
+        <li><a href="/product/data-model/">Data Model</a></li>
+        <li><a href="/product/reporting-forecasts/">Reporting &amp; Forecasts</a></li>
+      </ul>
+    </nav>
+    <nav class="site-footer__col" aria-label="Deal Room">
+      <h2>Deal Room</h2>
+      <ul>
+        <li><a href="/product/deal-room/">Deal Room</a></li>
+        <li><a href="/product/content-experiences/">Content Experiences</a></li>
+        <li><a href="/product/proposals/">Interactive Proposals</a></li>
+      </ul>
+    </nav>
+    <nav class="site-footer__col" aria-label="Ecosystem">
+      <h2>Ecosystem</h2>
+      <ul>
+        <li><a href="/integrations/">Apps</a></li>
+        <li><a href="/switch/">One-Click Switch</a></li>
+        <li><a href="/developers/">Developer Platform</a></li>
+        <li><a href="/suite/">The Suite</a></li>
       </ul>
     </nav>
     <nav class="site-footer__col" aria-label="Company">
-      <p class="label-mono">Company</p>
+      <h2>Company</h2>
       <ul>
         <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="/#faq">Questions</a></li>
+        <li><a href="/#security">Security</a></li>
+        <li><a href="/changelog/">Changelog</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/compare/">Compare</a></li>
+        <li><a href="/help/">Help center</a></li>
         <li><a href="mailto:hello@tryomniscient.com?subject=Omniscient%20demo">Book a demo</a></li>
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/terms/">Terms</a></li>
       </ul>
     </nav>
   </div>
   <div class="site-footer__base">
     <div class="wrap site-footer__base-in">
       <p>© 2026 Perceptric. Omniscient is a Perceptric product.</p>
-      <a href="mailto:hello@tryomniscient.com">hello@tryomniscient.com</a>
+      <div class="site-footer__legal">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="mailto:hello@tryomniscient.com">hello@tryomniscient.com</a>
+      </div>
     </div>
   </div>
 </footer>

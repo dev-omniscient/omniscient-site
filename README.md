@@ -2,7 +2,7 @@
 
 Static site for Omniscient. Plain HTML: no WordPress, no build step.
 
-The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, Privacy and Terms.
+The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, Privacy and Terms. More pages follow `docs/site-architecture.md`.
 
 ## How it's laid out
 
@@ -13,25 +13,31 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `404.html` | Page not found. |
 | `partials/head.html` | Icons, fonts and the shared CSS. |
 | `partials/header.html`, `partials/footer.html` | The site header and footer. |
-| `assets/base.css` | Brand tokens, reset, tags, buttons, header, footer, reading pages. |
-| `assets/home.css` | The home page. |
+| `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
+| `assets/marketing.css` | Shared by the home and product pages: every product mock, the tools strip, security, pricing, questions and the closing band. |
+| `assets/home.css` | The home page only: hero, the why and the tour with the sidebar that follows the scroll. |
+| `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
+| `assets/logos/` | Logos of the tools Omniscient works with. |
 | `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image. |
-| `tools/layout.mjs` | Copies the partials into every page, stamps the CSS links and rebuilds `sitemap.xml`. |
+| `tools/layout.mjs` | Copies the partials into every page, stamps the CSS and JS links and rebuilds `sitemap.xml`. |
 | `.htaccess` | 404 page, https/www redirects, icon redirects, unknown paths to the app. |
 
 ## Editing
 
 - **A page:** edit its `index.html` between `<!-- header:end -->` and `<!-- footer:start -->`.
 - **Header, footer, icons or fonts:** edit the file in `partials/`, then run `node tools/layout.mjs`.
-- **CSS:** edit the file in `assets/`, then run `node tools/layout.mjs`. It adds `?v=<hash>` to each CSS link,
-  so browsers fetch the new file.
+- **CSS or JS:** edit the file in `assets/`, then run `node tools/layout.mjs`. It adds `?v=<hash>` to each CSS and JS
+  link, so browsers fetch the new file.
 - **New page:** copy a page folder, change the content and the tags under `<!-- head:end -->`
   (title, description, canonical, og tags), then run `node tools/layout.mjs`. It adds the page to `sitemap.xml`.
 - **Privacy or Terms:** edit the text in `privacy/index.html` or `terms/index.html` and change the
   "Last updated" date. Google's OAuth review reads these pages, so keep the URLs `/privacy` and `/terms`.
 - **Footer year:** it is plain text in `partials/footer.html`. Change it each January.
-- **Brand:** follow `docs/brand.md` in the app repo. Square boxes, `rounded-md` (6px) buttons, square tags, no pills,
-  no shadows on cards, no gradients, labels and buttons only.
+- **Brand:** follow `docs/brand.md` in the app repo. Inter, navy text on white, one brand blue, neutrals tinted from
+  that blue. Controls 6px, cards and menus 8px, tags are pills. Shadows only on things that float. No gradients.
+- **Hero video:** replace the `.video-slot` div in `index.html` with the `<video>` tag in the comment above it, and put
+  the film and its poster in `assets/video/`.
+- **Site plan:** `docs/site-architecture.md` (menus, sitemap, page template, build order). Hidden from visitors.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
 The `.htaccess` rules only run on Hostinger.
@@ -44,12 +50,12 @@ The site was ported from the Next.js marketing pages in the app repo. Keep them 
 
 | Here | In the app repo |
 | --- | --- |
-| `index.html` | `src/app/page.tsx`, `src/components/marketing/HeroMock.tsx` and `Mocks.tsx` |
-| `partials/header.html`, `partials/footer.html` | `src/components/Site.tsx` |
+| `index.html` | Written here first (October 2026). The app's `src/app/page.tsx` still has the old home page. |
+| `partials/header.html`, `partials/footer.html` | Written here first. The menus follow `docs/site-architecture.md`. |
 | `privacy/index.html`, `terms/index.html` | `src/app/privacy/page.tsx`, `src/app/terms/page.tsx` |
 | Company name, email, "Last updated" date | `src/lib/legal.ts` |
-| Plan prices in `index.html` | `src/lib/plans.ts` (yearly prices) |
-| Tokens at the top of `assets/base.css` | `src/app/globals.css` and `docs/brand.md` |
+| Plan prices and features in `index.html` | `src/lib/plans.ts` (yearly prices) and `docs/pricing.md` |
+| Tokens at the top of `assets/base.css`, the icons in `assets/brand/` | `src/app/globals.css`, `src/app/icon.svg` and `docs/brand.md` |
 
 ## Paths that go to the app
 
