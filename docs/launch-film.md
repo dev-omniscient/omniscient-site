@@ -14,17 +14,17 @@ A counter in the top right: **Typed by hand**. In the problem it spins up fast, 
 
 | Time | VO | Picture | Sound |
 |---|---|---|---|
-| 0:00 | Your CRM gets pricier every year. | A legacy CRM invoice. Line items stack up: seats, add-ons, AI credits. The total keeps climbing. | A keyboard tick on every beat. A low cello note. |
-| 0:04 | And your team pays for it twice. Once in dollars, and once in data entry. | The invoice slides away. Behind it, a rep at a cluttered CRM screen full of empty fields. The counter appears: Typed by hand. | Bass and a low pulse join. |
-| 0:08 | Hours every week, copying emails and notes into fields. | Emails and notes fly into fields, one per beat. The counter spins: 38, 96, 151, 214. | Key clacks on every tick, faster and faster. |
-| 0:12 | Your best sellers became typists. | The rep's face is lit only by the screen. The cursor blinks in one more empty field. | Everything drops except the clacking. |
+| 0:00 | If you're on a legacy CRM, you know how it goes. It's expensive, and the price goes up every year. | A legacy CRM invoice. Line items stack up: seats, add-ons, AI credits. The total keeps climbing. | A keyboard tick on every beat. A low cello note. |
+| 0:04 | (the price line continues) | The invoice slides away. Behind it, a rep at a cluttered CRM screen full of empty fields. The counter appears: Typed by hand. | Bass and a low pulse join. |
+| 0:08 | On top of that, your reps spend hours every week typing in notes and updating deals by hand. | Emails and notes fly into fields, one per beat. The counter spins: 38, 96, 151, 214. | Key clacks on every tick, faster and faster. |
+| 0:12 | That's time they should be spending with customers. | The rep's face is lit only by the screen. The cursor blinks in one more empty field. | Everything drops except the clacking. |
 
 ### The turn (0:15 to 0:22)
 
 | Time | VO | Picture | Sound |
 |---|---|---|---|
 | 0:15 | There has to be a better way. | The screen cuts to navy. The line sets in large white type, one word per beat. | The clacking stops dead. Silence. |
-| 0:18 | Meet Omniscient. The CRM that fills itself in. | Two eyes open in the dark: Otto. He blinks. The four quarters of the old mark fold into his ears and body, and the wordmark sets beside him. The counter resets to 0. | A warm pad swells, then the hook on glockenspiel. |
+| 0:18 | That's why we built Omniscient. It's a CRM that updates itself. | Two eyes open in the dark: Otto. He blinks. The four quarters of the old mark fold into his ears and body, and the wordmark sets beside him. The counter resets to 0. | A warm pad swells, then the hook on glockenspiel. |
 
 ### The better way (0:22 to 1:06)
 
@@ -32,23 +32,23 @@ The homepage sidebar slides in on the left (Revenue, CRM, Deal Room) and lights 
 
 | Time | VO | Picture | Sound |
 |---|---|---|---|
-| 0:22 | Tell Scout who you sell to. It finds the people who fit, and the post that says why now. | Scout's sentence: "Heads of Sales in the UK at SaaS companies who posted about hiring SDRs." Each rule underlines itself in blue. People rise into a list; Priya's post lifts out: "We're hiring 4 SDRs this quarter." | The drop. Full band, major key. No keyboard anywhere. |
-| 0:30 | Otto writes the first message. You approve it. | A LinkedIn draft writes itself, tagged Otto. Approve is pressed. The invite flies off. | A soft stamp on Approve. |
-| 0:34 | Replies land in one inbox, with the whole story beside them. | "Thanks for reaching out. Tuesday works." The record panel slides in beside the thread. | Strings join. |
-| 0:38 | Every email and call fills in the record on its own. | A meeting transcript streams by. Lines lift out and land in fields: Next step, Amount, Close date. | Horns join. Brass stabs on each field. |
-| 0:44 | And every fact shows its receipt. | The Next step field opens its receipt: "Legal needs your SOC 2 report before we can sign." Email from Dana Kim, Oct 14. | A bright chime. |
-| 0:48 | Your team never types a field. | The camera pushes in on the counter: Typed by hand, 0. | One bar of just piano and the hook. |
-| 0:51 | When it's time to close, Otto builds a private website for the deal. | A Deal Room fills itself in from the deal: the plan, the people, the security pack, the pricing. | Choir joins. |
-| 0:57 | Your buyer slides to forty seats and presses Approve. | Dana's phone. The seat slider moves to 40, the total settles at $48,000 a year, and she presses Approve. Small blue squares burst from the button. | Final chorus, up a whole step. |
-| 1:02 | Closed won. | The stage turns green: Won. Otto hops. The counter still reads 0. | The hook an octave up. |
+| 0:22 | Start by telling Scout who you want to sell to. It finds people on LinkedIn who match, and shows you why they're worth reaching out to right now. | Scout's sentence: "Heads of Sales in the UK at SaaS companies who posted about hiring SDRs." Each rule underlines itself in blue. People rise into a list; Priya's post lifts out: "We're hiring 4 SDRs this quarter." | The drop. Full band, major key. No keyboard anywhere. |
+| 0:30 | Otto, our AI agent, writes the first message. You check it and hit approve. | A LinkedIn draft writes itself, tagged Otto. Approve is pressed. The invite flies off. | A soft stamp on Approve. |
+| 0:34 | When someone replies, it shows up in one inbox, right next to everything you know about them. | "Thanks for reaching out. Tuesday works." The record panel slides in beside the thread. | Strings join. |
+| 0:38 | After a call, Omniscient reads the transcript and updates the deal for you, from the stage to the next step. | A meeting transcript streams by. Lines lift out and land in fields: Next step, Amount, Close date. | Horns join. Brass stabs on each field. |
+| 0:44 | Click any field to see exactly where it came from. | The Next step field opens its receipt: "Legal needs your SOC 2 report before we can sign." Email from Dana Kim, Oct 14. | A bright chime. |
+| 0:48 | Your team doesn't have to type a thing. | The camera pushes in on the counter: Typed by hand, 0. | One bar of just piano and the hook. |
+| 0:51 | When it's time to close, Otto builds a private page for the deal, with the plan and pricing your buyer needs. | A Deal Room fills itself in from the deal: the plan, the people, the security pack, the pricing. | Choir joins. |
+| 0:57 | Your buyer picks the number of seats and approves it right there. | Dana's phone. The seat slider moves to 40, the total settles at $48,000 a year, and she presses Approve. Small blue squares burst from the button. | Final chorus, up a whole step. |
+| 1:02 | Deal closed. | The stage turns green: Won. Otto hops. The counter still reads 0. | The hook an octave up. |
 
 ### Close (1:06 to 1:20)
 
 | Time | VO | Picture | Sound |
 |---|---|---|---|
-| 1:06 | One system, from first hello to closed deal. AI included, with no credits to count. | The camera pulls back. The whole path draws as one blue line through Revenue, CRM and Deal Room. | Still climbing. |
-| 1:12 | Omniscient. Know everything. Close more. | Otto and the wordmark, center frame, on white. The tagline sets underneath. | Everyone lands on the last chord. |
-| 1:16 | Start free at tryomniscient.com. | End card: tryomniscient.com, Start free (the one blue button) and Book a demo. Otto blinks once. | The chord rings out under a fade. |
+| 1:06 | Omniscient takes you from the first message to a signed deal, all in one place. And AI is included in the price. | The camera pulls back. The whole path draws as one blue line through Revenue, CRM and Deal Room. | Still climbing. |
+| 1:12 | Know everything. Close more. | Otto and the wordmark, center frame, on white. The tagline sets underneath. | Everyone lands on the last chord. |
+| 1:16 | Try it free at tryomniscient.com. | End card: tryomniscient.com, Start free (the one blue button) and Book a demo. Otto blinks once. | The chord rings out under a fade. |
 | 1:20 | | Cut to white. | |
 
 ## Look
@@ -70,7 +70,7 @@ An original score built in code, the same way as the Perceptric film's audio.
 
 ## Voice
 
-Calm and warm, with a little dry humor. Short sentences with room between them. Built with Kokoro like the Perceptric film, or a hired voice actor if the budget allows (check the price).
+Plain and conversational, like a founder showing the product to a friend. Built with Kokoro like the Perceptric film, or a hired voice actor if the budget allows (check the price).
 
 ## Cutdowns
 

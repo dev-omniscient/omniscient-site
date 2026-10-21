@@ -1,0 +1,186 @@
+{
+ "fps": 30,
+ "bpm": 120,
+ "durationSec": 80,
+ "voice": "af_heart",
+ "pronounce": {},
+ "vo": [
+  {
+   "id": "v01",
+   "at": 0.4,
+   "text": "If you're on a legacy CRM, you know how it goes."
+  },
+  {
+   "id": "v02",
+   "at": 4.2,
+   "text": "It's expensive, and the price goes up every year."
+  },
+  {
+   "id": "v03",
+   "at": 8.8,
+   "text": "On top of that, your reps spend hours every week typing in notes and updating deals by hand."
+  },
+  {
+   "id": "v04",
+   "at": 12.5,
+   "text": "That's time they should be spending with customers."
+  },
+  {
+   "id": "v05",
+   "at": 15.2,
+   "text": "There has to be a better way.",
+   "speed": 0.92
+  },
+  {
+   "id": "v06",
+   "at": 18.6,
+   "text": "That's why we built Omniscient. It's a CRM that updates itself."
+  },
+  {
+   "id": "v07",
+   "at": 22.4,
+   "text": "Start by telling Scout who you want to sell to. It finds people on LinkedIn who match, and shows you why they're worth reaching out to right now."
+  },
+  {
+   "id": "v08",
+   "at": 30.2,
+   "text": "Otto, our AI agent, writes the first message. You check it and hit approve."
+  },
+  {
+   "id": "v09",
+   "at": 34.2,
+   "text": "When someone replies, it shows up in one inbox, right next to everything you know about them."
+  },
+  {
+   "id": "v10",
+   "at": 38.3,
+   "text": "After a call, Omniscient reads the transcript and updates the deal for you, from the stage to the next step."
+  },
+  {
+   "id": "v11",
+   "at": 44.2,
+   "text": "Click any field to see exactly where it came from."
+  },
+  {
+   "id": "v12",
+   "at": 48.2,
+   "text": "Your team doesn't have to type a thing."
+  },
+  {
+   "id": "v13",
+   "at": 51.2,
+   "text": "When it's time to close, Otto builds a private page for the deal, with the plan and pricing your buyer needs."
+  },
+  {
+   "id": "v14",
+   "at": 57.2,
+   "text": "Your buyer picks the number of seats and approves it right there."
+  },
+  {
+   "id": "v15",
+   "at": 62.1,
+   "text": "Deal closed."
+  },
+  {
+   "id": "v16",
+   "at": 66.2,
+   "text": "Omniscient takes you from the first message to a signed deal, all in one place. And AI is included in the price."
+  },
+  {
+   "id": "v17",
+   "at": 72.2,
+   "text": "Know everything. Close more."
+  },
+  {
+   "id": "v18",
+   "at": 76.2,
+   "text": "Try it free at try omniscient dot com."
+  }
+ ],
+ "beats": {
+  "keys": [
+   4.6,
+   5.1,
+   5.6,
+   6.1,
+   6.6,
+   7.1,
+   7.6,
+   8.1,
+   8.35,
+   8.6,
+   8.85,
+   9.1,
+   9.35,
+   9.6,
+   9.85,
+   10.1,
+   10.35,
+   10.6,
+   10.85,
+   11.1,
+   11.35,
+   11.6,
+   11.85,
+   12.1,
+   12.225,
+   12.35,
+   12.475,
+   12.6,
+   12.725,
+   12.85,
+   12.975,
+   13.1,
+   13.225,
+   13.35,
+   13.475,
+   13.6,
+   13.725,
+   13.85,
+   13.975,
+   14.1,
+   14.225,
+   14.35,
+   14.475,
+   14.6,
+   14.725
+  ],
+  "counterMax": 214,
+  "toLegacy": 4.0,
+  "zoomField": 12.0,
+  "turn": 15.0,
+  "eyes": 18.0,
+  "reset": 19.0,
+  "drop": 22.0,
+  "scout": 22.0,
+  "outreach": 30.0,
+  "approve": 32.6,
+  "inbox": 34.0,
+  "record": 38.0,
+  "receipt": 44.2,
+  "zero": 48.0,
+  "deal": 51.0,
+  "fill": 52.0,
+  "phone": 56.8,
+  "press": 60.2,
+  "won": 62.0,
+  "pullback": 66.0,
+  "close": 72.0,
+  "cta": 76.0,
+  "end": 80.0,
+  "sections": [
+   [
+    "Revenue",
+    22.0
+   ],
+   [
+    "CRM",
+    38.0
+   ],
+   [
+    "Deal Room",
+    51.0
+   ]
+  ]
+ }
+}
