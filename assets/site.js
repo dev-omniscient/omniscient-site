@@ -79,6 +79,49 @@
     window.matchMedia("(min-width: 1024px)").addEventListener("change", function (m) { if (m.matches) toggleSheet(false); });
   }
 
+  // The tour: the sidebar follows the scroll. The last section or feature whose top has passed a line a third of the
+  // way down the screen is the active one. Its module opens, the item lights up and the blue bar slides to it.
+  var tour = document.querySelector("[data-tour]");
+  if (tour) {
+    var tnav = tour.querySelector(".tnav");
+    var bar = tour.querySelector(".tnav__bar");
+    var links = Array.prototype.slice.call(tnav.querySelectorAll("a"));
+    var targets = links.map(function (a) { return document.getElementById(a.hash.slice(1)); });
+    var current = -1;
+    var pending = false;
+    var place = function () {
+      var link = links[current];
+      if (!link || !bar) return;
+      var top = link.getBoundingClientRect().top - tnav.getBoundingClientRect().top - tnav.clientTop;
+      bar.style.height = link.offsetHeight + "px";
+      bar.style.transform = "translateY(" + top + "px)";
+    };
+    var update = function () {
+      pending = false;
+      var line = window.innerHeight * 0.35;
+      var active = 0;
+      targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= line) active = i; });
+      if (active === current) return;
+      current = active;
+      var link = links[active];
+      var mod = link.closest(".tnav__mod");
+      tnav.querySelectorAll(".tnav__mod").forEach(function (m) { m.classList.toggle("is-active", m === mod); });
+      links.forEach(function (a) {
+        var on = a === link;
+        a.classList.toggle("is-active", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+      place();
+      // On a phone the sidebar is a strip of tabs: keep the active one in view.
+      var tab = mod.querySelector("a");
+      if (tnav.scrollWidth > tnav.clientWidth) tnav.scrollTo({ left: tab.offsetLeft - 16, behavior: "smooth" });
+    };
+    var queue = function () { if (!pending) { pending = true; requestAnimationFrame(update); } };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", function () { place(); queue(); });
+    update();
+  }
+
   // Scroll reveals
   var reveals = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window)) {

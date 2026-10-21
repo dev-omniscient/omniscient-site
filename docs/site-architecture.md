@@ -167,13 +167,12 @@ The home page tells one idea, then walks the three sections in order. Each secti
 1. Hero, 50/50: the title, lead and buttons on the left, the product tour video on the right (a placeholder until the film is ready).
 2. Logo strip of the tools it connects to.
 3. The why, as a short block of large text.
-4. Revenue band, with a Scout and Inbox mock.
-5. CRM band, with a record mock and a receipt on a field.
-6. Deal Room band, with a Deal Room mock on a laptop and a phone.
-7. One-Click Switch: the HubSpot, Salesforce, Attio and Pipedrive logos.
-8. Security in brief, linking to `/security/`.
-9. Pricing in brief, linking to `/pricing/`.
-10. FAQ and the closing band with the closing line.
+4. The tour, "From first hello to closed deal": a sidebar that follows the scroll on the left (Revenue, CRM and Deal Room, with the open section's features under it and a blue bar on the current one) and one block per feature on the right, each with its own mock. On a phone the sidebar becomes a strip of section tabs under the header.
+5. Meet Otto: Ask Omniscient with sources.
+6. One-Click Switch: the HubSpot, Salesforce, Attio and Pipedrive logos.
+7. Security in brief.
+8. Pricing in brief.
+9. FAQ and the closing band with the closing line.
 
 ## 7. Footer
 
