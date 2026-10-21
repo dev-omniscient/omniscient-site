@@ -193,6 +193,9 @@ Five columns of links, the same groups as the menus: Revenue, CRM, Deal Room, Ec
 
 ## 9. Order of work
 
+Built so far: the header and both menus, the phone menu, the footer, the home page, `/product/` and all 11 feature pages.
+
+
 | Phase | What ships |
 |---|---|
 | 1 | New header with both menus and the phone sheet, new footer, the feature template and mock parts, Home rework, `/product/`, B2B Lead Scouting, LinkedIn Outreach, Single Source of Truth, Call & Meeting Intelligence, Self-Driving CRM, Deal Room, Pricing, Security, Demo |

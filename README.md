@@ -2,19 +2,23 @@
 
 Static site for Omniscient. Plain HTML: no WordPress, no build step.
 
-The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, Privacy and Terms. More pages follow `docs/site-architecture.md`.
+The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, the product pages, Privacy and Terms. More pages follow `docs/site-architecture.md`.
 
 ## How it's laid out
 
 | Path | What |
 |---|---|
 | `index.html` | The home page. |
+| `product/index.html` | The Product overview: Revenue, CRM and Deal Room with a card per feature. |
+| `product/<feature>/index.html` | One page per feature (11), all on the same template: hero with its mock, three feature rows, Otto at work, related features, questions. |
 | `privacy/index.html`, `terms/index.html` | Privacy and Terms. One folder per page. The URL is the folder path. |
 | `404.html` | Page not found. |
 | `partials/head.html` | Icons, fonts and the shared CSS. |
 | `partials/header.html`, `partials/footer.html` | The site header and footer. |
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
-| `assets/home.css` | The home page and its product mocks. |
+| `assets/marketing.css` | Shared by the home and product pages: every product mock, the tools strip, security, pricing, questions and the closing band. |
+| `assets/home.css` | The home page only: hero, the why and the tour with the sidebar that follows the scroll. |
+| `assets/product.css` | The product page template and its small visuals. |
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
 | `assets/logos/` | Logos of the tools Omniscient works with. |
 | `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image. |
@@ -27,6 +31,8 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 - **Header, footer, icons or fonts:** edit the file in `partials/`, then run `node tools/layout.mjs`.
 - **CSS or JS:** edit the file in `assets/`, then run `node tools/layout.mjs`. It adds `?v=<hash>` to each CSS and JS
   link, so browsers fetch the new file.
+- **New feature page:** copy a folder in `product/` and change the words, the mock and the rows. Mocks reuse the classes in
+  `assets/marketing.css`.
 - **New page:** copy a page folder, change the content and the tags under `<!-- head:end -->`
   (title, description, canonical, og tags), then run `node tools/layout.mjs`. It adds the page to `sitemap.xml`.
 - **Privacy or Terms:** edit the text in `privacy/index.html` or `terms/index.html` and change the
