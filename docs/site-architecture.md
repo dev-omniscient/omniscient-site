@@ -30,7 +30,7 @@ Three sections that run end to end, in the order a deal moves: Revenue finds the
 
 | Name | Line | In the app |
 |---|---|---|
-| **Context Graph** | Everything about every account, connected | Links, facts with quotes, summaries, Pulse |
+| **Single Source of Truth** | Everything about every account, connected | Links, facts with quotes, summaries, Pulse |
 | **Call & Meeting Intelligence** | Every email, call and meeting, captured and summed up | Gmail, Outlook, Calendar, Meetings, transcripts |
 | **Self-Driving CRM** | Records that update themselves | AI fields with proof, suggestions, workflows |
 | **Data Model** | Shape it to fit your business | Custom objects, 15 field types, links |
@@ -83,7 +83,7 @@ Every page lives in its own folder (the URL is the folder path). All marketing p
 | `/product/lead-scouting/` | B2B Lead Scouting | 1 |
 | `/product/linkedin-outreach/` | LinkedIn Outreach | 1 |
 | `/product/unified-inbox/` | Unified Inbox | 2 |
-| `/product/context-graph/` | Context Graph | 1 |
+| `/product/single-source-of-truth/` | Single Source of Truth | 1 |
 | `/product/call-meeting-intelligence/` | Call & Meeting Intelligence | 1 |
 | `/product/self-driving-crm/` | Self-Driving CRM | 1 |
 | `/product/data-model/` | Data Model | 2 |
@@ -164,11 +164,11 @@ The home page tells one idea, then walks the three sections in order. Each secti
 
 ### Page order
 
-1. Hero with the title, lead, Start free and the product mock.
+1. Hero, 50/50: the title, lead and buttons on the left, the product tour video on the right (a placeholder until the film is ready).
 2. Logo strip of the tools it connects to.
 3. The why, as a short block of large text.
 4. Revenue band, with a Scout and Inbox mock.
-5. CRM band, with the Context Graph mock and a receipt on a field.
+5. CRM band, with a record mock and a receipt on a field.
 6. Deal Room band, with a Deal Room mock on a laptop and a phone.
 7. One-Click Switch: the HubSpot, Salesforce, Attio and Pipedrive logos.
 8. Security in brief, linking to `/security/`.
@@ -188,7 +188,7 @@ Five columns of links, the same groups as the menus: Revenue, CRM, Deal Room, Ec
 - **Logos.** `assets/logos/` holds one SVG per tool, the same set as `BrandLogo` in the app.
 - **Layout tool.** `tools/layout.mjs` already walks nested folders and builds the sitemap. Add `nav.css`, `product.css` and `mocks.css` to `partials/head.html`, and stamp `nav.js` the same way the CSS links get their `?v=` hash.
 - **Search and AI answers.** Every page gets a title, description, canonical, og tags and JSON-LD (`SoftwareApplication` on product pages, `FAQPage` where there are questions). Add `/llms.txt` listing every product page with its one line, so AI answers describe Omniscient right. Arrowsterr tracks how they do.
-- **Analytics.** PostHog is already on the site. Track Start free and Book a demo clicks by page and menu item.
+- **Analytics.** Add PostHog to the site and track Start free and Book a demo clicks by page and menu item.
 - **Help center, guides, changelog and blog.** Plain HTML pages in this repo, made from Markdown by a small script in `tools/`. No CMS.
 - **Brand.** Everything follows `docs/brand.md` in the app repo. The corner and tag line in this repo's README comes from the old brand and should be updated to match it.
 
@@ -196,7 +196,7 @@ Five columns of links, the same groups as the menus: Revenue, CRM, Deal Room, Ec
 
 | Phase | What ships |
 |---|---|
-| 1 | New header with both menus and the phone sheet, new footer, the feature template and mock parts, Home rework, `/product/`, B2B Lead Scouting, LinkedIn Outreach, Context Graph, Call & Meeting Intelligence, Self-Driving CRM, Deal Room, Pricing, Security, Demo |
+| 1 | New header with both menus and the phone sheet, new footer, the feature template and mock parts, Home rework, `/product/`, B2B Lead Scouting, LinkedIn Outreach, Single Source of Truth, Call & Meeting Intelligence, Self-Driving CRM, Deal Room, Pricing, Security, Demo |
 | 2 | The other product pages, Apps, Switch, Developers, the three solution pages, Omniscient 101, the template gallery, Compare and five rival pages, Changelog |
 | 3 | One page per tool and per template, API reference, the suite page, help center, guides, blog, About |
 | Later | Customers, once three stories are signed off |
