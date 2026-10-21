@@ -91,6 +91,7 @@ html:not(.js) .crit::after { transform: scaleX(1); }
 .t-person small { display: block; font-size: 12px; color: var(--faint); white-space: nowrap; }
 .t-co { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .t-sig { min-width: 0; overflow: hidden; }
+.t-sig .tag { display: inline-block; max-width: 100%; line-height: 20px; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 560px) {
   .t-head, .t-row { grid-template-columns: minmax(0, 1.6fr) 40px minmax(0, 1.2fr); }
   .t-co { display: none; }
