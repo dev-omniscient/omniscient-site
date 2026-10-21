@@ -5,9 +5,9 @@ Options -Indexes
 
 RewriteEngine On
 
-# Hostinger deploys the whole repo here, so hide the git folder, dot files and the README
+# Hostinger deploys the whole repo here, so hide the git folder, dot files, the README and docs
 RewriteRule (^|/)\.(?!well-known/) - [F]
-RewriteRule ^README\.md$ - [F]
+RewriteRule ^(README\.md|docs/) - [F]
 # One host: www -> apex, http -> https
 RewriteCond %{HTTP_HOST} ^www\.tryomniscient\.com$ [NC]
 RewriteRule ^(.*)$ https://tryomniscient.com/$1 [R=301,L]
