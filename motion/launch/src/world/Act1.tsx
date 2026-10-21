@@ -6,11 +6,11 @@ import {At, Icon, I} from './ui';
 
 // The renewal: line items stack up one per beat and the total keeps climbing.
 const LINES: [string, number, number][] = [
-	['CRM seats × 25', 45000, 0.5],
-	['Sales add-on', 9000, 1.1],
-	['AI credits', 6500, 1.7],
-	['Data storage', 2400, 2.3],
-	['Price increase, 9%', 5600, 2.9],
+	['CRM seats × 25', 45000, 0.6],
+	['Sales add-on', 9000, 1.3],
+	['AI credits', 6500, 2.0],
+	['Data storage', 2400, 2.7],
+	['Price increase, 9%', 5600, B.priceUp],
 ];
 
 export const Invoice: React.FC = () => {
@@ -43,7 +43,7 @@ export const Invoice: React.FC = () => {
 				</div>
 				<div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 26}}>
 					<span style={{fontSize: 26, color: C.old}}>Total a year</span>
-					<b style={{fontSize: 62, fontWeight: 700, letterSpacing: -2, scale: `${1 + 0.05 * hit(t, 2.9, 6)}`, display: 'inline-block'}}>{money(Math.round(total / 10) * 10)}</b>
+					<b style={{fontSize: 62, fontWeight: 700, letterSpacing: -2, scale: `${1 + 0.05 * hit(t, B.priceUp, 6)}`, display: 'inline-block'}}>{money(Math.round(total / 10) * 10)}</b>
 				</div>
 			</div>
 		</At>
@@ -140,7 +140,7 @@ export const Legacy: React.FC = () => {
 				</div>
 			</div>
 			{/* As the camera closes in on the empty field, everything else goes dark. */}
-			<div style={{position: 'absolute', inset: -400, background: 'radial-gradient(circle at 62% 85%, transparent 0, transparent 90px, rgba(11,26,61,0.82) 380px)', opacity: life(t, B.zoomField + 0.4, B.turn + 0.3, 1.2, 0.2) * 0.9}} />
+			<div style={{position: 'absolute', inset: -400, background: 'radial-gradient(ellipse 330px 120px at 1395px 978px, transparent 0, transparent 60%, rgba(11,26,61,0.85) 100%)', opacity: life(t, B.zoomField + 0.4, B.turn + 0.3, 1.2, 0.2) * 0.9}} />
 		</At>
 	);
 };

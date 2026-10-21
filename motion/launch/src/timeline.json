@@ -1,7 +1,7 @@
 {
  "fps": 30,
  "bpm": 120,
- "durationSec": 80,
+ "durationSec": 86,
  "voice": "af_heart",
  "pronounce": {},
  "vo": [
@@ -12,175 +12,174 @@
   },
   {
    "id": "v02",
-   "at": 4.2,
+   "at": 3.8,
    "text": "It's expensive, and the price goes up every year."
   },
   {
    "id": "v03",
-   "at": 8.8,
+   "at": 7.0,
    "text": "On top of that, your reps spend hours every week typing in notes and updating deals by hand."
   },
   {
    "id": "v04",
-   "at": 12.5,
+   "at": 12.8,
    "text": "That's time they should be spending with customers."
   },
   {
    "id": "v05",
-   "at": 15.2,
+   "at": 16.2,
    "text": "There has to be a better way.",
    "speed": 0.92
   },
   {
    "id": "v06",
-   "at": 18.6,
+   "at": 19.2,
    "text": "That's why we built Omniscient. It's a CRM that updates itself."
   },
   {
    "id": "v07",
-   "at": 22.4,
+   "at": 24.4,
    "text": "Start by telling Scout who you want to sell to. It finds people on LinkedIn who match, and shows you why they're worth reaching out to right now."
   },
   {
    "id": "v08",
-   "at": 30.2,
+   "at": 32.6,
    "text": "Otto, our AI agent, writes the first message. You check it and hit approve."
   },
   {
    "id": "v09",
-   "at": 34.2,
+   "at": 37.8,
    "text": "When someone replies, it shows up in one inbox, right next to everything you know about them."
   },
   {
    "id": "v10",
-   "at": 38.3,
+   "at": 43.6,
    "text": "After a call, Omniscient reads the transcript and updates the deal for you, from the stage to the next step."
   },
   {
    "id": "v11",
-   "at": 44.2,
+   "at": 50.0,
    "text": "Click any field to see exactly where it came from."
   },
   {
    "id": "v12",
-   "at": 48.2,
+   "at": 53.4,
    "text": "Your team doesn't have to type a thing."
   },
   {
    "id": "v13",
-   "at": 51.2,
+   "at": 56.2,
    "text": "When it's time to close, Otto builds a private page for the deal, with the plan and pricing your buyer needs."
   },
   {
    "id": "v14",
-   "at": 57.2,
+   "at": 62.8,
    "text": "Your buyer picks the number of seats and approves it right there."
   },
   {
    "id": "v15",
-   "at": 62.1,
+   "at": 67.2,
    "text": "Deal closed."
   },
   {
    "id": "v16",
-   "at": 66.2,
+   "at": 69.4,
    "text": "Omniscient takes you from the first message to a signed deal, all in one place. And AI is included in the price."
   },
   {
    "id": "v17",
-   "at": 72.2,
+   "at": 77.4,
    "text": "Know everything. Close more."
   },
   {
    "id": "v18",
-   "at": 76.2,
+   "at": 80.4,
    "text": "Try it free at try omniscient dot com."
   }
  ],
  "beats": {
   "keys": [
-   4.6,
-   5.1,
-   5.6,
-   6.1,
-   6.6,
-   7.1,
-   7.6,
-   8.1,
-   8.35,
-   8.6,
-   8.85,
-   9.1,
-   9.35,
-   9.6,
-   9.85,
-   10.1,
-   10.35,
-   10.6,
-   10.85,
-   11.1,
-   11.35,
-   11.6,
-   11.85,
-   12.1,
-   12.225,
-   12.35,
-   12.475,
-   12.6,
-   12.725,
-   12.85,
-   12.975,
-   13.1,
-   13.225,
-   13.35,
-   13.475,
-   13.6,
-   13.725,
-   13.85,
-   13.975,
-   14.1,
-   14.225,
-   14.35,
-   14.475,
-   14.6,
-   14.725
+   6.8,
+   7.3,
+   7.8,
+   8.3,
+   8.8,
+   9.3,
+   9.8,
+   10.05,
+   10.3,
+   10.55,
+   10.8,
+   11.05,
+   11.3,
+   11.55,
+   11.8,
+   12.05,
+   12.3,
+   12.55,
+   12.8,
+   12.925,
+   13.05,
+   13.175,
+   13.3,
+   13.425,
+   13.55,
+   13.675,
+   13.8,
+   13.925,
+   14.05,
+   14.175,
+   14.3,
+   14.425,
+   14.55,
+   14.675,
+   14.8,
+   14.925,
+   15.05,
+   15.175,
+   15.3,
+   15.425,
+   15.55,
+   15.675
   ],
   "counterMax": 214,
-  "toLegacy": 4.0,
-  "zoomField": 12.0,
-  "turn": 15.0,
-  "eyes": 18.0,
-  "reset": 19.0,
-  "drop": 22.0,
-  "scout": 22.0,
-  "outreach": 30.0,
-  "approve": 32.6,
-  "inbox": 34.0,
-  "record": 38.0,
-  "receipt": 44.2,
-  "zero": 48.0,
-  "deal": 51.0,
-  "fill": 52.0,
-  "phone": 56.8,
-  "press": 60.2,
-  "won": 62.0,
-  "pullback": 66.0,
-  "close": 72.0,
-  "cta": 76.0,
-  "end": 80.0,
+  "priceUp": 5.4,
+  "toLegacy": 6.5,
+  "zoomField": 12.8,
+  "turn": 16.0,
+  "eyes": 18.6,
+  "reset": 19.6,
+  "drop": 24.0,
+  "scout": 24.0,
+  "outreach": 32.4,
+  "approve": 36.7,
+  "inbox": 37.6,
+  "record": 43.4,
+  "receipt": 50.0,
+  "zero": 53.2,
+  "deal": 56.0,
+  "fill": 57.0,
+  "phone": 62.4,
+  "press": 65.5,
+  "won": 67.0,
+  "pullback": 69.0,
+  "close": 77.0,
+  "cta": 80.0,
+  "end": 86.0,
   "sections": [
    [
     "Revenue",
-    22.0
+    24.0
    ],
    [
     "CRM",
-    38.0
+    43.4
    ],
    [
     "Deal Room",
-    51.0
+    56.0
    ]
   ]
- }
+ },
+ "audio": true
 }

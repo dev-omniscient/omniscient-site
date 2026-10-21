@@ -9,7 +9,7 @@ export const LEGACY: Pt = {x: 1500, y: 0};
 export const LEGACY_W = 1260;
 export const LEGACY_H = 760;
 /** The empty Notes field the camera pushes into, relative to the legacy window's center. */
-export const NOTES_FIELD: Pt = {x: 1500 + 250, y: 0 + 268};
+export const NOTES_FIELD: Pt = {x: 1500 + 365, y: 0 + 198};
 
 // ---------- The better way (bottom row) ----------
 export const ROW = 2200;
