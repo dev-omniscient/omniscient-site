@@ -16,18 +16,65 @@ The feature list comes from the app's sidebar (`src/components/ClientApp.tsx` in
 
 ## 2. Product menu
 
-Four columns plus a tinted panel on the right, like Attio's Platform menu. Each item is a name plus one short line.
+Three modules plus Ecosystem, with a tinted panel on the right, like Attio's Context, Orchestration and Ecosystem. Each feature has a proper name and one short line. Names are Title Case because they are product names; everything else stays sentence case.
 
-| CRM | Agents | Sell | Connect | Omniscient for |
-|---|---|---|---|---|
-| **Context graph**<br>Every answer shows its proof | **Ask Omniscient**<br>Ask your whole pipeline anything | **Scout**<br>Find who fits and why | **Apps**<br>Gmail, Outlook, Slack, Zoom and more | Founders |
-| **Capture**<br>Email and meetings, logged for you | **Workflows**<br>Agents that do the next step | **Campaigns**<br>LinkedIn outreach you approve | **Switch to Omniscient**<br>Bring your CRM over in one click | Agencies |
-| **Records**<br>Companies, people and deals that fill themselves in | **Knowledge**<br>Teach Otto how you sell | **Inbox**<br>Every reply next to the record | **API and webhooks**<br>Build on Omniscient | Sales teams |
-| **Data model**<br>Shape it like your business | **Meeting prep**<br>A brief before every call | **Deal Room**<br>A small website for every deal | **The suite**<br>Works with Claritia and Arrowsterr | *Get started* |
-| **Meetings**<br>Notes and next steps from every call | | **Library**<br>Every asset, ready to share | | Omniscient 101 |
-| **Dashboards**<br>Pipeline numbers in real time | | | | Book a demo |
+The theme is the all-knowing owl: Omniscient sees and remembers everything, Otto and his agents do the work, and the team wins the deal.
 
-Column headings are small `faint` labels. Item names are 14px `ink`, lines are 13px `muted`. Hover fills the item with `hover`.
+### Context: what Omniscient knows
+
+| Name | Line | What it is in the app |
+|---|---|---|
+| **Context Graph** | Everything your team knows, connected | Links, facts with quotes, one summary per record, Pulse map |
+| **Total Recall** | Every email and meeting, remembered | Gmail, Outlook and Calendar capture |
+| **Living Records** | Records that fill themselves in | Companies, People, Opportunities, Lists, AI fields with proof |
+| **Meeting Memory** | Notes and next steps from every call | Meetings, transcripts, call notes, coaching |
+| **Blueprint** | Shape the CRM like your business | Data model: custom objects, 15 field types, links, calculated fields |
+| **Foresight** | Forecasts and dashboards from a sentence | Dashboards, forecast, deal health |
+
+### Agents: what Otto does
+
+| Name | Line | What it is in the app |
+|---|---|---|
+| **Ask Omniscient** | Ask your whole pipeline anything | Ask, with Think Harder for deep answers |
+| **Autopilot** | Workflows that run the next step | Workflows, approvals, runs |
+| **Parliament** | A team of agents for any task | Agent library (a group of owls is a parliament) |
+| **Briefings** | Know the room before every call | Meeting prep briefs |
+| **Night Shift** | Work done while you sleep | Daily agents, digests, Up next |
+| **Wisdom** | Teach Otto how you sell | Knowledge |
+
+### Revenue: where deals get won
+
+| Name | Line | What it is in the app |
+|---|---|---|
+| **Scout** | Find who fits, and why now | Scout |
+| **Reach** | LinkedIn outreach you approve | Campaigns |
+| **One Inbox** | Every reply next to the record | Inbox |
+| **Deal Room** | A private website for every deal | Experiences, 55 elements, Otto in the builder |
+| **Vault** | Every asset, ready to send | Library |
+
+### Ecosystem
+
+| Name | Line |
+|---|---|
+| **Apps** | Gmail, Outlook, Slack, Zoom and more |
+| **One-Click Switch** | Bring your CRM over in one click |
+| **Developer Platform** | Build on Omniscient |
+| **The Suite** | Works with Claritia and Arrowsterr |
+
+### Right panel
+
+- **Omniscient for:** Founders, Agencies, Sales teams
+- **Get started:** Omniscient 101, Book a demo
+
+Section headings are small `faint` labels. Feature names are 14px `ink`, lines are 13px `muted`. Hover fills the item with `hover`.
+
+### Words that carry through
+
+- **Receipts:** every fact Omniscient shows links to the email, call or note it came from. Used on the Context Graph page and the home page.
+- **Think Harder:** the deep-answer mode inside Ask Omniscient.
+- **ByOtto:** the tag on anything an agent wrote or found.
+
+Clear these names with a trademark search before launch: Total Recall, Autopilot, Foresight, Night Shift, Vault, Reach.
 
 ## 3. Resources menu
 
@@ -46,28 +93,30 @@ Every page lives in its own folder (the URL is the folder path). All marketing p
 | URL | Page | Phase |
 |---|---|---|
 | `/` | Home | 1 (rework) |
-| `/product/` | Product overview: the four columns as a page | 1 |
-| `/product/context-graph/` | Context graph | 1 |
-| `/product/capture/` | Capture (Gmail, Outlook, Calendar) | 1 |
-| `/product/records/` | Records | 1 |
-| `/product/data-model/` | Data model (custom objects, 15 field types, links, calculated fields) | 2 |
-| `/product/meetings/` | Meetings (notes, transcripts, call coaching) | 1 |
-| `/product/dashboards/` | Dashboards and forecasts | 2 |
-| `/product/ask/` | Ask Omniscient (fast answers, Think harder) | 1 |
-| `/product/workflows/` | Workflows (agent library, approvals, runs) | 1 |
-| `/product/knowledge/` | Knowledge | 2 |
-| `/product/meeting-prep/` | Meeting prep | 2 |
+| `/product/` | Product overview: the three modules and Ecosystem as a page | 1 |
+| `/product/context-graph/` | Context Graph | 1 |
+| `/product/total-recall/` | Total Recall | 1 |
+| `/product/living-records/` | Living Records | 1 |
+| `/product/meeting-memory/` | Meeting Memory | 1 |
+| `/product/blueprint/` | Blueprint | 2 |
+| `/product/foresight/` | Foresight | 2 |
+| `/product/ask/` | Ask Omniscient | 1 |
+| `/product/autopilot/` | Autopilot | 1 |
+| `/product/parliament/` | Parliament | 2 |
+| `/product/briefings/` | Briefings | 2 |
+| `/product/night-shift/` | Night Shift | 2 |
+| `/product/wisdom/` | Wisdom | 2 |
 | `/product/scout/` | Scout | 2 |
-| `/product/campaigns/` | Campaigns | 2 |
-| `/product/inbox/` | Inbox | 2 |
-| `/product/deal-room/` | Deal Room (Experiences, the 55 elements, Otto in the builder) | 1 |
-| `/product/library/` | Library | 2 |
+| `/product/reach/` | Reach | 2 |
+| `/product/one-inbox/` | One Inbox | 2 |
+| `/product/deal-room/` | Deal Room | 1 |
+| `/product/vault/` | Vault | 2 |
 | `/integrations/` | Apps: a grid of logos with filters by kind | 2 |
 | `/integrations/<tool>/` | One page per tool: gmail, outlook, google-calendar, slack, zoom, google-meet, teams, hubspot, salesforce, attio, pipedrive, claritia, arrowsterr | 3 |
-| `/switch/` | Switch to Omniscient (imports) | 2 |
-| `/developers/` | API and webhooks overview | 2 |
+| `/switch/` | One-Click Switch (imports) | 2 |
+| `/developers/` | Developer Platform: API and webhooks | 2 |
 | `/developers/docs/` | API reference, from `docs/api.md` in the app repo | 3 |
-| `/suite/` | Omniscient with Claritia and Arrowsterr | 3 |
+| `/suite/` | The Suite: Omniscient with Claritia and Arrowsterr | 3 |
 | `/for/founders/`, `/for/agencies/`, `/for/sales-teams/` | Solutions | 2 |
 | `/pricing/` | Pricing (moves off the home page; plans from `src/lib/plans.ts`) | 1 |
 | `/demo/` | Book a demo (Calendly embed) | 1 |
@@ -92,7 +141,7 @@ About 45 pages at the end of phase 3, plus help articles, templates and blog pos
 
 Like Attio's feature pages, each one follows the same order, so a new page is mostly words and one mock.
 
-1. **Hero.** A small label with the menu column ("Agents"), a big title (the page's one bold thing), one lead line, Start free and Book a demo, and a live HTML mock of the screen below. Mocks are HTML and CSS, the same way the home page does `HeroMock` today. No screenshots, so they stay sharp and match the brand.
+1. **Hero.** A small label with the module ("Agents"), a big title (the page's one bold thing), one lead line, Start free and Book a demo, and a live HTML mock of the screen below. Mocks are HTML and CSS, the same way the home page does `HeroMock` today. No screenshots, so they stay sharp and match the brand.
 2. **Works with.** A row of tool logos that apply to this feature.
 3. **Feature rows.** Two to four rows, words on one side and a small mock on the other, switching sides each row.
 4. **Otto at work.** What the agent does on this feature, tagged `ByOtto`, with Otto in his working state.
@@ -109,17 +158,17 @@ The home page becomes the tour, and each section links to its feature page.
 
 1. Hero: "The CRM that fills itself in", the product mock, Start free.
 2. Logo strip of the tools it connects to.
-3. Four tabs that switch one big mock: Capture, Ask, Workflows, Deal Room.
-4. The context graph: every fact with its receipt.
-5. The four menu columns as cards (CRM, Agents, Sell, Connect).
-6. Switch in one click: the HubSpot, Salesforce, Attio and Pipedrive logos.
+3. Four tabs that switch one big mock: Total Recall, Ask Omniscient, Autopilot, Deal Room.
+4. Context Graph: every fact with its receipt.
+5. The three modules and Ecosystem as cards.
+6. One-Click Switch: the HubSpot, Salesforce, Attio and Pipedrive logos.
 7. Security in brief, linking to `/security/`.
 8. Pricing in brief, linking to `/pricing/`.
 9. FAQ and the closing band.
 
 ## 7. Footer
 
-Five columns of links, the same groups as the menus: CRM, Agents, Sell, Connect, Resources and Company merged into one. Under them: the logo, Privacy, Terms, the email address and the year.
+Five columns of links, the same groups as the menus: Context, Agents, Revenue, Ecosystem, and Resources merged with Company. Under them: the logo, Privacy, Terms, the email address and the year.
 
 ## 8. How it's built
 
@@ -138,7 +187,7 @@ Five columns of links, the same groups as the menus: CRM, Agents, Sell, Connect,
 
 | Phase | What ships |
 |---|---|
-| 1 | New header with both menus and the phone sheet, new footer, the feature template and mock parts, Home rework, `/product/`, Context graph, Capture, Records, Meetings, Ask, Workflows, Deal Room, Pricing, Security, Demo |
+| 1 | New header with both menus and the phone sheet, new footer, the feature template and mock parts, Home rework, `/product/`, Context Graph, Total Recall, Living Records, Meeting Memory, Ask Omniscient, Autopilot, Deal Room, Pricing, Security, Demo |
 | 2 | The other product pages, Apps, Switch, Developers, the three solution pages, Omniscient 101, the template gallery, Compare and five rival pages, Changelog |
 | 3 | One page per tool and per template, API reference, the suite page, help center, guides, blog, About |
 | Later | Customers, once three stories are signed off |
