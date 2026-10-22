@@ -8,7 +8,7 @@
 /* Breadcrumb */
 .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; color: var(--faint); }
 .crumbs a { color: var(--muted); transition: color var(--fast); }
-.crumbs a:hover { color: var(--brand); }
+.crumbs a:hover { color: var(--ink); }
 .crumbs span[aria-hidden] { color: var(--light); }
 
 /* ═══ Hero: words on top, the mock below ═══ */
@@ -26,10 +26,10 @@
 .p-rows { padding: 24px 0 40px; }
 .p-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: center; padding: 56px 0; border-top: 1px solid var(--line); }
 .p-row__copy { display: flex; flex-direction: column; gap: 14px; }
-.p-row__copy h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.035em; }
+.p-row__copy h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.035em; font-weight: 500; }
 .p-row__copy > p { font-size: 16.5px; line-height: 1.6; color: var(--muted); max-width: 520px; }
 .p-row .points { margin-top: 6px; }
-.p-row__vis { padding: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--tint); }
+.p-row__vis { padding: 32px; border: 1px solid var(--line); border-radius: var(--r-frame); background: var(--tint); }
 @media (min-width: 1024px) {
   .p-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; padding: 80px 0; }
   .p-row:nth-child(even) .p-row__copy { order: 2; }
@@ -79,7 +79,7 @@
 .sw.is-lock { opacity: 0.55; }
 
 .fr-total { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 16px; border-top: 1px solid var(--line); background: var(--tint); }
-.fr-total b { font-size: 22px; letter-spacing: -0.03em; color: var(--brand); }
+.fr-total b { font-size: 22px; letter-spacing: -0.03em; font-weight: 400; }
 
 .fr-msg { padding: 16px; }
 .fr-msg p { margin: 10px 0 14px; font-size: 14px; line-height: 1.55; color: var(--ink); }
@@ -88,21 +88,21 @@
 .fr-msg__foot .float__btns { margin-left: auto; }
 
 /* ═══ Otto at work ═══ */
-.p-otto { padding: 72px 0; border-top: 1px solid var(--line); background: var(--tint); }
+.p-otto { padding: 96px 0; border-top: 1px solid var(--line); background: var(--panel); }
 .p-otto__in { display: grid; gap: 24px; align-items: center; }
 .p-otto__face { display: flex; align-items: center; justify-content: center; width: 88px; height: 88px; border-radius: var(--r-lg); background: var(--panel); border: 1px solid var(--line); }
 .p-otto__face .otto { width: 52px; height: 52px; }
-.p-otto .eyebrow { margin-bottom: 10px; }
-.p-otto h2 { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.035em; line-height: 1.15; max-width: 760px; }
-.p-otto p:not(.eyebrow) { margin-top: 10px; font-size: 16.5px; line-height: 1.6; color: var(--muted); max-width: 680px; }
+.p-otto .ph__label { margin-bottom: 14px; }
+.p-otto h2 { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.035em; line-height: 1.15; max-width: 760px; font-weight: 500; }
+.p-otto p:not(.ph__label) { margin-top: 10px; font-size: 16.5px; line-height: 1.6; color: var(--muted); max-width: 680px; }
 @media (min-width: 768px) { .p-otto__in { grid-template-columns: 88px minmax(0, 1fr); gap: 32px; } }
 
 /* ═══ Related features ═══ */
 .rel { display: grid; gap: 12px; margin-top: 32px; }
-.rel a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 22px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--panel); transition: border-color var(--normal) var(--ease-out), background-color var(--normal) var(--ease-out); }
-.rel a:hover { border-color: var(--brand-halo); background: var(--tint); }
+.rel a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 24px; border: 0; border-radius: var(--r-lg); background: var(--tint); transition: border-color var(--normal) var(--ease-out), background-color var(--normal) var(--ease-out); }
+.rel a:hover { background: var(--hover); }
 .rel small { font-size: 12.5px; font-weight: 500; color: var(--faint); }
-.rel b { font-size: 17px; letter-spacing: -0.02em; }
+.rel b { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; }
 .rel p { font-size: 14px; line-height: 1.5; color: var(--muted); }
 .rel .more { margin-top: auto; padding-top: 10px; }
 @media (min-width: 640px) { .rel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
