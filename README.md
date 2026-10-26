@@ -2,20 +2,22 @@
 
 Static site for Omniscient. Plain HTML: no WordPress, no build step.
 
-The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, Privacy and Terms. More pages follow `docs/site-architecture.md`.
+The app itself lives at app.tryomniscient.com. This repo is only the marketing site: the home page, the product overview, Privacy and Terms. More pages follow `docs/site-architecture.md`.
 
 ## How it's laid out
 
 | Path | What |
 |---|---|
 | `index.html` | The home page. |
+| `product/index.html` | The product overview and the tour of every feature. |
 | `privacy/index.html`, `terms/index.html` | Privacy and Terms. One folder per page. The URL is the folder path. |
 | `404.html` | Page not found. |
 | `partials/head.html` | Icons, fonts and the shared CSS. |
 | `partials/header.html`, `partials/footer.html` | The site header and footer. |
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
+| `assets/file.css` | The deal-file system: figure labels, the hero file, the route, the source receipt and the stamps. |
 | `assets/marketing.css` | Shared by the home and product pages: every product mock, the tools strip, security, pricing, questions and the closing band. |
-| `assets/home.css` | The home page only: hero, the why and the tour with the sidebar that follows the scroll. |
+| `assets/home.css` | The home page and the product tour: the hero, the why and the tour with the sidebar that follows the scroll. |
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
 | `assets/logos/` | Logos of the tools Omniscient works with. |
 | `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image. |
@@ -33,10 +35,10 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 - **Privacy or Terms:** edit the text in `privacy/index.html` or `terms/index.html` and change the
   "Last updated" date. Google's OAuth review reads these pages, so keep the URLs `/privacy` and `/terms`.
 - **Footer year:** it is plain text in `partials/footer.html`. Change it each January.
-- **Brand:** follow `docs/brand.md` in the app repo. Inter, navy text on white, one brand blue, neutrals tinted from
-  that blue. Controls 6px, cards and menus 8px, tags are pills. Shadows only on things that float. No gradients.
-- **Hero video:** replace the `.video-slot` div in `index.html` with the `<video>` tag in the comment above it, and put
-  the film and its poster in `assets/video/`.
+- **Brand:** follow `docs/brand.md` in the app repo. Archivo for display, Geist for body, Geist Mono for labels.
+  Navy ink on paper, one brand blue and one signal orange. The marketing site adds the deal file, route, receipts and
+  stamps from `docs/visual-direction.html`. No gradients, no stock illustrations.
+- **Hero:** the deal file is the `.df` block in `index.html`; the product film is not on the page yet.
 - **Site plan:** `docs/site-architecture.md` (menus, sitemap, page template, build order). Hidden from visitors.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
