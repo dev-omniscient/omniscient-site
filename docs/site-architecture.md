@@ -132,40 +132,47 @@ Like Attio's feature pages, each one follows the same order, so a new page is mo
 
 Solution, compare and integration pages use the same parts in a different order. Compare pages add a table, Omniscient against the rival, with prices that link to the rival's own pricing page.
 
-## 6. Home page and product overview
+## 6. Home page
 
-The home page is a cover, not the whole manual. It tells one idea, walks the route, proves the claim, then hands the full feature tour to `/product/`.
+The home page tells one idea, then walks the three sections in order. Each section links to its feature pages.
 
-### Home
+### The idea (copy for the page)
 
-**Hero title:** Run the whole deal.
+**Hero title:** Know everything. Close more.
 
-**Lead:** Omniscient finds the buyers who fit, writes the outreach, keeps every record true and builds the room where they sign. One system, with a receipt for every fact Otto writes.
+**Lead:** Omniscient runs your whole sales motion in one place, from the first LinkedIn message to the signed deal.
 
-**Hero object:** the deal file (`.df` in `index.html`): a folder, a four-stop route, a source receipt and an approval stamp. Otto peeks over the top.
+**The why:**
+
+> Selling comes down to knowing your buyer and knowing when to move.
+>
+> Most teams spread that knowledge across a lead tool, a LinkedIn tab, an inbox, a CRM nobody updates and a folder of proposals. Reps spend their days copying between them, and the real story of each deal gets lost along the way.
+>
+> Omniscient keeps the whole story in one place. It finds the buyers who fit and starts the conversation. It remembers every email, call and meeting, and keeps each record up to date on its own. When a deal is ready, it builds the room where the buyer says yes.
+>
+> Every fact links back to where it came from, so your team can trust what it sees. Otto, our agent, does the typing. Your team does the selling.
 
 **Closing line:** One system, from first hello to closed deal.
 
-Page order:
+### The three sections (one band each)
 
-1. Hero: copy left, the deal file right.
-2. Tools strip.
-3. The route: “One record. Six stops.” Six links into `/product/#f-...`.
-4. The why, short.
-5. The receipt: “Every fact has a receipt.” One suggested field, its quote, its source, accept or skip.
-6. Meet Otto.
-7. One-Click Switch.
-8. Security: four promises as stamps.
-9. Pricing: a joined plan grid with square cards and stamps.
-10. FAQ and the closing band.
+| Band | Title | Lead |
+|---|---|---|
+| Revenue | Find the buyers worth your time | Scout the right accounts, reach them on LinkedIn and handle every reply in one inbox. |
+| CRM | Remember everything | Every email, call and meeting turns into records that keep themselves current. |
+| Deal Room | Close with one link | Give every buyer a private site with the plan, the content and the price. |
 
-### Product overview `/product/`
+### Page order
 
-The full 11-feature tour lives here: a sidebar that follows the scroll (Revenue, CRM, Deal Room) and one exhibit per feature. The page hero is “From first hello to closed deal.” with file tabs for the three sections. The header and footer product links point at `/product/#f-...`, so every feature is one click from anywhere on the site.
-
-### Visual system
-
-`docs/visual-direction.html` is the visual direction. `assets/file.css` holds the system: figure labels, the deal file, the route, the receipt and the stamps. Archivo for display, Geist for body, Geist Mono for labels. Paper, ink, one brand blue, one signal orange; square file objects, no gradients or stock illustrations.
+1. Hero, 50/50: the title, lead and buttons on the left, the product tour video on the right (a placeholder until the film is ready).
+2. Logo strip of the tools it connects to.
+3. The why, as a short block of large text.
+4. The tour, "From first hello to closed deal": a sidebar that follows the scroll on the left (Revenue, CRM and Deal Room, with the open section's features under it and a blue bar on the current one) and one block per feature on the right, each with its own mock. On a phone the sidebar becomes a strip of section tabs under the header.
+5. Meet Otto: Ask Omniscient with sources.
+6. One-Click Switch: the HubSpot, Salesforce, Attio and Pipedrive logos.
+7. Security in brief.
+8. Pricing in brief.
+9. FAQ and the closing band with the closing line.
 
 ## 7. Footer
 
@@ -186,7 +193,7 @@ Five columns of links, the same groups as the menus: Revenue, CRM, Deal Room, Ec
 
 ## 9. Order of work
 
-Built so far: the header and both menus, the phone menu, the footer, the home page with the deal-file hero, route and receipt, `/product/` with the full 11-feature tour, Privacy and Terms. The individual feature pages, compare pages and resources pages are next.
+Built so far: the header and both menus, the phone menu, the footer, the home page, `/product/` and all 11 feature pages.
 
 
 | Phase | What ships |
