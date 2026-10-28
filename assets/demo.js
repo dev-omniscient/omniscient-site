@@ -1,8 +1,8 @@
 // Home: the product tour (docs/home-v2.md). No library.
 // The tour has a tab for each part (Scout, Unify, Close). Each part is a [data-stage] with --len units and steps that
 // start at its [data-go] marks. The active part plays on a clock once the tour is on screen; people can pause, step
-// back and forward, jump to a step, or switch parts. Each step plays over the first 72% of its share and holds for
-// the rest, so every step can be read. When a part ends, the next one starts unless someone took the controls.
+// back and forward, jump to a step, or switch parts. Each step plays slowly, then holds for a few seconds so people
+// can read it before the next one starts. When a part ends, the next one starts unless someone took the controls.
 // Every [data-at] inside turns .on while at <= s < off. [data-count="from,to,at,end,fmt"] counts,
 // [data-type="at,end"] types its text, [data-scrub="at,end"] sets --t, and [data-guide] (the spotlight and the
 // cursor) moves onto the elements named by the last of its [at, selector] stops that has started.
@@ -13,9 +13,9 @@
   var nums = function (el, name) { return el.getAttribute(name).split(",").map(function (x) { return x.trim(); }); };
   var all = function (el, sel) { return Array.prototype.slice.call(el.querySelectorAll(sel)); };
   var headerH = function () { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 64; };
-  var PLAY = 0.72;     // share of a step spent moving; the rest holds
-  var UNIT_MS = 1500;  // time for one unit of --s
-  var NEXT_MS = 2400;  // pause before the next part starts on its own
+  var UNIT_MS = 2400;  // time for one unit of --s while a step plays
+  var HOLD_MS = 3000;  // reading time at the end of every step
+  var NEXT_MS = 4000;  // pause before the next part starts on its own
   if (reduce) document.documentElement.classList.add("rm");
 
   var tour = document.querySelector("[data-tour]");
@@ -71,10 +71,11 @@
     st.guides = all(el, "[data-guide]").map(function (e) { return { e: e, stops: JSON.parse(e.getAttribute("data-guide")) }; });
     st.steps = all(el, "[data-go]").map(function (b) { return { b: b, at: +b.getAttribute("data-go") }; });
     st.marks = st.steps.map(function (x) { return x.at; }).concat([st.len]);
+    // Each step's time on the clock: its motion, then the hold
     st.weights = [];
-    for (var i = 0; i < st.marks.length - 1; i++) st.weights.push((st.marks[i + 1] - st.marks[i]) / PLAY);
+    for (var i = 0; i < st.marks.length - 1; i++) st.weights.push((st.marks[i + 1] - st.marks[i]) * UNIT_MS + HOLD_MS);
     st.total = st.weights.reduce(function (a, b) { return a + b; }, 0);
-    st.ms = st.total * UNIT_MS * PLAY;
+    st.ms = st.total;
     return st;
   });
   var byKey = function (k) { return stages.filter(function (x) { return x.key === k; })[0]; };
@@ -85,9 +86,9 @@
     for (var i = 0; i <= last; i++) {
       var f = st.weights[i] / st.total;
       if (p <= acc + f || i === last) {
-        var u = clamp((p - acc) / f), d = st.marks[i + 1] - st.marks[i];
-        if (u >= PLAY) return i === last ? st.len : st.marks[i + 1] - 0.001;
-        return st.marks[i] + (u / PLAY) * d;
+        var u = clamp((p - acc) / f), d = st.marks[i + 1] - st.marks[i], play = (d * UNIT_MS) / st.weights[i];
+        if (u >= play) return i === last ? st.len : st.marks[i + 1] - 0.001;
+        return st.marks[i] + (u / play) * d;
       }
       acc += f;
     }
