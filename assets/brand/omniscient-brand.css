@@ -1,0 +1,320 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   OMNISCIENT BRAND SYSTEM: CSS
+   Version 2, "The Witness"
+   ─────────────────────────────────────────────────────────────────────
+   HOW TO USE
+   Wrap any page section, embed, email block or slide in <div class="om">.
+   Everything is scoped to .om so it never leaks into a host page.
+   Add data-theme="dark" on .om (or any parent) for the dark theme.
+   Fonts: Inter (text and headings), Geist Mono (numbers and labels).
+   Built the way arrowsterr-brand.css is built: tokens, base, type, logo,
+   buttons, tags, motifs, frames, sections, data, motion.
+
+   PERSONALITY
+   Omniscient is the Witness. It saw every call, email and click, and it
+   says only what matters: one next step, with the proof next to it.
+
+   THE TRIANGLE
+   Scout finds and reaches the buyer. Unify keeps every word on one record.
+   Close sends one link that wins the deal. The record sits in the middle.
+
+   BRAND RULES
+   1. Logo: always the SVG. The O is the ring around everything, the point
+      is the one thing that matters now.
+   2. Black and white carry the page. Emerald is the signal: the Point, a
+      live line, a won number, the current corner. About 5% of a view.
+   3. Headings are two tones: the point in ink, the rest in gray.
+   4. One lead line under a title at most.
+   5. One bold thing per view.
+   6. Shape: round buttons, 6px inputs, 10px cards, 16px frames. Hairline
+      borders. Shadows only on frames and things that float. No gradients.
+   7. Proof first: every claim sits next to a quote, a date or a number.
+      Numbers are Geist Mono with tabular figures.
+   8. Agent work is credited to Otto, never "AI".
+   9. Drawings are thin lines: isometric plates, dotted sides, one Point.
+   10. Copy: 9th grade words, short sentences, verbs first. No em dashes,
+       no emoji, no exclamation marks.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────
+   1. TOKENS
+   Neutrals come from omniscient/src/app/globals.css. Emerald comes from
+   Claritia (claritia-site/BRAND.md) so the suite shares one signal.
+   ─────────────────────────────────────────────────────────────────────── */
+.om {
+  /* Colour */
+  --ink: #0A0A0A;
+  --ink-2: #404040;
+  --muted: #737373;
+  --faint: #A3A3A3;
+  --light: #C4C4C4;
+  --panel: #FFFFFF;
+  --shell: #F7F7F5;
+  --hover: #F2F2F0;
+  --pressed: #EAEAE7;
+  --line: #E7E7E4;
+  --line-light: #F0F0EE;
+  --line-strong: #D4D4D0;
+  --solid: #0A0A0A;
+  --on-solid: #FFFFFF;
+
+  --signal: #0C8C5E;        /* emerald: the Point, live lines, fills */
+  --signal-text: #0A7A52;   /* emerald for text on light grounds, 5.3:1 */
+  --signal-soft: #E8F5EF;   /* tint behind emerald tags */
+  --signal-line: #B8E2CF;   /* a faint emerald rule */
+  --mint: #18E299;          /* emerald on black grounds only */
+
+  --warn: #B7791F;
+  --error: #C2412D;
+
+  /* Shadow */
+  --shadow-frame: 0 1px 2px rgb(10 10 10 / 0.04), 0 24px 48px -24px rgb(10 10 10 / 0.18);
+  --shadow-pop: 0 8px 24px -8px rgb(10 10 10 / 0.18);
+
+  /* Type */
+  --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Spacing (4px grid) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s6: 24px; --s8: 32px;
+  --s12: 48px; --s16: 64px; --s24: 96px; --s28: 112px;
+
+  /* Radius */
+  --r-input: 6px;
+  --r-card: 10px;
+  --r-frame: 16px;
+  --r-round: 999px;
+
+  /* Motion: three speeds, two curves */
+  --fast: 120ms;
+  --normal: 200ms;
+  --slow: 320ms;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.om[data-theme="dark"], [data-theme="dark"] .om {
+  --ink: #FAFAFA;
+  --ink-2: #D4D4D4;
+  --muted: #A3A3A3;
+  --faint: #737373;
+  --light: #525252;
+  --panel: #121212;
+  --shell: #0A0A0A;
+  --hover: #1C1C1C;
+  --pressed: #262626;
+  --line: #262626;
+  --line-light: #1C1C1C;
+  --line-strong: #333333;
+  --solid: #FAFAFA;
+  --on-solid: #0A0A0A;
+  --signal: #18E299;
+  --signal-text: #3FE6A8;
+  --signal-soft: #0F2A20;
+  --signal-line: #1D4A38;
+  --shadow-frame: 0 1px 0 rgb(255 255 255 / 0.04), 0 24px 48px -24px rgb(0 0 0 / 0.6);
+}
+
+/* Base */
+.om {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.011em;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.om *, .om *::before, .om *::after { box-sizing: border-box; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   2. TYPE
+   Headings are Inter 500, tight. The second tone is gray.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-hero, .om-display, .om-h1, .om-h2, .om-h3 {
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 0;
+  font-feature-settings: 'ss07', 'ss08', 'cv11';
+}
+.om-hero    { font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.045em; }
+.om-display { font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.04em; }
+.om-h1      { font-size: clamp(26px, 3vw, 34px); line-height: 1.15; letter-spacing: -0.03em; }
+.om-h2      { font-size: 22px; line-height: 1.25; letter-spacing: -0.025em; }
+.om-h3      { font-size: 17px; line-height: 1.35; letter-spacing: -0.015em; }
+.om-two     { color: var(--faint); }
+.om-lead    { font-size: 18px; line-height: 28px; color: var(--muted); max-width: 34em; margin: 0; text-wrap: pretty; }
+.om-text    { color: var(--muted); margin: 0; max-width: 38em; }
+
+/* Mono label: uppercase, wide, gray, with an optional number on the right */
+.om-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.om-label--signal { color: var(--signal-text); }
+
+/* Numbers: always mono, always tabular */
+.om-num { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   3. LOGO
+   The all-seeing O: a thin ring with one point in the middle.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.om-logo svg { display: block; height: 20px; width: 20px; }
+.om-logo__word { font-weight: 300; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; }
+.om-logo--md svg { height: 28px; width: 28px; }
+.om-logo--lg svg { height: 40px; width: 40px; }
+.om-logo .om-logo__point { fill: var(--signal); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   4. BUTTONS
+   Round. Black is the action. Press springs back.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 40px; padding: 0 18px;
+  border-radius: var(--r-round);
+  font: 500 14px/20px var(--sans);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform var(--fast) var(--ease-spring), background var(--fast) var(--ease-out), border-color var(--fast) var(--ease-out);
+}
+.om-btn:active { transform: scale(0.96); }
+.om-btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.om-btn--primary { background: var(--solid); color: var(--on-solid); }
+.om-btn--primary:hover { opacity: 0.86; }
+.om-btn--outline { background: var(--panel); color: var(--ink); border-color: var(--line-strong); }
+.om-btn--outline:hover { background: var(--hover); }
+.om-btn--plain { background: transparent; color: var(--ink); padding: 0 8px; }
+.om-btn .om-arrow { transition: transform var(--fast) var(--ease-out); }
+.om-btn:hover .om-arrow { transform: translateX(3px); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   5. TAGS
+   Pill tag: a soft fill with darker text. Emerald only for live and won.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 22px; padding: 0 9px;
+  border-radius: var(--r-round);
+  font: 500 12px/16px var(--sans);
+  background: var(--hover); color: var(--ink-2);
+  white-space: nowrap;
+}
+.om-tag--signal { background: var(--signal-soft); color: var(--signal-text); }
+.om-tag--warn { background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+.om-tag--otto::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid currentColor; box-shadow: inset 0 0 0 1.5px var(--panel); background: currentColor;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   6. MOTIFS
+   The Point, the Triangle, Quarter marks, the Plates, the open row.
+   ─────────────────────────────────────────────────────────────────────── */
+/* The Point: the logo's center dot in emerald. One per view. */
+.om-point {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-soft);
+}
+.om-point--live { animation: om-pulse 2.4s var(--ease-out) infinite; }
+@keyframes om-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 40%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--signal) 0%, transparent); }
+}
+
+/* Line drawings: SVGs that use these classes follow the theme */
+.om-draw { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.om-draw--faint { stroke: var(--line-strong); }
+.om-draw--dash { stroke: var(--light); stroke-dasharray: 2 4; }
+.om-draw--signal { stroke: var(--signal); }
+.om-fill-panel { fill: var(--panel); }
+.om-fill-ink { fill: var(--ink); }
+.om-fill-signal { fill: var(--signal); }
+.om-fill-faint { fill: var(--light); }
+
+/* Line that draws itself. Set --len to the path length. */
+.om-stroke-in { stroke-dasharray: var(--len, 1000); stroke-dashoffset: var(--len, 1000); animation: om-stroke var(--d, 1.2s) var(--ease-out) forwards; animation-delay: var(--delay, 0s); }
+@keyframes om-stroke { to { stroke-dashoffset: 0; } }
+
+/* Quarter marks: a fit drawn with four quarters */
+.om-quarters { display: inline-grid; grid-template-columns: 5px 5px; gap: 1px; vertical-align: middle; }
+.om-quarters i { width: 5px; height: 5px; background: var(--pressed); }
+.om-quarters i:nth-child(1) { border-top-left-radius: 5px; }
+.om-quarters i:nth-child(2) { border-top-right-radius: 5px; }
+.om-quarters i:nth-child(3) { border-bottom-left-radius: 5px; }
+.om-quarters i:nth-child(4) { border-bottom-right-radius: 5px; }
+.om-quarters i.on { background: var(--ink); }
+
+/* Score bar: a run of short dashes, filled to the score */
+.om-score { display: inline-flex; gap: 3px; align-items: center; }
+.om-score i { width: 10px; height: 3px; border-radius: 2px; background: var(--pressed); }
+.om-score i.on { background: var(--signal); }
+
+/* The open row */
+.om-row-open { background: var(--solid); color: var(--on-solid); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   7. FRAMES
+   Product scenes sit in a window inside a frame, faded at the edges.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-frame {
+  background: var(--shell);
+  border: 1px solid var(--line);
+  border-radius: var(--r-frame);
+  padding: var(--s3);
+  box-shadow: var(--shadow-frame);
+}
+.om-window {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+.om-window__bar {
+  display: flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 14px;
+  border-bottom: 1px solid var(--line-light);
+  font-size: 13px; color: var(--muted);
+}
+.om-fade { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent); mask-image: linear-gradient(to bottom, #000 70%, transparent); }
+.om-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-card); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   8. SECTIONS
+   A hairline, a mono label left, its number right.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-section { padding-block: var(--s24); border-top: 1px solid var(--line); }
+.om-section__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s4); margin-bottom: var(--s12); }
+.om-black { background: #0A0A0A; color: #FAFAFA; --ink: #FAFAFA; --muted: #A3A3A3; --faint: #737373; --line: #262626; --signal: #18E299; --signal-text: #3FE6A8; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   9. DATA
+   ─────────────────────────────────────────────────────────────────────── */
+.om-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 20px; }
+.om-table th { text-align: left; font-weight: 500; color: var(--faint); padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.om-table td { padding: 9px 12px; border-bottom: 1px solid var(--line-light); }
+.om-stat { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 32px; line-height: 1; letter-spacing: -0.02em; font-weight: 400; }
+.om-delta { font-family: var(--mono); font-size: 12px; color: var(--signal-text); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   10. MOTION
+   Things rise 8px and fade in. Lines draw. Nothing loops except work in
+   progress and the live Point.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-rise { animation: om-rise var(--slow) var(--ease-out) both; animation-delay: var(--delay, 0s); }
+@keyframes om-rise { from { opacity: 0; transform: translateY(8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .om *, .om *::before, .om *::after { animation: none !important; transition: none !important; }
+  .om .om-stroke-in { stroke-dashoffset: 0; }
+}

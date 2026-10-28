@@ -8,7 +8,7 @@
 .link { color: var(--brand); font-weight: 500; }
 .link:hover { color: var(--brand-hover); text-decoration: underline; text-underline-offset: 3px; }
 .ic { width: 16px; height: 16px; flex-shrink: 0; }
-.ic--check { color: var(--brand); }
+.ic--check { color: var(--signal); }
 
 /* Otto credit: his face and his name */
 .byotto { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px 0 4px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); font-size: 11.5px; font-weight: 500; white-space: nowrap; }
@@ -472,6 +472,6 @@ html:not(.js) .crit::after { transform: scaleX(1); }
 /* ═══ Closing band ═══ */
 .close { padding: 104px 0; background: var(--solid); color: #fff; }
 .close__in { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
-.close__otto { --o-body: #fff; --o-eye: #0943b0; --o-pupil: #fff; --o-beak: #0943b0; }
+.close__otto { --o-body: #fff; --o-eye: #0a0a0a; --o-pupil: #fff; --o-beak: #6b6b6b; }
 .close .h2 { max-width: 720px; }
 .close__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }

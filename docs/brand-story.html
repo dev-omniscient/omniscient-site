@@ -1,0 +1,988 @@
+<title>Omniscient Brand Story</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   OMNISCIENT BRAND SYSTEM: CSS
+   Version 2, "The Witness"
+   ─────────────────────────────────────────────────────────────────────
+   HOW TO USE
+   Wrap any page section, embed, email block or slide in <div class="om">.
+   Everything is scoped to .om so it never leaks into a host page.
+   Add data-theme="dark" on .om (or any parent) for the dark theme.
+   Fonts: Inter (text and headings), Geist Mono (numbers and labels).
+   Built the way arrowsterr-brand.css is built: tokens, base, type, logo,
+   buttons, tags, motifs, frames, sections, data, motion.
+
+   PERSONALITY
+   Omniscient is the Witness. It saw every call, email and click, and it
+   says only what matters: one next step, with the proof next to it.
+
+   THE TRIANGLE
+   Scout finds and reaches the buyer. Unify keeps every word on one record.
+   Close sends one link that wins the deal. The record sits in the middle.
+
+   BRAND RULES
+   1. Logo: always the SVG. The O is the ring around everything, the point
+      is the one thing that matters now.
+   2. Black and white carry the page. Emerald is the signal: the Point, a
+      live line, a won number, the current corner. About 5% of a view.
+   3. Headings are two tones: the point in ink, the rest in gray.
+   4. One lead line under a title at most.
+   5. One bold thing per view.
+   6. Shape: round buttons, 6px inputs, 10px cards, 16px frames. Hairline
+      borders. Shadows only on frames and things that float. No gradients.
+   7. Proof first: every claim sits next to a quote, a date or a number.
+      Numbers are Geist Mono with tabular figures.
+   8. Agent work is credited to Otto, never "AI".
+   9. Drawings are thin lines: isometric plates, dotted sides, one Point.
+   10. Copy: 9th grade words, short sentences, verbs first. No em dashes,
+       no emoji, no exclamation marks.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────
+   1. TOKENS
+   Neutrals come from omniscient/src/app/globals.css. Emerald comes from
+   Claritia (claritia-site/BRAND.md) so the suite shares one signal.
+   ─────────────────────────────────────────────────────────────────────── */
+.om {
+  /* Colour */
+  --ink: #0A0A0A;
+  --ink-2: #404040;
+  --muted: #737373;
+  --faint: #A3A3A3;
+  --light: #C4C4C4;
+  --panel: #FFFFFF;
+  --shell: #F7F7F5;
+  --hover: #F2F2F0;
+  --pressed: #EAEAE7;
+  --line: #E7E7E4;
+  --line-light: #F0F0EE;
+  --line-strong: #D4D4D0;
+  --solid: #0A0A0A;
+  --on-solid: #FFFFFF;
+
+  --signal: #0C8C5E;        /* emerald: the Point, live lines, fills */
+  --signal-text: #0A7A52;   /* emerald for text on light grounds, 5.3:1 */
+  --signal-soft: #E8F5EF;   /* tint behind emerald tags */
+  --signal-line: #B8E2CF;   /* a faint emerald rule */
+  --mint: #18E299;          /* emerald on black grounds only */
+
+  --warn: #B7791F;
+  --error: #C2412D;
+
+  /* Shadow */
+  --shadow-frame: 0 1px 2px rgb(10 10 10 / 0.04), 0 24px 48px -24px rgb(10 10 10 / 0.18);
+  --shadow-pop: 0 8px 24px -8px rgb(10 10 10 / 0.18);
+
+  /* Type */
+  --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Spacing (4px grid) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s6: 24px; --s8: 32px;
+  --s12: 48px; --s16: 64px; --s24: 96px; --s28: 112px;
+
+  /* Radius */
+  --r-input: 6px;
+  --r-card: 10px;
+  --r-frame: 16px;
+  --r-round: 999px;
+
+  /* Motion: three speeds, two curves */
+  --fast: 120ms;
+  --normal: 200ms;
+  --slow: 320ms;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.om[data-theme="dark"], [data-theme="dark"] .om {
+  --ink: #FAFAFA;
+  --ink-2: #D4D4D4;
+  --muted: #A3A3A3;
+  --faint: #737373;
+  --light: #525252;
+  --panel: #121212;
+  --shell: #0A0A0A;
+  --hover: #1C1C1C;
+  --pressed: #262626;
+  --line: #262626;
+  --line-light: #1C1C1C;
+  --line-strong: #333333;
+  --solid: #FAFAFA;
+  --on-solid: #0A0A0A;
+  --signal: #18E299;
+  --signal-text: #3FE6A8;
+  --signal-soft: #0F2A20;
+  --signal-line: #1D4A38;
+  --shadow-frame: 0 1px 0 rgb(255 255 255 / 0.04), 0 24px 48px -24px rgb(0 0 0 / 0.6);
+}
+
+/* Base */
+.om {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.011em;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.om *, .om *::before, .om *::after { box-sizing: border-box; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   2. TYPE
+   Headings are Inter 500, tight. The second tone is gray.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-hero, .om-display, .om-h1, .om-h2, .om-h3 {
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 0;
+  font-feature-settings: 'ss07', 'ss08', 'cv11';
+}
+.om-hero    { font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.045em; }
+.om-display { font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.04em; }
+.om-h1      { font-size: clamp(26px, 3vw, 34px); line-height: 1.15; letter-spacing: -0.03em; }
+.om-h2      { font-size: 22px; line-height: 1.25; letter-spacing: -0.025em; }
+.om-h3      { font-size: 17px; line-height: 1.35; letter-spacing: -0.015em; }
+.om-two     { color: var(--faint); }
+.om-lead    { font-size: 18px; line-height: 28px; color: var(--muted); max-width: 34em; margin: 0; text-wrap: pretty; }
+.om-text    { color: var(--muted); margin: 0; max-width: 38em; }
+
+/* Mono label: uppercase, wide, gray, with an optional number on the right */
+.om-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.om-label--signal { color: var(--signal-text); }
+
+/* Numbers: always mono, always tabular */
+.om-num { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   3. LOGO
+   The all-seeing O: a thin ring with one point in the middle.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.om-logo svg { display: block; height: 20px; width: 20px; }
+.om-logo__word { font-weight: 300; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; }
+.om-logo--md svg { height: 28px; width: 28px; }
+.om-logo--lg svg { height: 40px; width: 40px; }
+.om-logo .om-logo__point { fill: var(--signal); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   4. BUTTONS
+   Round. Black is the action. Press springs back.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 40px; padding: 0 18px;
+  border-radius: var(--r-round);
+  font: 500 14px/20px var(--sans);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform var(--fast) var(--ease-spring), background var(--fast) var(--ease-out), border-color var(--fast) var(--ease-out);
+}
+.om-btn:active { transform: scale(0.96); }
+.om-btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.om-btn--primary { background: var(--solid); color: var(--on-solid); }
+.om-btn--primary:hover { opacity: 0.86; }
+.om-btn--outline { background: var(--panel); color: var(--ink); border-color: var(--line-strong); }
+.om-btn--outline:hover { background: var(--hover); }
+.om-btn--plain { background: transparent; color: var(--ink); padding: 0 8px; }
+.om-btn .om-arrow { transition: transform var(--fast) var(--ease-out); }
+.om-btn:hover .om-arrow { transform: translateX(3px); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   5. TAGS
+   Pill tag: a soft fill with darker text. Emerald only for live and won.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 22px; padding: 0 9px;
+  border-radius: var(--r-round);
+  font: 500 12px/16px var(--sans);
+  background: var(--hover); color: var(--ink-2);
+  white-space: nowrap;
+}
+.om-tag--signal { background: var(--signal-soft); color: var(--signal-text); }
+.om-tag--warn { background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+.om-tag--otto::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid currentColor; box-shadow: inset 0 0 0 1.5px var(--panel); background: currentColor;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   6. MOTIFS
+   The Point, the Triangle, Quarter marks, the Plates, the open row.
+   ─────────────────────────────────────────────────────────────────────── */
+/* The Point: the logo's center dot in emerald. One per view. */
+.om-point {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-soft);
+}
+.om-point--live { animation: om-pulse 2.4s var(--ease-out) infinite; }
+@keyframes om-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 40%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--signal) 0%, transparent); }
+}
+
+/* Line drawings: SVGs that use these classes follow the theme */
+.om-draw { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.om-draw--faint { stroke: var(--line-strong); }
+.om-draw--dash { stroke: var(--light); stroke-dasharray: 2 4; }
+.om-draw--signal { stroke: var(--signal); }
+.om-fill-panel { fill: var(--panel); }
+.om-fill-ink { fill: var(--ink); }
+.om-fill-signal { fill: var(--signal); }
+.om-fill-faint { fill: var(--light); }
+
+/* Line that draws itself. Set --len to the path length. */
+.om-stroke-in { stroke-dasharray: var(--len, 1000); stroke-dashoffset: var(--len, 1000); animation: om-stroke var(--d, 1.2s) var(--ease-out) forwards; animation-delay: var(--delay, 0s); }
+@keyframes om-stroke { to { stroke-dashoffset: 0; } }
+
+/* Quarter marks: a fit drawn with four quarters */
+.om-quarters { display: inline-grid; grid-template-columns: 5px 5px; gap: 1px; vertical-align: middle; }
+.om-quarters i { width: 5px; height: 5px; background: var(--pressed); }
+.om-quarters i:nth-child(1) { border-top-left-radius: 5px; }
+.om-quarters i:nth-child(2) { border-top-right-radius: 5px; }
+.om-quarters i:nth-child(3) { border-bottom-left-radius: 5px; }
+.om-quarters i:nth-child(4) { border-bottom-right-radius: 5px; }
+.om-quarters i.on { background: var(--ink); }
+
+/* Score bar: a run of short dashes, filled to the score */
+.om-score { display: inline-flex; gap: 3px; align-items: center; }
+.om-score i { width: 10px; height: 3px; border-radius: 2px; background: var(--pressed); }
+.om-score i.on { background: var(--signal); }
+
+/* The open row */
+.om-row-open { background: var(--solid); color: var(--on-solid); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   7. FRAMES
+   Product scenes sit in a window inside a frame, faded at the edges.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-frame {
+  background: var(--shell);
+  border: 1px solid var(--line);
+  border-radius: var(--r-frame);
+  padding: var(--s3);
+  box-shadow: var(--shadow-frame);
+}
+.om-window {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+.om-window__bar {
+  display: flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 14px;
+  border-bottom: 1px solid var(--line-light);
+  font-size: 13px; color: var(--muted);
+}
+.om-fade { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent); mask-image: linear-gradient(to bottom, #000 70%, transparent); }
+.om-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-card); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   8. SECTIONS
+   A hairline, a mono label left, its number right.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-section { padding-block: var(--s24); border-top: 1px solid var(--line); }
+.om-section__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s4); margin-bottom: var(--s12); }
+.om-black { background: #0A0A0A; color: #FAFAFA; --ink: #FAFAFA; --muted: #A3A3A3; --faint: #737373; --line: #262626; --signal: #18E299; --signal-text: #3FE6A8; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   9. DATA
+   ─────────────────────────────────────────────────────────────────────── */
+.om-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 20px; }
+.om-table th { text-align: left; font-weight: 500; color: var(--faint); padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.om-table td { padding: 9px 12px; border-bottom: 1px solid var(--line-light); }
+.om-stat { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 32px; line-height: 1; letter-spacing: -0.02em; font-weight: 400; }
+.om-delta { font-family: var(--mono); font-size: 12px; color: var(--signal-text); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   10. MOTION
+   Things rise 8px and fade in. Lines draw. Nothing loops except work in
+   progress and the live Point.
+   ─────────────────────────────────────────────────────────────────────── */
+.om-rise { animation: om-rise var(--slow) var(--ease-out) both; animation-delay: var(--delay, 0s); }
+@keyframes om-rise { from { opacity: 0; transform: translateY(8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .om *, .om *::before, .om *::after { animation: none !important; transition: none !important; }
+  .om .om-stroke-in { stroke-dashoffset: 0; }
+}
+
+
+/* Page: white paper, one column 1120px, sections split by hairlines with a
+   mono label and its number, drawings in thin lines, emerald as the signal. */
+:root { --page: #FFFFFF; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --page: #0A0A0A; color-scheme: dark; }
+  :root:not([data-theme="light"]) .om {
+    --ink:#FAFAFA; --ink-2:#D4D4D4; --muted:#A3A3A3; --faint:#737373; --light:#525252;
+    --panel:#121212; --shell:#0A0A0A; --hover:#1C1C1C; --pressed:#262626;
+    --line:#262626; --line-light:#1C1C1C; --line-strong:#333333; --solid:#FAFAFA; --on-solid:#0A0A0A;
+    --signal:#18E299; --signal-text:#3FE6A8; --signal-soft:#0F2A20; --signal-line:#1D4A38;
+    --shadow-frame: 0 1px 0 rgb(255 255 255 / 0.04), 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  }
+}
+:root[data-theme="dark"] { --page: #0A0A0A; color-scheme: dark; }
+body { background: var(--page); }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.om { background: var(--page); }
+
+/* Header */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; padding-block: 14px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--page); }
+.nav__bar { display: flex; align-items: center; gap: 20px; max-width: 720px; margin: 0 auto; padding: 6px 6px 6px 16px; background: color-mix(in srgb, var(--panel) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 999px; }
+.nav__links { display: flex; gap: 18px; font-size: 14px; color: var(--muted); flex: 1; }
+.nav__links a { color: inherit; text-decoration: none; }
+.nav__links a:hover { color: var(--ink); }
+.nav .om-btn { height: 34px; padding: 0 14px; font-size: 13px; }
+@media (max-width: 720px) { .nav__links { display: none; } .nav__bar { justify-content: space-between; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; padding-block: 72px 96px; }
+.hero__copy { display: grid; gap: 24px; min-width: 0; }
+.hero__ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+.news { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); padding: 6px 12px 6px 10px; border: 1px solid var(--line); border-radius: 999px; width: max-content; max-width: 100%; }
+.news b { color: var(--ink); font-weight: 500; }
+.tri-wrap { position: relative; min-width: 0; }
+.tri { width: 100%; height: auto; display: block; overflow: visible; }
+.tri text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; fill: var(--muted); text-transform: uppercase; }
+.tri .big { font-family: var(--sans); font-size: 17px; letter-spacing: -0.02em; fill: var(--ink); text-transform: none; font-weight: 500; }
+.tri .corner { cursor: pointer; }
+.tri .corner circle.hit { fill: transparent; }
+.tri .corner .dot { fill: var(--panel); stroke: var(--ink); stroke-width: 1.25; transition: fill var(--normal) var(--ease-out), r var(--normal) var(--ease-spring); }
+.tri .corner.on .dot { fill: var(--ink); }
+.tri .edge { stroke: var(--line-strong); stroke-width: 1; fill: none; }
+.tri .edge.on { stroke: var(--ink); }
+.tri .fade-in { opacity: 0; animation: fade .5s var(--ease-out) forwards; animation-delay: var(--delay, 0s); }
+@keyframes fade { to { opacity: 1; } }
+.corner-card { margin: 4px auto 0; width: min(360px, 100%); padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow-pop); font-size: 13px; line-height: 20px; display: grid; gap: 2px; }
+.corner-card .om-label { font-size: 11px; }
+.corner-card b { font-weight: 500; font-size: 14px; }
+.corner-card span { color: var(--muted); }
+
+@media (max-width: 880px) { .hero { grid-template-columns: 1fr; padding-block: 40px 72px; } }
+
+/* Sections */
+.sec { padding-block: 96px; border-top: 1px solid var(--line); }
+.sec__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; gap: 16px; }
+.sec__title { display: grid; gap: 16px; max-width: 720px; margin-bottom: 56px; }
+
+/* Story */
+.story { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.story > div { padding: 24px 24px 8px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.story > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.story p { margin: 0; color: var(--muted); font-size: 15px; line-height: 24px; }
+.story .om-h3 { font-size: 18px; }
+@media (max-width: 800px) { .story { grid-template-columns: 1fr; } .story > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); } }
+.tools { margin-top: 48px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; }
+.tools svg { width: 100%; height: auto; display: block; }
+.tools__arrow { font-family: var(--mono); color: var(--faint); font-size: 13px; }
+@media (max-width: 800px) { .tools { grid-template-columns: 1fr; } .tools__arrow { text-align: center; transform: rotate(90deg); } }
+
+/* Plates */
+.plates { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: start; }
+.plates svg { width: 100%; height: auto; display: block; }
+.plates__list { display: grid; gap: 0; }
+.plates__item { padding: 28px 0; border-top: 1px solid var(--line); display: grid; gap: 8px; cursor: pointer; transition: opacity var(--normal) var(--ease-out); }
+.plates__item:first-child { border-top: 0; }
+.plates__list:hover .plates__item:not(:hover) { opacity: 0.45; }
+.plates__item p { margin: 0; color: var(--muted); font-size: 15px; line-height: 24px; }
+.plates__item .om-h3 { font-size: 20px; }
+@media (max-width: 880px) { .plates { grid-template-columns: 1fr; } }
+.plate .dot-signal { fill: var(--signal); }
+.plate .dot-ink { fill: var(--ink); }
+.plate .sweep { fill: var(--signal); opacity: 0.08; }
+.plate { transition: opacity var(--normal) var(--ease-out); }
+.plates[data-focus] .plate { opacity: 0.35; }
+.plates[data-focus="scout"] .plate--scout, .plates[data-focus="unify"] .plate--unify, .plates[data-focus="close"] .plate--close { opacity: 1; }
+
+.scene > *, .plates > *, .hero > *, .sys > *, .band .wrap > * { min-width: 0; }
+/* Product scenes */
+.tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--hover); border-radius: 999px; margin-bottom: 24px; flex-wrap: wrap; }
+.tabs button { all: unset; cursor: pointer; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--muted); display: inline-flex; gap: 8px; align-items: center; transition: background var(--fast) var(--ease-out), color var(--fast) var(--ease-out); }
+.tabs button[aria-selected="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.08); }
+.tabs button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.scene { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+.scene__copy { display: grid; gap: 12px; padding-top: 8px; }
+.scene__copy p { margin: 0; color: var(--muted); font-size: 15px; line-height: 24px; }
+.scene__copy .om-h2 { font-size: 24px; }
+@media (max-width: 880px) { .scene { grid-template-columns: 1fr; } }
+.panel-anim { animation: om-rise var(--slow) var(--ease-out) both; }
+.status { display: flex; align-items: center; gap: 10px; padding: 10px 14px; margin-bottom: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; font-size: 13px; }
+.status b { font-weight: 500; }
+.status > span:last-child { color: var(--muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.loader { display: inline-grid; grid-template-columns: 5px 5px; gap: 2px; }
+.loader i { width: 5px; height: 5px; background: var(--ink); border-radius: 1px; animation: blink 1.2s steps(1) infinite; opacity: .2; }
+.loader i:nth-child(2) { animation-delay: .3s; } .loader i:nth-child(4) { animation-delay: .6s; } .loader i:nth-child(3) { animation-delay: .9s; }
+@keyframes blink { 0%, 24% { opacity: 1; } 25%, 100% { opacity: .2; } }
+.sentence { font-size: clamp(17px, 2vw, 22px); line-height: 1.4; letter-spacing: -0.025em; font-weight: 500; color: var(--faint); padding: 18px 18px 14px; }
+.sentence em { font-style: normal; color: var(--ink); background-image: linear-gradient(var(--ink), var(--ink)); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%; animation: under .6s var(--ease-out) forwards; animation-delay: var(--delay, .2s); }
+@keyframes under { to { background-size: 100% 1px; } }
+.tablewrap { overflow-x: auto; }
+.om-table td .co { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; white-space: nowrap; }
+.co i { width: 18px; height: 18px; border-radius: 5px; display: inline-grid; place-items: center; font-style: normal; font-size: 10px; font-weight: 600; background: var(--pressed); color: var(--ink-2); }
+.om-row-open td { border-bottom-color: transparent; }
+.om-row-open .co i { background: #333; color: #fff; }
+.om-row-open .om-score i { background: rgb(255 255 255 / 0.2); }
+.om-row-open .om-score i.on { background: var(--mint); }
+.om-row-open .muted { color: #A3A3A3; }
+.muted { color: var(--muted); }
+.om-table tbody tr { animation: om-rise var(--slow) var(--ease-out) both; }
+.om-table tbody tr:nth-child(2) { animation-delay: 25ms } .om-table tbody tr:nth-child(3) { animation-delay: 50ms } .om-table tbody tr:nth-child(4) { animation-delay: 75ms } .om-table tbody tr:nth-child(5) { animation-delay: 100ms } .om-table tbody tr:nth-child(6) { animation-delay: 125ms }
+
+.chat { padding: 20px; display: grid; gap: 14px; font-size: 14px; line-height: 22px; }
+.chat .q { justify-self: end; background: var(--hover); padding: 8px 14px; border-radius: 14px; max-width: 80%; }
+.chat .who { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
+.chat .steps { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.chat .steps div { display: flex; gap: 8px; align-items: center; }
+.chat .steps svg { flex: none; }
+.chat ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.chat p { margin: 0; }
+.src { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; margin-left: 4px; border: 1px solid var(--line); border-radius: 6px; font-size: 11px; color: var(--muted); font-family: var(--mono); vertical-align: 1px; }
+.next { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--signal-line); background: var(--signal-soft); border-radius: 10px; }
+.next .om-point { margin-top: 7px; flex: none; }
+.ask { margin: 0 20px 20px; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; color: var(--faint); font-size: 14px; }
+.otto { width: 18px; height: 18px; flex: none; }
+
+.room { display: grid; grid-template-columns: 1.3fr 1fr; min-height: 340px; }
+.room__page { padding: 22px; display: grid; gap: 14px; align-content: start; border-right: 1px solid var(--line-light); min-width: 0; }
+.room__page .om-h2 { font-size: 22px; }
+.room__nav { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+.room__nav b { color: var(--ink); font-weight: 500; }
+.price { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.price div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 12px; color: var(--muted); display: grid; gap: 2px; }
+.price div.pick { border-color: var(--ink); }
+.price b { color: var(--ink); font-weight: 500; font-size: 18px; font-family: var(--mono); letter-spacing: -0.02em; }
+.room__feed { padding: 18px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.feed-item { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line-light); font-size: 13px; animation: om-rise var(--slow) var(--ease-out) both; }
+.feed-item:nth-child(3) { animation-delay: .15s } .feed-item:nth-child(4) { animation-delay: .3s } .feed-item:nth-child(5) { animation-delay: .45s }
+.av { width: 24px; height: 24px; border-radius: 50%; background: var(--pressed); display: grid; place-items: center; font-size: 10px; font-weight: 600; color: var(--ink-2); }
+.feed-item small { color: var(--muted); font-size: 12px; display: block; line-height: 16px; }
+.bar { height: 3px; background: var(--line-light); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--ink); width: var(--w); transform-origin: left; animation: grow .8s var(--ease-out) both; }
+@keyframes grow { from { transform: scaleX(0); } }
+@media (max-width: 640px) { .room { grid-template-columns: 1fr; } .room__page { border-right: 0; border-bottom: 1px solid var(--line-light); } }
+
+/* System */
+.sys { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.tile { grid-column: span 4; padding: 20px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.tile--wide { grid-column: span 8; }
+.tile--full { grid-column: span 12; }
+@media (max-width: 880px) { .tile, .tile--wide { grid-column: span 12; } }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.sw { display: grid; gap: 8px; font-size: 12px; }
+.sw div { height: 56px; border-radius: 8px; border: 1px solid var(--line); }
+.sw b { font-weight: 500; font-size: 13px; display: block; }
+.sw span { font-family: var(--mono); color: var(--muted); font-size: 11px; }
+.ratio { display: flex; height: 10px; border-radius: 5px; overflow: hidden; gap: 2px; }
+.ratio i { display: block; }
+.typespec { display: grid; gap: 14px; }
+.typespec div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: baseline; }
+.typespec div > span:first-child { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.typespec div > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.motifs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.motif { padding: 20px 16px 20px 0; display: grid; gap: 12px; align-content: start; border-bottom: 1px solid var(--line); }
+.motif__art { height: 64px; display: flex; align-items: center; }
+.motif p { margin: 0; color: var(--muted); font-size: 13px; line-height: 20px; }
+.motif b { font-weight: 500; font-size: 14px; }
+.rules { counter-reset: r; display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; margin: 0; padding: 0; list-style: none; }
+.rules li { counter-increment: r; display: grid; grid-template-columns: 32px 1fr; padding: 14px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 22px; color: var(--muted); }
+.rules li::before { content: counter(r, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 1px; }
+.rules b { color: var(--ink); font-weight: 500; }
+@media (max-width: 720px) { .rules { grid-template-columns: 1fr; } }
+
+/* Image plan */
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.shot { display: grid; gap: 10px; }
+.shot__art { aspect-ratio: 1200 / 630; max-width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--shell); display: grid; place-items: center; overflow: hidden; }
+.shot__art svg { width: 100%; height: 100%; }
+.shot b { font-weight: 500; font-size: 14px; }
+.shot p { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); }
+.shot .om-label { font-size: 11px; }
+
+@media (max-width: 960px) { .motifs { grid-template-columns: repeat(3, 1fr); } .shots { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .motifs, .shots { grid-template-columns: 1fr; } }
+[hidden] { display: none !important; }
+/* Black band and cost */
+.band { padding-block: 96px; }
+.band .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.band .om-display { color: #FAFAFA; }
+.band .om-two { color: #737373; }
+.band p { color: #A3A3A3; margin: 0; }
+.cost { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cost td { padding: 14px 0; border-bottom: 1px solid #262626; color: #A3A3A3; }
+.cost td:last-child { text-align: right; font-family: var(--mono); color: #FAFAFA; font-size: 20px; }
+.band svg text { fill: #A3A3A3; }
+@media (max-width: 800px) { .band .wrap { grid-template-columns: 1fr; } }
+footer { padding-block: 40px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+</style>
+
+<div class="om">
+
+<!-- Reusable symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="om-logo__point" cx="10" cy="10" r="2.4"/></symbol>
+    <symbol id="otto" viewBox="0 0 20 20"><path d="M4 7 L4 3.5 Q6 3.5 7.5 5.5 L12.5 5.5 Q14 3.5 16 3.5 L16 7 Q17 9 17 11 Q17 17 10 17 Q3 17 3 11 Q3 9 4 7Z" fill="currentColor"/><circle cx="7.5" cy="10" r="2.2" fill="var(--page)"/><circle cx="12.5" cy="10" r="2.2" fill="var(--page)"/><circle cx="7.8" cy="10.2" r="1" fill="currentColor"/><circle cx="12.8" cy="10.2" r="1" fill="currentColor"/><path d="M9.2 12.6 L10 14 L10.8 12.6Z" fill="var(--faint)"/></symbol>
+    <symbol id="check" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="var(--signal)" stroke-width="1.2"/><path d="M4.4 7.2 L6.2 9 L9.6 5.4" fill="none" stroke="var(--signal)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav wrap">
+  <div class="nav__bar">
+    <a class="om-logo" href="#top" aria-label="Omniscient"><svg><use href="#logo"/></svg><span class="om-logo__word">Omniscient</span></a>
+    <nav class="nav__links"><a href="#story">Story</a><a href="#triangle">Triangle</a><a href="#product">Product</a><a href="#system">System</a><a href="#images">Images</a></nav>
+    <a class="om-btn om-btn--primary" href="#cost">Start free</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO: the logo opens into the Triangle -->
+<section class="wrap hero">
+  <div class="hero__copy">
+    <span class="news om-rise"><span class="om-point om-point--live"></span><b>New</b> Deal Rooms that report who read what</span>
+    <h1 class="om-hero om-rise" style="--delay:.08s">Know everything.<br><span class="om-two">Close more.</span></h1>
+    <p class="om-lead om-rise" style="--delay:.16s">Omniscient finds your buyers, keeps every call and email on one record, and builds the page that closes the deal. Otto does the work in between.</p>
+    <div class="hero__ctas om-rise" style="--delay:.24s">
+      <a class="om-btn om-btn--primary" href="#cost">Start free <span class="om-arrow">→</span></a>
+      <a class="om-btn om-btn--outline" href="#product">Book a demo</a>
+    </div>
+  </div>
+
+  <div class="tri-wrap">
+    <svg class="tri" id="tri" viewBox="0 0 520 470" role="img" aria-label="The Omniscient Triangle: Scout, Unify and Close around one record">
+      <!-- ring = the logo -->
+      <circle class="om-draw om-draw--faint om-stroke-in" cx="260" cy="240" r="190" style="--len:1194;--d:1.1s"/>
+      <circle class="om-draw om-draw--dash fade-in" cx="260" cy="240" r="120" style="--delay:1.2s"/>
+      <!-- edges -->
+      <path id="e1" class="edge om-stroke-in" data-e="scout unify" d="M260 50 L95.5 335" style="--len:330;--delay:.9s;--d:.7s"/>
+      <path id="e2" class="edge om-stroke-in" data-e="unify close" d="M95.5 335 L424.5 335" style="--len:330;--delay:1.1s;--d:.7s"/>
+      <path id="e3" class="edge om-stroke-in" data-e="close scout" d="M424.5 335 L260 50" style="--len:330;--delay:1.3s;--d:.7s"/>
+      <!-- spokes to the record -->
+      <path class="om-draw om-draw--dash fade-in" d="M260 50 L260 240 M95.5 335 L260 240 M424.5 335 L260 240" style="--delay:1.6s"/>
+      <!-- signals travelling the loop -->
+      <g class="fade-in" style="--delay:2s">
+        <circle r="3.5" class="om-fill-signal"><animateMotion dur="6s" repeatCount="indefinite" path="M260 50 L95.5 335 L424.5 335 Z"/></circle>
+        <circle r="3.5" class="om-fill-signal" opacity=".55"><animateMotion dur="6s" begin="-2s" repeatCount="indefinite" path="M260 50 L95.5 335 L424.5 335 Z"/></circle>
+        <circle r="3.5" class="om-fill-signal" opacity=".3"><animateMotion dur="6s" begin="-4s" repeatCount="indefinite" path="M260 50 L95.5 335 L424.5 335 Z"/></circle>
+      </g>
+      <!-- the record -->
+      <g class="fade-in" style="--delay:1.7s">
+        <circle cx="260" cy="240" r="22" fill="var(--panel)" stroke="var(--line-strong)"/>
+        <circle cx="260" cy="240" r="7" class="om-fill-signal"><animate attributeName="r" values="7;8.5;7" dur="2.4s" repeatCount="indefinite"/></circle>
+        <text x="260" y="284" text-anchor="middle">The record</text>
+      </g>
+      <!-- corners -->
+      <g class="corner on fade-in" data-c="scout" style="--delay:.6s" tabindex="0" role="button" aria-label="Scout">
+        <circle class="hit" cx="260" cy="50" r="30"/>
+        <circle class="dot" cx="260" cy="50" r="9"/>
+        <text class="big" x="260" y="20" text-anchor="middle">Scout</text>
+      </g>
+      <g class="corner fade-in" data-c="unify" style="--delay:.75s" tabindex="0" role="button" aria-label="Unify">
+        <circle class="hit" cx="95.5" cy="335" r="30"/>
+        <circle class="dot" cx="95.5" cy="335" r="9"/>
+        <text class="big" x="95.5" y="372" text-anchor="middle">Unify</text>
+      </g>
+      <g class="corner fade-in" data-c="close" style="--delay:.9s" tabindex="0" role="button" aria-label="Close">
+        <circle class="hit" cx="424.5" cy="335" r="30"/>
+        <circle class="dot" cx="424.5" cy="335" r="9"/>
+        <text class="big" x="424.5" y="372" text-anchor="middle">Close</text>
+      </g>
+    </svg>
+    <div class="corner-card om-rise" id="cornerCard" style="--delay:1.8s" aria-live="polite">
+      <span class="om-label om-label--signal" id="ccLabel">Scout 1.0</span>
+      <b id="ccTitle">Find the buyers worth your time</b>
+      <span id="ccLine">Scout, Campaigns and Inbox. Otto finds who fits and why, then you approve every message.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 01 STORY -->
+<section class="sec wrap" id="story">
+  <div class="sec__head"><span class="om-label">The story</span><span class="om-label">1.0</span></div>
+  <div class="sec__title">
+    <h2 class="om-display">One record of every deal.<br><span class="om-two">Agents that act on it.</span></h2>
+  </div>
+  <div class="story">
+    <div><span class="om-label">The problem</span><h3 class="om-h3">A deal lives in five tools</h3><p>Leads sit in one tool, emails in another, call notes in a third. The proposal is a PDF and the forecast is a sheet. Each tool sees a slice, so agents guess from half the facts.</p></div>
+    <div><span class="om-label">The belief</span><h3 class="om-h3">The team that sees the whole deal wins it</h3><p>When finding, remembering and closing share one record, every next step is grounded in what the buyer said, with the quote to prove it.</p></div>
+    <div><span class="om-label">Why now</span><h3 class="om-h3">Agents are only as good as what they see</h3><p>Agents can do most of the typing in sales now. Omniscient gives Otto the whole deal, so his work holds up when the buyer reads it.</p></div>
+  </div>
+
+  <div class="tools" aria-hidden="true">
+    <svg viewBox="0 0 460 150">
+      <g class="om-draw om-draw--faint">
+        <rect x="10" y="30" width="78" height="56" rx="8"/><rect x="100" y="54" width="78" height="56" rx="8"/><rect x="190" y="20" width="78" height="56" rx="8"/><rect x="280" y="62" width="78" height="56" rx="8"/><rect x="370" y="32" width="78" height="56" rx="8"/>
+      </g>
+      <g font-family="var(--mono)" font-size="10" fill="var(--faint)" text-anchor="middle" letter-spacing=".06em">
+        <text x="49" y="62">LEADS</text><text x="139" y="86">EMAIL</text><text x="229" y="52">CALLS</text><text x="319" y="94">PDF</text><text x="409" y="64">SHEET</text>
+      </g>
+      <path class="om-draw om-draw--dash" d="M88 58 L100 82 M178 82 L190 48 M268 48 L280 90 M358 90 L370 60"/>
+    </svg>
+    <span class="tools__arrow">→</span>
+    <svg viewBox="0 0 460 150">
+      <rect x="130" y="16" width="200" height="118" rx="10" fill="var(--panel)" stroke="var(--ink)"/>
+      <circle cx="152" cy="38" r="5" class="om-fill-signal"/>
+      <text x="164" y="42" font-size="12" font-weight="500" fill="var(--ink)" font-family="var(--sans)">Globex, $48,000</text>
+      <g class="om-draw om-draw--faint"><path d="M146 62 H314 M146 82 H290 M146 102 H302 M146 122 H262"/></g>
+      <g font-family="var(--mono)" font-size="9" fill="var(--faint)" letter-spacing=".06em"><text x="20" y="44">LEADS</text><text x="20" y="84">EMAIL</text><text x="20" y="124">CALLS</text><text x="386" y="64">ROOM</text><text x="386" y="104">FORECAST</text></g>
+      <path class="om-draw om-draw--signal om-stroke-in" d="M64 40 C 100 40, 100 62, 130 62 M64 80 H130 M64 120 C 100 120, 100 102, 130 102 M330 70 C 352 70, 360 60, 382 60 M330 92 C 352 92, 360 100, 382 100" style="--len:120;--delay:.3s"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 02 TRIANGLE + PLATES -->
+<section class="sec wrap" id="triangle">
+  <div class="sec__head"><span class="om-label">How Omniscient works</span><span class="om-label">2.0</span></div>
+  <div class="plates" id="plates">
+    <svg viewBox="0 0 600 890" role="img" aria-label="Three stacked plates: Scout, Unify and Close">
+      <!-- connectors between plates -->
+      <path class="om-draw om-draw--dash" d="M40 160 V440 M560 160 V440 M40 440 V720 M560 440 V720 M300 310 V320 M300 590 V600"/>
+
+      <!-- SCOUT plate (top) -->
+      <g class="plate plate--scout" transform="translate(300 160)">
+        <path d="M-260 0 L0 150 L260 0 L0 -150Z" fill="var(--panel)" stroke="var(--ink)"/>
+        <path class="om-draw om-draw--dash" d="M-260 0 V10 L0 160 L260 10 V0 M0 150 V160"/>
+        <g transform="matrix(0.866 0.5 -0.866 0.5 0 0)">
+          <g class="om-draw om-draw--dash" style="stroke-width:.8">
+            <path d="M-120 -150 V150 M-60 -150 V150 M0 -150 V150 M60 -150 V150 M120 -150 V150 M-150 -120 H150 M-150 -60 H150 M-150 0 H150 M-150 60 H150 M-150 120 H150"/>
+          </g>
+          <rect class="sweep" x="-150" y="-150" width="40" height="300"><animate attributeName="x" values="-150;110;-150" dur="7s" repeatCount="indefinite"/></rect>
+          <circle class="dot-ink" cx="-90" cy="-90" r="4"/><circle class="dot-ink" cx="30" cy="-110" r="4"/><circle class="dot-ink" cx="-40" cy="70" r="4"/><circle class="dot-ink" cx="100" cy="40" r="4"/><circle class="dot-ink" cx="-110" cy="20" r="4"/>
+          <circle class="dot-signal" cx="70" cy="-40" r="6"><animate attributeName="r" values="5;7;5" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle class="dot-signal" cx="-20" cy="10" r="6"><animate attributeName="r" values="5;7;5" dur="2.4s" begin=".8s" repeatCount="indefinite"/></circle>
+        </g>
+        <circle cx="0" cy="-138" r="2.5" fill="var(--ink)"/><circle cx="-246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="0" cy="138" r="2.5" fill="var(--ink)"/>
+      </g>
+
+      <!-- UNIFY plate (middle) -->
+      <g class="plate plate--unify" transform="translate(300 440)">
+        <path d="M-260 0 L0 150 L260 0 L0 -150Z" fill="var(--panel)" stroke="var(--ink)"/>
+        <path class="om-draw om-draw--dash" d="M-260 0 V10 L0 160 L260 10 V0 M0 150 V160"/>
+        <g transform="matrix(0.866 0.5 -0.866 0.5 0 0)">
+          <path class="om-draw om-draw--faint" d="M-150 -150 L150 150"/>
+          <!-- cards around the record -->
+          <g fill="var(--panel)" stroke="var(--ink)">
+            <rect x="-120" y="-110" width="56" height="34" rx="4"/><rect x="50" y="-120" width="56" height="34" rx="4"/>
+            <rect x="-130" y="50" width="56" height="34" rx="4"/><rect x="70" y="60" width="56" height="34" rx="4"/>
+            <rect x="-28" y="-20" width="56" height="40" rx="4" stroke-width="1.6"/>
+          </g>
+          <g class="om-draw om-draw--faint"><path d="M-114 -100 H-80 M-114 -92 H-90 M56 -110 H90 M56 -102 H80 M-124 60 H-90 M-124 68 H-100 M76 70 H110 M76 78 H100 M-22 -10 H18 M-22 -2 H8 M-22 6 H14"/></g>
+          <path class="om-draw om-draw--signal om-stroke-in" d="M-64 -93 C -40 -93, -40 -10, -28 -10 M50 -103 C 40 -103, 40 -6, 28 -6 M-74 67 C -50 67, -50 10, -28 10 M70 77 C 50 77, 50 12, 28 12" style="--len:180;--d:1.6s;--delay:.4s"/>
+        </g>
+        <circle cx="0" cy="-138" r="2.5" fill="var(--ink)"/><circle cx="-246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="0" cy="138" r="2.5" fill="var(--ink)"/>
+      </g>
+
+      <!-- CLOSE plate (bottom) -->
+      <g class="plate plate--close" transform="translate(300 720)">
+        <path d="M-260 0 L0 150 L260 0 L0 -150Z" fill="var(--panel)" stroke="var(--ink)"/>
+        <path class="om-draw om-draw--dash" d="M-260 0 V10 L0 160 L260 10 V0 M0 150 V160"/>
+        <g transform="matrix(0.866 0.5 -0.866 0.5 0 0)">
+          <g class="om-draw" style="stroke-width:.9">
+            <path id="f1" d="M-130 -130 C -40 -130, 40 -120, 60 -110"/><path id="f2" d="M-130 -130 C -60 -80, 40 -60, 60 -50"/>
+            <path id="f3" d="M-130 -130 C -80 -40, 40 0, 60 10"/><path id="f4" d="M-130 -130 C -100 0, 40 60, 60 70"/>
+            <path id="f5" d="M-130 -130 C -120 40, 40 120, 60 130"/>
+          </g>
+          <g class="om-draw om-draw--faint"><path d="M-120 -140 V150 M-150 -100 H150"/></g>
+          <g fill="var(--panel)" stroke="var(--ink)">
+            <rect x="60" y="-124" width="30" height="28" rx="3"/><rect x="60" y="-64" width="30" height="28" rx="3"/><rect x="60" y="-4" width="30" height="28" rx="3"/><rect x="60" y="56" width="30" height="28" rx="3"/><rect x="60" y="116" width="30" height="28" rx="3"/>
+          </g>
+          <circle class="dot-signal" r="3.5"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#f2"/></animateMotion></circle>
+          <circle class="dot-signal" r="3.5"><animateMotion dur="3s" begin="-1.5s" repeatCount="indefinite"><mpath href="#f4"/></animateMotion></circle>
+          <circle class="dot-ink" cx="-130" cy="-130" r="5"/>
+        </g>
+        <circle cx="0" cy="-138" r="2.5" fill="var(--ink)"/><circle cx="-246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="246" cy="0" r="2.5" fill="var(--ink)"/><circle cx="0" cy="138" r="2.5" fill="var(--ink)"/>
+      </g>
+    </svg>
+
+    <div>
+      <div class="sec__title" style="margin-bottom:24px">
+        <h2 class="om-display">Three jobs.<br><span class="om-two">One record in the middle.</span></h2>
+      </div>
+      <div class="plates__list">
+        <div class="plates__item" data-p="scout"><span class="om-label om-label--signal">Scout 1.0</span><h3 class="om-h3">Find the buyers worth your time</h3><p>Otto reads fit, hiring and funding signals, then lists the people to reach and why. LinkedIn and email campaigns wait for your approval.</p></div>
+        <div class="plates__item" data-p="unify"><span class="om-label om-label--signal">Unify 2.0</span><h3 class="om-h3">Remember everything</h3><p>Gmail, Outlook, calendar and calls land on one record. Facts keep their quotes. Fields fill themselves and show the proof.</p></div>
+        <div class="plates__item" data-p="close"><span class="om-label om-label--signal">Close 3.0</span><h3 class="om-h3">Close with one link</h3><p>Each deal gets a private site with the proposal, pricing and plan. You see who read what, and Scout learns who to reach next.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PRODUCT SCENES -->
+<section class="sec wrap" id="product">
+  <div class="sec__head"><span class="om-label">In the product</span><span class="om-label">3.0</span></div>
+  <div class="tabs" role="tablist" aria-label="Scenes">
+    <button role="tab" aria-selected="true" data-t="scout" id="tab-scout">Scout</button>
+    <button role="tab" aria-selected="false" data-t="unify" id="tab-unify">Unify</button>
+    <button role="tab" aria-selected="false" data-t="close" id="tab-close">Close</button>
+  </div>
+
+  <div class="scene" data-scene="scout">
+    <div class="scene__copy"><span class="om-label">Scene 10</span><h3 class="om-h2">The search sentence</h3><p>A lead list reads as one sentence. The fit shows as a score, and the open row turns black.</p></div>
+    <div class="om-frame panel-anim">
+      <div class="status"><span class="loader"><i></i><i></i><i></i><i></i></span><b>Weekly lookalike search</b><span>Reading fit, signals and replies</span></div>
+      <div class="om-window">
+        <div class="sentence">Heads of <em>RevOps</em> in the <em style="--delay:.35s">United States</em> at <em style="--delay:.5s">B2B software</em> companies with <em style="--delay:.65s">51 to 500 people</em>, hiring in sales</div>
+        <div class="tablewrap">
+        <table class="om-table">
+          <thead><tr><th>Account</th><th>Fit</th><th>Signal</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><span class="co"><i>G</i>Globex</span></td><td><span class="om-score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="om-num muted">96</span></td><td class="muted">Hired a CRO</td><td><span class="om-tag om-tag--signal">Replied</span></td></tr>
+            <tr class="om-row-open"><td><span class="co"><i>N</i>Northwind</span></td><td><span class="om-score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="om-num muted">91</span></td><td class="muted">Series B</td><td><span class="om-tag">New</span></td></tr>
+            <tr><td><span class="co"><i>I</i>Initech</span></td><td><span class="om-score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="om-num muted">84</span></td><td class="muted">12 sales roles open</td><td><span class="om-tag">New</span></td></tr>
+            <tr><td><span class="co"><i>L</i>Lumen Labs</span></td><td><span class="om-score"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="om-num muted">72</span></td><td class="muted">Moved off HubSpot</td><td><span class="om-tag om-tag--warn">Waiting</span></td></tr>
+            <tr><td><span class="co"><i>A</i>Acme</span></td><td><span class="om-score"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span> <span class="om-num muted">58</span></td><td class="muted">New VP Sales</td><td><span class="om-tag">New</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" data-scene="unify" hidden>
+    <div class="scene__copy"><span class="om-label">Scene 14</span><h3 class="om-h2">Ask the record</h3><p>Otto answers from calls and emails and cites each one. He ends with one next step.</p></div>
+    <div class="om-frame panel-anim">
+      <div class="om-window">
+        <div class="om-window__bar"><svg class="otto" style="color:var(--ink)"><use href="#otto"/></svg><span style="color:var(--ink);font-weight:500">Globex pricing</span><span style="margin-left:auto" class="om-tag om-tag--otto">Otto</span></div>
+        <div class="chat">
+          <div class="q">What did Globex say about pricing on the last call?</div>
+          <div class="steps">
+            <div><svg width="14" height="14"><use href="#check"/></svg>Read 3 meetings with Globex</div>
+            <div><svg width="14" height="14"><use href="#check"/></svg>Read Pricing review, Oct 21</div>
+          </div>
+          <p>Dana Ruiz (CFO) and Sam Patel (RevOps) joined the pricing review on Oct 21.</p>
+          <ul>
+            <li>Wants three plans in place of usage pricing.<span class="src">call 14:02</span></li>
+            <li>Needs a price for 200 seats with a yearly term.<span class="src">email Oct 22</span></li>
+            <li>Asked for a way out each quarter.<span class="src">call 31:40</span></li>
+          </ul>
+          <div class="next"><span class="om-point"></span><div><b style="font-weight:500">Next step:</b> send the 200 seat proposal to Dana by Friday and book Sam for the security review.</div></div>
+        </div>
+        <div class="ask">Ask Omniscient</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" data-scene="close" hidden>
+    <div class="scene__copy"><span class="om-label">Scene 16</span><h3 class="om-h2">The Deal Room</h3><p>One private site per deal. Every open, read and share comes back to the record.</p></div>
+    <div class="om-frame panel-anim">
+      <div class="om-window">
+        <div class="om-window__bar"><svg width="14" height="14" style="color:var(--ink)"><use href="#logo"/></svg>rooms.tryomniscient.com/globex<span style="margin-left:auto" class="om-tag om-tag--signal">Live</span></div>
+        <div class="room">
+          <div class="room__page">
+            <div class="room__nav"><b>Plan</b><span>Pricing</span><span>Security</span><span>Team</span></div>
+            <h3 class="om-h2">Globex and Northwind<br><span class="om-two">Your rollout plan</span></h3>
+            <div class="price"><div>Team<b>$24k</b>per year</div><div class="pick">Business<b>$48k</b>per year</div></div>
+            <div style="display:grid;gap:6px"><div class="bar"><i style="--w:100%"></i></div><div class="bar"><i style="--w:60%"></i></div><div class="bar"><i style="--w:30%"></i></div></div>
+            <span class="om-btn om-btn--primary" style="width:max-content;height:34px;font-size:13px">Accept plan</span>
+          </div>
+          <div class="room__feed">
+            <span class="om-label" style="margin-bottom:6px">Who read what</span>
+            <div class="feed-item"><span class="av">DR</span><div>Dana Ruiz<small>Opened Pricing 3 times</small></div><span class="om-point"></span></div>
+            <div class="feed-item"><span class="av">SP</span><div>Sam Patel<small>Read Security, 6 min</small></div><span class="om-num muted" style="font-size:12px">2h</span></div>
+            <div class="feed-item"><span class="av">JK</span><div>Jo Kim<small>Shared the room</small></div><span class="om-num muted" style="font-size:12px">1d</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 SYSTEM -->
+<section class="sec wrap" id="system">
+  <div class="sec__head"><span class="om-label">Brand system</span><span class="om-label">4.0</span></div>
+  <div class="sec__title">
+    <h2 class="om-display">Black and white.<br><span class="om-two">Emerald marks the signal.</span></h2>
+    <p class="om-lead">One stylesheet, built the way Arrowsterr builds its own: tokens, type, logo, buttons, tags, motifs, frames, sections, data and motion, all under <span class="om-num" style="font-size:15px;color:var(--ink)">.om</span>.</p>
+  </div>
+
+  <div class="sys">
+    <div class="om-card tile tile--wide">
+      <span class="om-label">Color</span>
+      <div class="swatches">
+        <div class="sw"><div style="background:#0A0A0A"></div><b>Ink</b><span>#0A0A0A</span></div>
+        <div class="sw"><div style="background:#737373"></div><b>Muted</b><span>#737373</span></div>
+        <div class="sw"><div style="background:#E7E7E4"></div><b>Line</b><span>#E7E7E4</span></div>
+        <div class="sw"><div style="background:#FFFFFF"></div><b>Panel</b><span>#FFFFFF</span></div>
+        <div class="sw"><div style="background:#0C8C5E"></div><b>Signal</b><span>#0C8C5E</span></div>
+        <div class="sw"><div style="background:#0A7A52"></div><b>Signal text</b><span>#0A7A52</span></div>
+        <div class="sw"><div style="background:#E8F5EF"></div><b>Signal soft</b><span>#E8F5EF</span></div>
+        <div class="sw"><div style="background:#18E299"></div><b>Mint</b><span>#18E299 on black</span></div>
+      </div>
+      <div style="display:grid;gap:6px">
+        <div class="ratio" aria-hidden="true"><i style="width:80%;background:var(--line)"></i><i style="width:15%;background:var(--ink)"></i><i style="width:5%;background:var(--signal)"></i></div>
+        <span class="om-label" style="font-size:11px">80 white and gray, 15 black, 5 emerald</span>
+      </div>
+    </div>
+    <div class="om-card tile">
+      <span class="om-label">Type</span>
+      <div class="typespec">
+        <div><span>Hero 72</span><span style="font-size:34px;line-height:1;letter-spacing:-.045em;font-weight:500">Know <span class="om-two">all</span></span></div>
+        <div><span>Display 48</span><span style="font-size:22px;letter-spacing:-.03em;font-weight:500">Inter 500</span></div>
+        <div><span>Body 16</span><span class="muted" style="font-size:14px">Inter 400, 26 line</span></div>
+        <div><span>Label 12</span><span class="om-label">Geist Mono</span></div>
+        <div><span>Number</span><span class="om-num" style="font-size:20px">$48,000</span></div>
+      </div>
+    </div>
+
+    <div class="om-card tile">
+      <span class="om-label">Logo</span>
+      <div style="display:grid;gap:18px;justify-items:start">
+        <span class="om-logo om-logo--lg"><svg><use href="#logo"/></svg><span class="om-logo__word" style="font-size:16px">Omniscient</span></span>
+        <span class="om-logo"><svg><use href="#logo"/></svg><span class="om-logo__word">Omniscient</span></span>
+        <p class="om-text" style="font-size:13px;line-height:20px">The ring holds everything. The point is the one thing that matters now, so it carries the emerald.</p>
+      </div>
+    </div>
+    <div class="om-card tile">
+      <span class="om-label">Buttons and tags</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="om-btn om-btn--primary">Start free <span class="om-arrow">→</span></span>
+        <span class="om-btn om-btn--outline">Book a demo</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="om-tag om-tag--signal">Replied</span><span class="om-tag">New</span><span class="om-tag om-tag--warn">Waiting</span><span class="om-tag om-tag--otto">Otto</span>
+      </div>
+    </div>
+    <div class="om-card tile">
+      <span class="om-label">Motion</span>
+      <div class="typespec">
+        <div><span>120ms</span><span class="muted" style="font-size:13px">Press, hover, small things</span></div>
+        <div><span>200ms</span><span class="muted" style="font-size:13px">Tabs, rows, menus</span></div>
+        <div><span>320ms</span><span class="muted" style="font-size:13px">Panels, scenes, rise in</span></div>
+        <div><span>Loops</span><span class="muted" style="font-size:13px">Only work in progress and the live Point</span></div>
+      </div>
+    </div>
+
+    <div class="tile tile--full" style="padding:0">
+      <div class="motifs">
+        <div class="motif"><div class="motif__art"><span class="om-point om-point--live"></span></div><b>The Point</b><p>The logo's center in emerald. One per view, on the thing to read first.</p></div>
+        <div class="motif"><div class="motif__art"><svg width="64" height="58" viewBox="0 0 64 58"><circle cx="32" cy="31" r="26" class="om-draw om-draw--faint"/><path class="om-draw" d="M32 5 L9.5 44 L54.5 44Z"/><circle cx="32" cy="31" r="3.5" class="om-fill-signal"/></svg></div><b>The Triangle</b><p>Scout, Unify and Close on the logo's ring, the record in the middle.</p></div>
+        <div class="motif"><div class="motif__art"><svg width="80" height="50" viewBox="0 0 80 50"><path d="M0 22 L40 0 L80 22 L40 44Z" fill="var(--panel)" stroke="var(--ink)"/><path class="om-draw om-draw--dash" d="M0 22 V27 L40 49 L80 27 V22 M40 44 V49"/><circle cx="46" cy="20" r="3" class="om-fill-signal"/></svg></div><b>The Plates</b><p>Isometric plates in thin lines with dotted sides. Each holds one job.</p></div>
+        <div class="motif"><div class="motif__art"><span class="om-score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div><b>Score dashes</b><p>Fit as a run of short dashes. Emerald fills up to the score.</p></div>
+        <div class="motif"><div class="motif__art"><span style="font-size:20px;letter-spacing:-.03em;font-weight:500;white-space:nowrap">Know. <span class="om-two">Close.</span></span></div><b>Two tones</b><p>Every heading starts in black and ends in gray.</p></div>
+        <div class="motif"><div class="motif__art"><span class="om-label">Unify&nbsp;&nbsp;2.0</span></div><b>Mono labels</b><p>Uppercase Geist Mono with the section number on the right.</p></div>
+      </div>
+    </div>
+
+    <div class="tile tile--full" style="padding:24px 0 0">
+      <span class="om-label" style="display:block;margin-bottom:12px">The ten rules</span>
+      <ol class="rules">
+        <li><span><b>Logo.</b> Always the SVG. Height 20, 28 or 40px.</span></li>
+        <li><span><b>Black and white</b> carry the page. Emerald is about 5% of a view.</span></li>
+        <li><span><b>Two tones.</b> Headings start black and end gray.</span></li>
+        <li><span><b>Titles stand alone.</b> One lead line at most.</span></li>
+        <li><span><b>One bold thing</b> per view.</span></li>
+        <li><span><b>Shape.</b> Round buttons, 10px cards, 16px frames, hairlines. No gradients.</span></li>
+        <li><span><b>Proof first.</b> A quote, a date or a number next to each claim.</span></li>
+        <li><span><b>Otto credit.</b> Agent work says Otto, never AI.</span></li>
+        <li><span><b>Thin lines.</b> Drawings are black lines with one emerald Point.</span></li>
+        <li><span><b>Copy.</b> 9th grade words, short sentences, verbs first. No em dashes, no emoji.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 05 IMAGE PLAN -->
+<section class="sec wrap" id="images">
+  <div class="sec__head"><span class="om-label">Image plan</span><span class="om-label">5.0</span></div>
+  <div class="sec__title">
+    <h2 class="om-display">Drawn first.<br><span class="om-two">Every image comes from the logo.</span></h2>
+  </div>
+  <div class="shots">
+    <div class="shot"><div class="shot__art"><svg viewBox="0 0 1200 630"><circle cx="600" cy="330" r="200" class="om-draw om-draw--faint" stroke-width="2"/><path class="om-draw" stroke-width="2" d="M600 130 L427 430 L773 430Z"/><circle cx="600" cy="330" r="12" class="om-fill-signal"/><g transform="translate(560 40)"><circle cx="16" cy="16" r="13" class="om-draw" stroke-width="2"/><circle cx="16" cy="16" r="4" class="om-fill-signal"/></g></svg></div><span class="om-label">og-default.png, 1200 × 630</span><b>The Triangle card</b><p>Logo at the top, the Triangle below. Shared links and social posts.</p></div>
+    <div class="shot"><div class="shot__art"><svg viewBox="0 0 1200 630"><g transform="translate(600 330)"><path d="M-360 0 L0 200 L360 0 L0 -200Z" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/><path class="om-draw om-draw--dash" stroke-width="2" d="M-360 0 V16 L0 216 L360 16 V0"/><g transform="matrix(1.2 .69 -1.2 .69 0 0)"><g class="om-draw om-draw--dash"><path d="M-100 -150 V150 M0 -150 V150 M100 -150 V150 M-150 -100 H150 M-150 0 H150 M-150 100 H150"/></g><circle cx="60" cy="-40" r="9" class="om-fill-signal"/><circle cx="-60" cy="50" r="6" class="om-fill-ink"/><circle cx="-90" cy="-90" r="6" class="om-fill-ink"/></g></g></svg></div><span class="om-label">plate-scout.svg, -unify, -close</span><b>The Plates</b><p>Each plate alone for feature pages, decks and social cards.</p></div>
+    <div class="shot"><div class="shot__art" style="background:#0A0A0A"><svg viewBox="0 0 1200 630"><g transform="translate(80 80)"><circle cx="14" cy="14" r="12" fill="none" stroke="#FAFAFA" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="#18E299"/></g><text x="80" y="330" font-family="Inter, sans-serif" font-size="84" font-weight="500" letter-spacing="-3" fill="#FAFAFA">Know everything.</text><text x="80" y="420" font-family="Inter, sans-serif" font-size="84" font-weight="500" letter-spacing="-3" fill="#737373">Close more.</text><g transform="translate(900 330)"><circle r="190" fill="none" stroke="#333" stroke-width="2"/><path d="M0 -190 L-164 95 L164 95Z" fill="none" stroke="#FAFAFA" stroke-width="2"/><circle r="10" fill="#18E299"/></g></svg></div><span class="om-label">deck-cover.png, 1920 × 1080</span><b>The one black slide</b><p>White logo, two-tone headline, the Triangle in white lines.</p></div>
+    <div class="shot"><div class="shot__art"><svg viewBox="0 0 1200 630"><rect x="140" y="90" width="920" height="460" rx="24" fill="var(--panel)" stroke="var(--line-strong)" stroke-width="2"/><rect x="140" y="90" width="920" height="64" rx="24" fill="var(--hover)"/><g fill="var(--line-strong)"><rect x="190" y="200" width="360" height="22" rx="6"/><rect x="190" y="262" width="820" height="12" rx="6"/><rect x="190" y="312" width="820" height="12" rx="6"/></g><rect x="160" y="350" width="880" height="56" fill="var(--ink)"/><rect x="190" y="372" width="200" height="12" rx="6" fill="#FAFAFA"/><g fill="var(--signal)"><rect x="700" y="374" width="28" height="8" rx="4"/><rect x="734" y="374" width="28" height="8" rx="4"/><rect x="768" y="374" width="28" height="8" rx="4"/></g><rect x="190" y="440" width="820" height="12" rx="6" fill="var(--line-strong)"/><circle cx="1040" cy="200" r="12" class="om-fill-signal"/></svg></div><span class="om-label">scene-scout.png and 7 more</span><b>Product scenes</b><p>The real app on sample data, framed, faded at the edges, one Point.</p></div>
+    <div class="shot"><div class="shot__art"><svg viewBox="0 0 1200 630"><g transform="translate(600 300)"><path d="M-70 -50 L-70 -110 Q-30 -110 -5 -75 L5 -75 Q30 -110 70 -110 L70 -50 Q90 -10 90 30 Q90 160 0 160 Q-90 160 -90 30 Q-90 -10 -70 -50Z" fill="var(--ink)"/><circle cx="-38" cy="10" r="32" fill="var(--panel)"/><circle cx="38" cy="10" r="32" fill="var(--panel)"/><circle cx="-34" cy="14" r="14" fill="var(--ink)"/><circle cx="42" cy="14" r="14" fill="var(--ink)"/><path d="M-10 52 L0 72 L10 52Z" fill="var(--faint)"/></g><circle cx="740" cy="190" r="10" class="om-fill-signal"/></svg></div><span class="om-label">otto.svg, -working, -done</span><b>Otto</b><p>The face of every agent, in three states for decks and emails.</p></div>
+    <div class="shot"><div class="shot__art"><svg viewBox="0 0 1200 630"><g transform="translate(600 315)"><path d="M-300 -60 L0 110 L300 -60 L0 -230Z" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/><path d="M-300 40 L0 210 L300 40" fill="none" stroke="var(--ink)" stroke-width="2"/><path d="M-300 -60 V40 M300 -60 V40 M0 110 V210" class="om-draw om-draw--dash" stroke-width="2"/><path d="M-300 140 L0 310 L300 140" fill="none" stroke="var(--line-strong)" stroke-width="2"/><circle cx="0" cy="-60" r="10" class="om-fill-signal"/></g></svg></div><span class="om-label">linkedin-banner.png, 1584 × 396</span><b>The stack from the side</b><p>Three plates seen low, logo on the right. Profile banners.</p></div>
+  </div>
+</section>
+</main>
+
+<!-- 06 COST: the one black band -->
+<section class="om-black band" id="cost">
+  <div class="wrap">
+    <div style="display:grid;gap:20px">
+      <span class="om-label">Running cost 6.0</span>
+      <h2 class="om-display">The brand is free to run.<br><span class="om-two">Static files and free fonts.</span></h2>
+      <p>Inter and Geist Mono come from Google Fonts. The stylesheet and drawings are files on hosting we already pay for. Images render with Playwright, which is free.</p>
+    </div>
+    <table class="cost">
+      <tr><td>Beta, 50 reps, per month</td><td>$0</td></tr>
+      <tr><td>Growth, 500 reps, per month</td><td>$0</td></tr>
+      <tr><td>New AI calls or services</td><td>None</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="om-logo"><svg><use href="#logo"/></svg><span class="om-logo__word">Omniscient</span></span>
+    <span>Stylesheet: omniscient-site/assets/brand/omniscient-brand.css</span>
+  </div>
+</footer>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) document.querySelectorAll('svg').forEach(s => s.pauseAnimations && s.pauseAnimations());
+
+  const corners = {
+    scout: ['Scout 1.0', 'Find the buyers worth your time', 'Scout, Campaigns and Inbox. Otto finds who fits and why, then you approve every message.'],
+    unify: ['Unify 2.0', 'Remember everything', 'Companies, people, deals, meetings and emails on one record. Every fact keeps its quote.'],
+    close: ['Close 3.0', 'Close with one link', 'A private Deal Room for every deal. Each read comes back as a signal for Scout.']
+  };
+  const tri = document.getElementById('tri');
+  const pick = c => {
+    tri.querySelectorAll('.corner').forEach(g => g.classList.toggle('on', g.dataset.c === c));
+    tri.querySelectorAll('.edge').forEach(e => e.classList.toggle('on', e.dataset.e.split(' ').includes(c)));
+    const [l, t, s] = corners[c];
+    ccLabel.textContent = l; ccTitle.textContent = t; ccLine.textContent = s;
+  };
+  let auto = null, i = 0;
+  const order = ['scout', 'unify', 'close'];
+  const start = () => { if (!reduce) auto = setInterval(() => pick(order[++i % 3]), 3200); };
+  tri.querySelectorAll('.corner').forEach(g => {
+    const go = () => { clearInterval(auto); i = order.indexOf(g.dataset.c); pick(g.dataset.c); };
+    g.addEventListener('click', go);
+    g.addEventListener('mouseenter', go);
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+  setTimeout(() => { pick('scout'); start(); }, 1800);
+
+  const plates = document.getElementById('plates');
+  plates.querySelectorAll('.plates__item').forEach(it => {
+    it.addEventListener('mouseenter', () => plates.dataset.focus = it.dataset.p);
+    it.addEventListener('mouseleave', () => delete plates.dataset.focus);
+  });
+
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === b));
+    document.querySelectorAll('[data-scene]').forEach(s => {
+      const on = s.dataset.scene === b.dataset.t;
+      s.hidden = !on;
+      if (on) s.querySelectorAll('*').forEach(el => { const a = getComputedStyle(el).animationName; if (a && a !== 'none') { el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; } });
+    });
+  }));
+})();
+</script>
