@@ -16,12 +16,12 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
 | `assets/marketing.css` | Shared by the home and product pages: every product mock, the tools strip, security, pricing, questions and the closing band. |
 | `assets/home.css` | The home page only: the brand story. Hero with the Triangle, the story, the Plates and one section each for Scout, Unify and Close. |
-| `assets/demo.css`, `assets/demo.js` | Home v2: the shape kit, app chrome, the scroll-played stages and the Spine (`docs/home-v2.md`). Preview in `docs/home-v2-lab.html`. |
+| `assets/demo.css`, `assets/demo.js` | The home page's product tour: the shape kit, app chrome, and Scout, Unify and Close played on a clock with tabs and controls (`docs/home-v2.md`). Preview in `docs/home-v2-lab.html`. |
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll, scroll reveals, and the home page's Triangle and Plates. |
 | `assets/logos/` | Logos of the tools Omniscient works with. |
 | `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image, and `omniscient-brand.css` (the brand stylesheet for embeds, emails and decks). |
 | `tools/layout.mjs` | Copies the partials into every page, stamps the CSS and JS links and rebuilds `sitemap.xml`. |
-| `tools/home-v2/` | Generators for home v2: `gen.py` writes the Scout, Unify and Close stages, the hero Triangle and the Spine as HTML (`python3 tools/home-v2/gen.py out.json`); `feats.py` writes the animated feature drawings into `assets/img/`. |
+| `tools/home-v2/` | Generators for home v2: `gen.py` writes the tour's tabs, the Scout, Unify and Close parts and the hero Triangle as HTML (`python3 tools/home-v2/gen.py out.json`); `feats.py` writes the animated feature drawings into `assets/img/`. |
 | `.htaccess` | 404 page, https/www redirects, icon redirects, unknown paths to the app. |
 
 ## Editing
