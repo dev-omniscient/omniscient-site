@@ -8,7 +8,7 @@ The three parts no longer play by scroll. They sit in a **product tour** under t
 
 - Three tabs: **Scout** (find and reach buyers), **Unify** (a CRM that fills itself) and **Close** (Deal Rooms that close). Each tab shows its progress as an emerald line.
 - Each part has its steps on the left (name, caption and a line that fills as it plays) and the app on the right.
-- The active part plays on a clock once the tour is on screen. People can pause, step back or forward, or jump to any step. When a part ends, the next one starts after a short pause unless someone took the controls. "Next: Unify" and "Next: Close" do the same by hand; the last part offers "Start free".
+- The active part plays on a clock once the tour is on screen. Each step moves at 2.4s per unit, then holds 3s for reading (about 30s a part); the next part waits 4s. People can pause, step back or forward, or jump to any step. When a part ends, the next one starts after a short pause unless someone took the controls. "Next: Unify" and "Next: Close" do the same by hand; the last part offers "Start free".
 - The spotlight, cursor, typing, counters and flying dots are the same as before. The Spine and the Why Omniscient section are gone. The tool logos under the hero are in color.
 - Files: `assets/demo.js` (the clock, tabs and controls), `assets/demo.css` (the tour), `tools/home-v2/gen.py` (each part and the tabs).
 
