@@ -4,7 +4,7 @@
 // Each step plays over the first 72% of its share and holds for the rest, so every step can be read.
 // Every [data-at] inside turns .on while at <= s < off. [data-count="from,to,at,end,fmt"] counts,
 // [data-type="at,end"] types its text, [data-scrub="at,end"] sets --t, and [data-guide] (the spotlight and the
-// cursor) moves to the last of its [at, x, y, w, h] stops that has started.
+// cursor) moves onto the elements named by the last of its [at, selector] stops that has started.
 // [data-vscrub] outside a stage sets --t from 0 to 1 as it crosses the screen (the Spine).
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -108,14 +108,8 @@
     st.guides.forEach(function (g) {
       var stop = null;
       g.stops.forEach(function (x) { if (s >= x[0]) stop = x; });
-      if (stop === g.cur) return;
-      g.cur = stop;
-      var on = stop && stop[3] > 0;
-      g.e.classList.toggle("on", !!on);
-      if (!on) return;
-      var ox = +(g.e.getAttribute("data-ox") || 0), oy = +(g.e.getAttribute("data-oy") || 0);
-      g.e.style.transform = "translate(" + (stop[1] - ox) + "px," + (stop[2] - oy) + "px)";
-      if (g.e.classList.contains("focus")) { g.e.style.width = stop[3] + "px"; g.e.style.height = stop[4] + "px"; }
+      g.stop = stop && stop[1] ? stop[1] : null;
+      g.e.classList.toggle("on", !!g.stop);
     });
     var cur = 0;
     st.steps.forEach(function (x, i) { if (s >= x.at - 0.002) cur = i; });
@@ -141,11 +135,43 @@
   }, { threshold: 0.35 }) : null;
   stages.forEach(function (st) { if (io) io.observe(st.el); });
 
+  // The spotlight and the cursor measure what they point at on every frame, so they stay on it while it moves.
+  function place(st) {
+    var canvas = st.el.querySelector("[data-canvas]");
+    if (!canvas) return;
+    var k = parseFloat(canvas.style.getPropertyValue("--k")) || 1;
+    st.guides.forEach(function (g) {
+      if (!g.stop) return;
+      var root = g.e.getAttribute("data-root") === "win" ? canvas.querySelector(".win") : canvas;
+      var rr = root.getBoundingClientRect(), x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+      all(canvas, g.stop).forEach(function (t) {
+        var r = t.getBoundingClientRect();
+        if (!r.width && !r.height) return;
+        x1 = Math.min(x1, r.left); y1 = Math.min(y1, r.top); x2 = Math.max(x2, r.right); y2 = Math.max(y2, r.bottom);
+      });
+      if (x1 === Infinity) return;
+      x1 = (x1 - rr.left) / k; y1 = (y1 - rr.top) / k; x2 = (x2 - rr.left) / k; y2 = (y2 - rr.top) / k;
+      var key = Math.round(x1) + "," + Math.round(y1) + "," + Math.round(x2) + "," + Math.round(y2);
+      if (key === g.key) return;
+      g.key = key;
+      if (g.e.classList.contains("cursor")) {
+        g.e.style.transform = "translate(" + (x1 + (x2 - x1) * 0.62) + "px," + (y1 + (y2 - y1) * 0.55) + "px)";
+      } else {
+        var pad = 6;
+        g.e.style.transform = "translate(" + (x1 - pad) + "px," + (y1 - pad) + "px)";
+        g.e.style.width = (x2 - x1 + pad * 2) + "px";
+        g.e.style.height = (y2 - y1 + pad * 2) + "px";
+      }
+    });
+  }
+
   function frame(now) {
     var vh = window.innerHeight, hh = headerH();
     stages.forEach(function (st) {
       st.el.classList.toggle("is-auto", auto() || reduce);
       if (reduce) { render(st, st.len); return; }
+      var box = st.el.getBoundingClientRect();
+      if (box.bottom > 0 && box.top < vh) place(st);
       if (auto()) {
         if (st.playing) {
           var p = (now - st.t0) / (st.total * UNIT_MS * PLAY);
