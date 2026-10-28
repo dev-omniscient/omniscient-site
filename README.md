@@ -15,10 +15,10 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `partials/header.html`, `partials/footer.html` | The site header and footer. |
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
 | `assets/marketing.css` | Shared by the home and product pages: every product mock, the tools strip, security, pricing, questions and the closing band. |
-| `assets/home.css` | The home page only: hero, the why and the tour with the sidebar that follows the scroll. |
-| `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
+| `assets/home.css` | The home page only: the brand story. Hero with the Triangle, the story, the Plates and one section each for Scout, Unify and Close. |
+| `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll, scroll reveals, and the home page's Triangle and Plates. |
 | `assets/logos/` | Logos of the tools Omniscient works with. |
-| `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image. |
+| `assets/brand/` | favicon.ico, icon.svg, apple-icon.png, share image, and `omniscient-brand.css` (the brand stylesheet for embeds, emails and decks). |
 | `tools/layout.mjs` | Copies the partials into every page, stamps the CSS and JS links and rebuilds `sitemap.xml`. |
 | `.htaccess` | 404 page, https/www redirects, icon redirects, unknown paths to the app. |
 
@@ -33,10 +33,9 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 - **Privacy or Terms:** edit the text in `privacy/index.html` or `terms/index.html` and change the
   "Last updated" date. Google's OAuth review reads these pages, so keep the URLs `/privacy` and `/terms`.
 - **Footer year:** it is plain text in `partials/footer.html`. Change it each January.
-- **Brand:** follow `docs/brand.md` in the app repo. Inter, navy text on white, one brand blue, neutrals tinted from
-  that blue. Controls 6px, cards and menus 8px, tags are pills. Shadows only on things that float. No gradients.
-- **Hero video:** replace the `.video-slot` div in `index.html` with the `<video>` tag in the comment above it, and put
-  the film and its poster in `assets/video/`.
+- **Brand:** follow `docs/brand.md` and `docs/brand-story.md` in the app repo. Black and white with plain grays, and
+  emerald as the one signal (shared with Claritia). Round buttons, controls 6px, cards 10px, frames 16px, tags are
+  pills. Shadows only on frames and things that float. No gradients. The logo is the O: a ring with an emerald point.
 - **Site plan:** `docs/site-architecture.md` (menus, sitemap, page template, build order). Hidden from visitors.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
