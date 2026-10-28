@@ -55,8 +55,8 @@
 /* App chrome: sidebar */
 .side { position: absolute; left: 0; top: 0; bottom: 0; width: 176px; padding: 12px 8px; border-right: 1px solid var(--line-light); background: #fbfbfa; display: flex; flex-direction: column; gap: 1px; }
 .side__ws { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; margin-bottom: 8px; font-weight: 500; }
-.side__ws i { width: 20px; height: 20px; border-radius: 6px; background: var(--ink); display: grid; place-items: center; }
-.side__ws i::after { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--mint); }
+.side__mark { width: 20px; height: 20px; flex-shrink: 0; color: var(--ink); }
+.side__plan { margin-left: auto; height: 18px; padding: 0 6px; border-radius: 5px; background: var(--hover); color: var(--muted); font-size: 11px; line-height: 18px; font-weight: 500; }
 .side__lab { padding: 10px 8px 4px; font-size: 11px; color: var(--faint); }
 .side__i { position: relative; display: flex; align-items: center; gap: 10px; height: 30px; padding: 0 8px; border-radius: 7px; color: var(--muted); transition: background var(--normal) var(--ease-out), color var(--normal) var(--ease-out); }
 .side__i svg { width: 15px; height: 15px; flex-shrink: 0; }
@@ -90,7 +90,8 @@
 .who b { font-weight: 500; }
 .who small { display: block; font-size: 11.5px; line-height: 14px; color: var(--muted); }
 .av { display: inline-grid; flex-shrink: 0; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: var(--pressed); color: var(--ink-2); font-size: 10px; font-weight: 600; }
-.lg { display: inline-grid; flex-shrink: 0; place-items: center; width: 20px; height: 20px; border-radius: 5px; color: #fff; font-size: 10px; font-weight: 600; }
+.lg { display: inline-grid; flex-shrink: 0; place-items: center; width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-style: normal; }
+.lg svg { width: 12px; height: 12px; }
 .co { display: flex; align-items: center; gap: 8px; font-weight: 500; }
 .score { display: inline-flex; gap: 3px; align-items: center; margin-right: 8px; }
 .score i { width: 10px; height: 3px; border-radius: 2px; background: var(--pressed); }
@@ -100,6 +101,7 @@
 .row-open .score i, .openable.on .score i { background: rgb(255 255 255 / 0.2); }
 .row-open .score i.y, .openable.on .score i.y { background: var(--mint); }
 .row-open .av, .openable.on .av { background: #333; color: #fff; }
+.row-open .lg, .openable.on .lg { background: #1c1c1c; border-color: #333; color: #fff; }
 .openable.on .tagx--sig { background: rgb(24 226 153 / 0.16); color: var(--mint); }
 html:not(.js) .openable { background: var(--ink); color: #fff; }
 
@@ -182,6 +184,7 @@ html:not(.js) [data-off], html:not(.js) .fly { display: none !important; }
   box-shadow: 0 0 0 1px var(--signal), 0 0 0 9999px rgb(255 255 255 / 0.5);
   transition: transform 600ms var(--ease-out), width 600ms var(--ease-out), height 600ms var(--ease-out), opacity var(--slow) var(--ease-out); }
 .focus.on { opacity: 1; }
+.focus--ring { box-shadow: 0 0 0 1px var(--signal); z-index: 3; }
 .focus::before, .focus::after { content: ""; position: absolute; width: 12px; height: 12px; border: 0 solid var(--ink); }
 .focus::before { top: -7px; left: -7px; border-top-width: 2px; border-left-width: 2px; }
 .focus::after { bottom: -7px; right: -7px; border-bottom-width: 2px; border-right-width: 2px; }
