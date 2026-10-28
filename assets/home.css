@@ -1,15 +1,9 @@
 /* ═══════════════════════════════════════════════════════════════════════
    OMNISCIENT WEBSITE · HOME
-   The brand story (docs/brand-story.md in the app repo): the hero with the Triangle and the story. The Scout,
-   Unify and Close stages and the Spine live in assets/demo.css (docs/home-v2.md). Otto, switch, security,
+   The brand story (docs/brand-story.md in the app repo): the hero with the Triangle. The product tour (Scout,
+   Unify and Close) lives in assets/demo.css (docs/home-v2.md). Otto, switch, security,
    pricing and questions come from assets/marketing.css. Thin black lines; emerald marks the signal.
    ═══════════════════════════════════════════════════════════════════════ */
-
-/* Section head: a mono label on the left, its number on the right */
-.shead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 40px; }
-.story-sec { padding: 96px 0; border-top: 1px solid var(--line); scroll-margin-top: var(--header-h); }
-@media (max-width: 767px) { .story-sec { padding: 64px 0; } }
-.stitle { display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin-bottom: 48px; }
 
 /* Lines that draw themselves. Set --len to the path length. */
 .draw { stroke-dasharray: var(--len, 1000); stroke-dashoffset: var(--len, 1000); }
@@ -33,29 +27,6 @@
   .hero { padding: 72px 0 104px; }
   .hero__in { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; }
 }
-
-/* ═══ The story ═══ */
-.story { display: grid; border-top: 1px solid var(--line); }
-.story > div { display: flex; flex-direction: column; gap: 10px; padding: 24px 0; min-width: 0; }
-.story > div + div { border-top: 1px solid var(--line); }
-.story h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
-.story p { font-size: 15px; line-height: 1.6; color: var(--muted); }
-@media (min-width: 900px) {
-  .story { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .story > div { padding: 24px 24px 8px 0; }
-  .story > div + div { padding-left: 24px; border-top: 0; border-left: 1px solid var(--line); }
-}
-.tools { display: grid; gap: 24px; align-items: center; margin-top: 48px; }
-.tools svg { width: 100%; height: auto; }
-.tools__arrow { font-family: var(--mono); font-size: 13px; color: var(--faint); text-align: center; }
-@media (min-width: 900px) { .tools { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
-@media (max-width: 899px) { .tools__arrow { transform: rotate(90deg); } }
-.tools .box { fill: none; stroke: var(--line-strong); }
-.tools .dash { fill: none; stroke: var(--light); stroke-dasharray: 2 4; }
-.tools .t { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; fill: var(--faint); }
-.tools .flow { fill: none; stroke: var(--signal); }
-.tools .card { fill: var(--panel); stroke: var(--ink); }
-.tools .rule { stroke: var(--line-strong); }
 
 /* ═══ Otto band and shared sections, recolored for the story ═══ */
 .band .eyebrow .otto { width: 16px; height: 16px; }
@@ -81,7 +52,6 @@
 .close__mark { width: 72px; height: 66px; }
 
 /* The stages' feature cards */
-.feats-row { padding-bottom: 24px; }
 .hero__tri .htri { max-width: 560px; margin-inline: auto; }
 
 @media (prefers-reduced-motion: reduce) {

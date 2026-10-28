@@ -105,17 +105,37 @@ def guides(win, focus, cursor):
     c = CURSOR.format(stops=json.dumps(cursor)) if cursor else ''
     return f + c
 
-def stage(key, length, eyebrow, title, step_items, canvas, w, h, crop, caps):
+ICON_PREV = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6 9 12l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ICON_NEXT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ICON_PLAY = ('<svg class="ctl__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>'
+             '<svg class="ctl__pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5.5" width="3.5" height="13" rx="1" fill="currentColor"/><rect x="13.5" y="5.5" width="3.5" height="13" rx="1" fill="currentColor"/></svg>'
+             '<svg class="ctl__again" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+def stage(key, length, eyebrow, title, step_items, canvas, w, h, crop, caps, nxt=None):
+    """One part of the product tour: the steps on the left (name, caption and progress), the app on the right.
+    nxt: (key, name) of the part that follows, offered when this one ends."""
     marks = [a for _, a in step_items] + [length]
-    cap = ''.join(f'<p class="cap fade"{at(marks[i], marks[i + 1] if i < len(caps) - 1 else None)}><b>{i + 1:02d}</b>{c}</p>' for i, c in enumerate(caps))
-    return f'''<section class="dstage" data-stage="{key}" id="{key}" style="--len:{length}">
-  <div class="stage__pin wrap">
-    <div class="stage__top">
-      <div class="stage__title"><p class="eyebrow">{eyebrow}</p><h2 class="h2">{title}</h2></div>
-      <div class="stage__side">{steps(step_items, length)}<div class="caps" aria-live="polite">{cap}</div></div>
+    rows = ''.join(f'<li><button type="button" data-go="{a}"><span class="tsteps__n">{i + 1:02d}</span><span class="tsteps__t"><b>{n}</b><small>{caps[i]}</small></span><i class="tsteps__bar"></i></button></li>'
+                   for i, (n, a) in enumerate(step_items))
+    tcaps = ''.join(f'<p class="tcap fade"{at(marks[i], marks[i + 1] if i < len(caps) - 1 else None)}>{c}</p>' for i, c in enumerate(caps))
+    cta = (f'<button type="button" class="tour__next" data-next="{nxt[0]}">Next: {nxt[1]} <span aria-hidden="true">→</span></button>' if nxt
+           else '<a class="tour__next" href="https://app.tryomniscient.com/today">Start free <span aria-hidden="true">→</span></a>')
+    return f'''<section class="dstage" data-stage="{key}" id="{key}" style="--len:{length}" role="tabpanel" aria-labelledby="tab-{key}">
+  <div class="stage__grid">
+    <div class="stage__rail">
+      <div class="stage__title"><p class="eyebrow">{eyebrow}</p><h3 class="stage__h">{title}</h3></div>
+      <ol class="tsteps">{rows}</ol>
+      <div class="tcaps" aria-live="polite">{tcaps}</div>
+      <div class="ctl">
+        <button type="button" class="ctl__btn" data-act="prev" aria-label="Previous step">{ICON_PREV}</button>
+        <button type="button" class="ctl__btn ctl__btn--main" data-act="play" aria-label="Play or pause">{ICON_PLAY}</button>
+        <button type="button" class="ctl__btn" data-act="next" aria-label="Next step">{ICON_NEXT}</button>
+        {cta}
+      </div>
     </div>
-    <div class="canvas-wrap" aria-hidden="true"><div class="canvas" data-canvas data-w="{w}" data-h="{h}" data-crop="{crop}" style="width:{w}px;height:{h}px">{canvas}</div></div>
+    <div class="stage__view"><div class="canvas-wrap" aria-hidden="true"><div class="canvas" data-canvas data-w="{w}" data-h="{h}" data-crop="{crop}" style="width:{w}px;height:{h}px">{canvas}</div></div></div>
   </div>
+  <!--feats:{key}-->
 </section>'''
 
 # ─────────────────────────── SCOUT ───────────────────────────
@@ -250,7 +270,7 @@ def scout():
                   'Scout searches 2.4M people and lights up the ones who fit.',
                   'Each match comes with the reason and the post behind it.',
                   'Add them to a LinkedIn campaign. Nothing sends until you approve.',
-                  'Replies land in one inbox. A yes becomes a new deal.'])
+                  'Replies land in one inbox. A yes becomes a new deal.'], ('unify', 'Unify'))
 
 # ─────────────────────────── UNIFY ───────────────────────────
 def unify():
@@ -352,7 +372,7 @@ def unify():
                   'Gmail, Calendar, Meet and Zoom feed every deal on their own.',
                   'Omniscient reads the meeting and finds what changed.',
                   'Each fact moves into its field, with the quote as proof.',
-                  'The pipeline updates itself. Northwind moves on to Close.'])
+                  'The pipeline updates itself. Northwind moves on to Close.'], ('close', 'Close'))
 
 # ─────────────────────────── CLOSE ───────────────────────────
 def close():
@@ -455,14 +475,13 @@ def hero_tri():
             nodes.append(f'<circle cx="{x}" cy="{y}" r="2" fill="var(--line-strong)"/>')
     def corner(p, name, dy):
         return f'<rect class="sq" x="{p[0] - 8:.1f}" y="{p[1] - 8:.1f}" width="16" height="16"/><text x="{p[0]:.1f}" y="{p[1] + dy:.1f}" text-anchor="middle" font-size="16" font-weight="500" fill="var(--ink)" letter-spacing="-0.3">{name}</text>'
-    return f'''<svg class="htri" viewBox="0 0 520 600" data-vscrub role="img" aria-label="Scout, Unify and Close around one record">
+    return f'''<svg class="htri" viewBox="0 0 520 500" role="img" aria-label="Scout, Unify and Close around one record">
   <circle cx="260" cy="260" r="200" fill="none" stroke="var(--line-strong)"/>
   <circle cx="260" cy="260" r="120" fill="none" stroke="var(--light)" stroke-dasharray="2 4"/>
   <path d="M{A[0]} {A[1]} L{B[0]:.1f} {B[1]:.1f} L{C[0]:.1f} {C[1]:.1f}Z" fill="none" stroke="var(--ink)"/>
   {''.join(nodes)}
   <g class="core"><rect x="250" y="250" width="20" height="20" fill="var(--panel)" stroke="var(--ink)"/><circle cx="260" cy="260" r="4.5" fill="var(--signal)"/></g>
   {corner(A, 'Scout', -18)}{corner(B, 'Unify', 32)}{corner(C, 'Close', 32)}
-  <path class="tail" pathLength="1" d="M260 460 V600" fill="none" stroke="var(--ink)"/>
 </svg>'''
 
 def spine(label):
@@ -472,6 +491,12 @@ def spine(label):
   <span class="spine__dot"><span class="dot6"></span></span>
 </div>'''
 
-json.dump({'sprite': sprite(), 'scout': scout(), 'unify': unify(), 'close': close(), 'hero': hero_tri(),
+def tour_head():
+    tabs = [('scout', 'Scout', 'Find and reach buyers'), ('unify', 'Unify', 'A CRM that fills itself'), ('close', 'Close', 'Deal Rooms that close')]
+    b = ''.join(f'<button type="button" role="tab" id="tab-{k}" data-tab="{k}" aria-selected="{"true" if i == 0 else "false"}" aria-controls="{k}"><span class="tour__n">{i + 1:02d}</span><b>{n}</b><small>{d}</small><i class="tour__prog"></i></button>'
+                for i, (k, n, d) in enumerate(tabs))
+    return f'<div class="tour__tabs" role="tablist" aria-label="Product tour">{b}</div>'
+
+json.dump({'tabs': tour_head(), 'sprite': sprite(), 'scout': scout(), 'unify': unify(), 'close': close(), 'hero': hero_tri(),
            'spine_scout': spine('SCOUT'), 'spine_unify': spine('UNIFY'), 'spine_close': spine('CLOSE')}, open(OUT, 'w'))
 print('ok')
