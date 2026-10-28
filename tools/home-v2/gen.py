@@ -83,7 +83,7 @@ def steps(items, length):
     return f'<div class="steps" style="--len:{length}"><span class="steps__fill"></span>{b}</div>'
 
 def stage(key, length, eyebrow, title, step_items, canvas, w, h, crop):
-    return f'''<section class="stage" data-stage="{key}" id="{key}" style="--len:{length}">
+    return f'''<section class="dstage" data-stage="{key}" id="{key}" style="--len:{length}">
   <div class="stage__pin wrap">
     <div class="stage__top">
       <div class="stage__title"><p class="eyebrow">{eyebrow}</p><h2 class="h2">{title}</h2></div>
@@ -160,7 +160,7 @@ def scout():
         fl.append(fly(path_c(x1, y1, x2, y2, 'v'), 2.95, 3.4))
 
     viewA = f'''<div class="view abs" style="left:{vx}px;top:{vy}px;right:0;bottom:0"{at(0, 5)}>
-      <p class="typing" data-type="0.1,1.4" style="padding:18px 20px 0;font-size:19px;line-height:27px;font-weight:500;letter-spacing:-0.02em;color:var(--faint);max-width:640px">Heads of <span class="crit"{at(0.55)}>RevOps</span> in the <span class="crit"{at(0.8)}>United States</span> at <span class="crit"{at(1.05)}>B2B software</span> companies with <span class="crit"{at(1.3)}>51 to 500 people</span>, hiring in sales</p>
+      <p class="typing" data-type="0.1,1.4" style="padding:18px 20px 0;font-size:19px;line-height:27px;font-weight:500;letter-spacing:-0.02em;color:var(--faint);max-width:640px">Heads of <span class="dcrit"{at(0.55)}>RevOps</span> in the <span class="dcrit"{at(0.8)}>United States</span> at <span class="dcrit"{at(1.05)}>B2B software</span> companies with <span class="dcrit"{at(1.3)}>51 to 500 people</span>, hiring in sales</p>
       {field}{table}{panel}
     </div>'''
 

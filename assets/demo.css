@@ -24,11 +24,11 @@
 .dot6 { position: absolute; left: 0; top: 0; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 999px; background: var(--signal); box-shadow: 0 0 0 4px rgb(12 140 94 / 0.16); pointer-events: none; }
 
 /* ═══ Stage: a tall section with a pinned box. --s runs from 0 to --len as it scrolls. ═══ */
-.stage { position: relative; --len: 6; }
+.dstage { position: relative; --len: 6; }
 .stage__pin { display: flex; flex-direction: column; gap: 20px; padding: 24px 0; }
 @media (min-width: 900px) {
-  .js .stage:not(.is-auto) { height: calc(100vh + var(--len) * 46vh); }
-  .js .stage:not(.is-auto) .stage__pin { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); justify-content: center; padding: 16px 0; }
+  .js .dstage:not(.is-auto) { height: calc(100vh + var(--len) * 46vh); }
+  .js .dstage:not(.is-auto) .stage__pin { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); justify-content: center; padding: 16px 0; }
 }
 .stage__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .stage__title { display: flex; flex-direction: column; gap: 10px; }
@@ -155,8 +155,8 @@ html:not(.js) [data-off], html:not(.js) .fly { display: none !important; }
 .typing::after { content: ""; display: inline-block; width: 1.5px; height: 1em; margin-left: 2px; vertical-align: -2px; background: var(--ink); animation: caret 1s steps(1) infinite; }
 .typing.done::after { display: none; }
 @keyframes caret { 50% { opacity: 0; } }
-.crit { color: var(--ink); background: linear-gradient(var(--ink), var(--ink)) 0 100% / 0 1px no-repeat; transition: background-size 500ms var(--ease-out); }
-.crit.on, html:not(.js) .crit { background-size: 100% 1px; }
+.dcrit { color: var(--ink); background: linear-gradient(var(--ink), var(--ink)) 0 100% / 0 1px no-repeat; transition: background-size 500ms var(--ease-out); }
+.dcrit.on, html:not(.js) .dcrit { background-size: 100% 1px; }
 
 /* Four-square loader */
 .ldr { display: inline-grid; grid-template-columns: 5px 5px; gap: 2px; }
