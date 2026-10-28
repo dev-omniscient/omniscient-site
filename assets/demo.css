@@ -20,22 +20,23 @@
 .ticks::before { top: -6px; left: -6px; border-top-width: 1px; border-left-width: 1px; }
 .ticks::after { bottom: -6px; right: -6px; border-bottom-width: 1px; border-right-width: 1px; }
 
-/* A moving dot: 6px emerald with a soft halo */
-.dot6 { position: absolute; left: 0; top: 0; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 999px; background: var(--signal); box-shadow: 0 0 0 4px rgb(12 140 94 / 0.16); pointer-events: none; }
+/* A moving dot: 8px emerald with a soft halo. It moves on offset-path, which centers it on the line (no margin). */
+.dot6 { position: absolute; left: 0; top: 0; width: 8px; height: 8px; border-radius: 999px; background: var(--signal); box-shadow: 0 0 0 4px rgb(12 140 94 / 0.16); pointer-events: none; }
 
 /* ═══ Stage: a tall section with a pinned box. --s runs from 0 to --len as it scrolls. ═══ */
 .dstage { position: relative; --len: 6; }
-.stage__pin { display: flex; flex-direction: column; gap: 20px; padding: 24px 0; }
+.stage__pin { display: flex; flex-direction: column; gap: 20px; padding-block: 24px; }
 @media (min-width: 900px) {
-  .js .dstage:not(.is-auto) { height: calc(100vh + var(--len) * 46vh); }
-  .js .dstage:not(.is-auto) .stage__pin { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); justify-content: center; padding: 16px 0; }
+  .js .dstage:not(.is-auto) { height: calc(100vh + var(--len) * 72vh); }
+  .js .dstage:not(.is-auto) .stage__pin { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); justify-content: center; padding-block: 16px; }
 }
-.stage__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.stage__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 40px; flex-wrap: wrap; }
+.stage__side { flex: 0 1 560px; min-width: min(560px, 100%); }
 .stage__title { display: flex; flex-direction: column; gap: 10px; }
 .stage__title .eyebrow { color: var(--signal-text); }
 
 /* Step bar: the five steps, the current one in black, a line that fills with --s */
-.steps { position: relative; display: flex; gap: 0; border-top: 1px solid var(--line); min-width: min(520px, 100%); }
+.steps { position: relative; display: flex; gap: 0; border-top: 1px solid var(--line); }
 .steps__fill { position: absolute; left: 0; top: -1px; height: 1px; width: calc(var(--s, 0) / var(--len) * 100%); background: var(--ink); }
 .steps button { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 12px 0 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); text-align: left; transition: color var(--normal) var(--ease-out); }
 .steps button b { font-family: var(--font); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; text-transform: none; color: inherit; }
@@ -129,9 +130,9 @@ html:not(.js) [data-off], html:not(.js) .fly { display: none !important; }
 .wire-t { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--t, 1)); }
 
 /* A dot that flies along offset-path when it turns on, then fades at its data-off */
-.fly { offset-distance: 0%; offset-rotate: 0deg; opacity: 0; transition: offset-distance 900ms var(--ease-out), opacity 200ms; }
+.fly { offset-distance: 0%; offset-rotate: 0deg; opacity: 0; transition: offset-distance 1200ms var(--ease-out), opacity 200ms; }
 .fly.on { offset-distance: 100%; opacity: 1; }
-.js .fly[data-at] { transition: offset-distance 900ms var(--ease-out), opacity 200ms; }
+.js .fly[data-at] { transition: offset-distance 1200ms var(--ease-out), opacity 200ms; }
 .js .wire[data-at] { transition: stroke-dashoffset 700ms var(--ease-out), stroke var(--normal); }
 /* A dot that loops along its path while on */
 .stream { opacity: 0; transition: opacity var(--normal); }
@@ -175,6 +176,28 @@ html:not(.js) [data-off], html:not(.js) .fly { display: none !important; }
 .fnode.on { fill: var(--signal); r: 5; }
 .scan { fill: var(--signal); opacity: 0.08; transform: translateX(calc(var(--t, 0) * 640px)); }
 
+/* ═══ Guides: the spotlight, the cursor and the caption ═══ */
+/* The spotlight: corner ticks around where the action is, the rest of the window veiled. demo.js moves it. */
+.focus { position: absolute; left: 0; top: 0; width: 0; height: 0; border-radius: 10px; pointer-events: none; opacity: 0;
+  box-shadow: 0 0 0 1px var(--signal), 0 0 0 9999px rgb(255 255 255 / 0.5);
+  transition: transform 600ms var(--ease-out), width 600ms var(--ease-out), height 600ms var(--ease-out), opacity var(--slow) var(--ease-out); }
+.focus.on { opacity: 1; }
+.focus::before, .focus::after { content: ""; position: absolute; width: 12px; height: 12px; border: 0 solid var(--ink); }
+.focus::before { top: -7px; left: -7px; border-top-width: 2px; border-left-width: 2px; }
+.focus::after { bottom: -7px; right: -7px; border-bottom-width: 2px; border-right-width: 2px; }
+.focus-clip { position: absolute; z-index: 3; overflow: hidden; border-radius: 12px; pointer-events: none; }
+.canvas .dot6 { z-index: 4; }
+/* The cursor: glides to a button just before it presses */
+.cursor { position: absolute; left: 0; top: 0; width: 18px; height: 22px; pointer-events: none; opacity: 0; z-index: 5;
+  transition: transform 700ms var(--ease-out), opacity var(--slow) var(--ease-out); filter: drop-shadow(0 2px 3px rgb(10 10 10 / 0.25)); }
+.cursor.on { opacity: 1; }
+/* The caption: one line that says what this step does */
+.caps { position: relative; min-height: 26px; margin-top: 12px; }
+.cap { position: absolute; left: 0; top: 0; font-size: 16px; line-height: 24px; letter-spacing: -0.01em; color: var(--ink); }
+.cap b { display: inline-block; margin-right: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--signal-text); }
+html:not(.js) .cap { display: none; }
+html:not(.js) .cap:last-child { display: block; }
+
 /* ═══ The Spine between stages ═══ */
 .spine { position: relative; height: 200px; }
 .spine svg { position: absolute; left: 50%; top: 0; width: 240px; height: 100%; margin-left: -120px; overflow: visible; }
@@ -206,5 +229,6 @@ html:not(.js) [data-off], html:not(.js) .fly { display: none !important; }
 .fcard small { padding: 0 6px; font-size: 14px; line-height: 1.5; color: var(--muted); }
 
 /* Reduced motion: last frames, nothing moves */
+.rm .focus, .rm .cursor { display: none; }
 .rm [data-at], .rm .fly, .rm .stream, .rm .drift, .rm .core, .rm .typing::after, .rm .ldr i { transition: none !important; animation: none !important; }
 @media (prefers-reduced-motion: reduce) { .htri .drift { animation: none; } .htri .core { animation: none; } }

@@ -82,12 +82,25 @@ def steps(items, length):
     b = ''.join(f'<button type="button" data-go="{a}"><span>{i+1:02d}</span><b>{n}</b></button>' for i, (n, a) in enumerate(items))
     return f'<div class="steps" style="--len:{length}"><span class="steps__fill"></span>{b}</div>'
 
-def stage(key, length, eyebrow, title, step_items, canvas, w, h, crop):
+CURSOR = ('<svg class="cursor" viewBox="0 0 18 22" data-guide=\'{stops}\' aria-hidden="true">'
+          '<path d="M2 2 L2 17 L6 13 L9 20 L12 19 L9 12 L15 12 Z" fill="#0a0a0a" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>')
+
+def guides(win, focus, cursor):
+    """win: (x, y, w, h) of the app window in the canvas. focus and cursor: lists of [at, x, y, w, h] in canvas coords."""
+    x, y, w, h = win
+    f = (f'<div class="focus-clip" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px">'
+         f'<span class="focus" data-ox="{x}" data-oy="{y}" data-guide=\'{json.dumps(focus)}\'></span></div>')
+    c = CURSOR.format(stops=json.dumps([[a, cx - 2, cy - 2, 1, 1] if cx else [a, 0, 0, 0, 0] for a, cx, cy in cursor])) if cursor else ''
+    return f + c
+
+def stage(key, length, eyebrow, title, step_items, canvas, w, h, crop, caps):
+    marks = [a for _, a in step_items] + [length]
+    cap = ''.join(f'<p class="cap fade"{at(marks[i], marks[i + 1] if i < len(caps) - 1 else None)}><b>{i + 1:02d}</b>{c}</p>' for i, c in enumerate(caps))
     return f'''<section class="dstage" data-stage="{key}" id="{key}" style="--len:{length}">
   <div class="stage__pin wrap">
     <div class="stage__top">
       <div class="stage__title"><p class="eyebrow">{eyebrow}</p><h2 class="h2">{title}</h2></div>
-      {steps(step_items, length)}
+      <div class="stage__side">{steps(step_items, length)}<div class="caps" aria-live="polite">{cap}</div></div>
     </div>
     <div class="canvas-wrap" aria-hidden="true"><div class="canvas" data-canvas data-w="{w}" data-h="{h}" data-crop="{crop}" style="width:{w}px;height:{h}px">{canvas}</div></div>
   </div>
@@ -215,9 +228,17 @@ def scout():
     # Hand-off: from Priya's inbox row down to the canvas bottom
     hand = fly(path_c(O + vx + 300, O + vy + 40 + 31, O + 460, O + H + 22, 'v'), 7.75, 99)
     status = f'<div class="abs card fade" style="left:{O + 196}px;top:{O + H - 52}px;padding:8px 12px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-pop)"{at(1.6, 3)}><span class="ldr"><i></i><i></i><i></i><i></i></span><b style="font-weight:500">Searching 2.4M people</b><span class="mut">Reading fit and signals</span></div>'
-    canvas = f'<div class="ground"></div>{win}{status}' + ''.join(fl) + hand
+    focus = [[0, 204, 74, 680, 90], [1.6, 204, 164, 680, 340], [3, 204, 164, 680, 296], [3.85, 606, 74, 284, 478],
+             [5, 216, 156, 340, 250], [5.85, 562, 160, 318, 196], [7, 204, 110, 290, 60], [7.3, 504, 74, 384, 166], [7.65, 492, 442, 356, 82]]
+    cursor = [[0, 0, 0], [3.3, 330, 190], [5.5, 820, 330], [7.0, 0, 0]]
+    canvas = f'<div class="ground"></div>{win}{status}' + ''.join(fl) + hand + guides((O, O, W, H), focus, cursor)
     return stage('scout', 8, 'Scout 1.0', 'Find the buyers<br><span class="two">worth your time.</span>',
-                 [('Describe', 0), ('Search', 1.6), ('List', 3), ('Campaign', 5), ('Reply', 7)], canvas, W + 2 * O, H + 2 * O, O + 176)
+                 [('Describe', 0), ('Search', 1.6), ('List', 3), ('Campaign', 5), ('Reply', 7)], canvas, W + 2 * O, H + 2 * O, O + 176,
+                 ['Describe who you sell to in one sentence.',
+                  'Scout searches 2.4M people and lights up the ones who fit.',
+                  'Each match comes with the reason and the post behind it.',
+                  'Add them to a LinkedIn campaign. Nothing sends until you approve.',
+                  'Replies land in one inbox. A yes becomes a new deal.'])
 
 # ─────────────────────────── UNIFY ───────────────────────────
 def unify():
@@ -308,9 +329,19 @@ def unify():
     win = f'<div class="win" style="left:{R}px;top:{O}px;width:{W}px;height:{H}px">{side("target")}{bar}{pipe}{table}{toast}{panel}</div>'
     arrive = fly(f'M{cx(560)} -12 C{cx(560)} 200 {cx(200)} {cy(388)} {cx(196)} {cy(388)}', 0.05, 0.5)
     leave = fly(f'M{cx(196)} {cy(388)} C{cx(150)} {cy(388)} {cx(480)} {cy(470)} {cx(440)} {cy(H) + 22}', 5.65, 99)
-    canvas = f'<div class="ground"></div>{over}' + ''.join(rail) + win + ''.join(streams) + qfl + arrive + leave
+    focus = [[0, 284, 382, 684, 50], [1.2, 0, 0, 0, 0], [2.15, 290, 470, 352, 64], [3, 588, 272, 384, 250], [4, 588, 74, 384, 148],
+             [5, 284, 72, 684, 64], [5.35, 284, 382, 684, 50]]
+    rail_focus = [[0, 0, 0, 0, 0], [1.2, 12, 132, 72, 350], [2.15, 0, 0, 0, 0]]
+    rf = (f'<span class="focus" style="box-shadow:0 0 0 1px var(--signal)" data-guide=\'{json.dumps(rail_focus)}\'></span>')
+    canvas = (f'<div class="ground"></div>{over}' + ''.join(rail) + win + ''.join(streams) + qfl + arrive + leave
+              + guides((R, O, W, H), focus, None) + rf)
     return stage('unify', 6, 'Unify 2.0', 'Remember everything.<br><span class="two">The CRM fills itself.</span>',
-                 [('Arrive', 0), ('Sources', 1.2), ('Listen', 3), ('Update', 4), ('Roll up', 5)], canvas, R + W + 20, H + 2 * O, R + 176)
+                 [('Arrive', 0), ('Sources', 1.2), ('Listen', 3), ('Update', 4), ('Roll up', 5)], canvas, R + W + 20, H + 2 * O, R + 176,
+                 ["Priya's reply arrives as a new deal. No one types it in.",
+                  'Gmail, Calendar, Meet and Zoom feed every deal on their own.',
+                  'Omniscient reads the meeting and finds what changed.',
+                  'Each fact moves into its field, with the quote as proof.',
+                  'The pipeline updates itself. Northwind moves on to Close.'])
 
 # ─────────────────────────── CLOSE ───────────────────────────
 def close():
@@ -377,9 +408,17 @@ def close():
     arrive = fly(f'M{O + 440} -12 C{O + 440} 40 {O + RX + 40} 20 {O + RX + 40} {O + 80}', 0.0, 0.35)
     win = f'<div class="win" style="left:{O}px;top:{O}px;width:{W}px;height:{H}px">{"".join(bp)}{bar}{page}{"".join(rec)}{"".join(rd)}{signed}{loop}</div>'
     over = f'<svg class="over" width="{W + 2 * O}" height="{H + 2 * O}">' + ''.join(wires) + '</svg>'
-    canvas = '<div class="ground"></div>' + win + over + ''.join(fl) + burst + up + arrive
+    focus = [[0, 662, 74, 226, 204], [0.4, 212, 82, 448, 446], [2, 668, 28, 222, 34], [3, 662, 74, 226, 184],
+             [4.5, 228, 172, 416, 120], [4.75, 662, 302, 226, 124], [5.5, 662, 432, 226, 92]]
+    cursor = [[0, 0, 0], [1.8, 866, 50], [2.6, 0, 0], [4.2, 600, 268], [4.9, 0, 0]]
+    canvas = '<div class="ground"></div>' + win + over + ''.join(fl) + burst + up + arrive + guides((O, O, W, H), focus, cursor)
     return stage('close', 6.2, 'Close 3.0', 'Close with one link.<br><span class="two">See who read what.</span>',
-                 [('Build', 0), ('Go live', 2), ('Readers', 3), ('Signed', 4.5), ('Loop', 5.5)], canvas, W + 2 * O, H + 2 * O, O + 176)
+                 [('Build', 0), ('Go live', 2), ('Readers', 3), ('Signed', 4.5), ('Loop', 5.5)], canvas, W + 2 * O, H + 2 * O, O + 176,
+                 ['The room builds itself from the record.',
+                  'One click and the room is live.',
+                  'See who opened it, what they read and for how long.',
+                  'Dana accepts the plan. The deal closes in the CRM.',
+                  "Sam's reads tell Scout who to find next."])
 
 # ─────────────────────────── HERO TRIANGLE ───────────────────────────
 def hero_tri():
