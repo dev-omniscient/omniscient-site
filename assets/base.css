@@ -3,8 +3,8 @@
    Shared by every page: tokens, reset, type, buttons, tags, header with the Product and Resources menus,
    the phone menu, footer, reading pages and scroll reveals. The home page adds assets/home.css.
    Tokens match the app's src/app/globals.css. Rules: docs/brand.md in the app repo.
-   Black and white with plain grays; emerald is the one signal. Round buttons, controls 6px, cards 10px,
-   frames 16px, tags are pills. Shadows only on frames and things that float. No gradients.
+   Black and white with plain grays; emerald is the one signal. Square and framed, after the app: every corner is
+   square, frames and menus have a 1px black line, nothing has a shadow. Section labels are mono in brackets.
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -65,15 +65,16 @@
   --o-pupil: #0a0a0a;
   --o-beak: #a3a3a3;
 
-  /* Corners: inline 3px, controls 6px, cards and menus 10px, frames 16px. Buttons are round. */
-  --r-xs: 3px;
-  --r-sm: 6px;
-  --r-lg: 10px;
-  --r-2xl: 16px;
+  /* Corners: square everywhere */
+  --r-xs: 0px;
+  --r-sm: 0px;
+  --r-lg: 0px;
+  --r-2xl: 0px;
 
-  /* Only frames and floating things get a shadow */
-  --shadow-pop: 0 8px 24px -8px rgb(10 10 10 / 0.18), 0 1px 2px rgb(10 10 10 / 0.04);
-  --shadow-heavy: 0 1px 2px rgb(10 10 10 / 0.04), 0 24px 48px -24px rgb(10 10 10 / 0.18);
+  /* No shadows: things that float get a black frame */
+  --frame: #0a0a0a;
+  --shadow-pop: none;
+  --shadow-heavy: none;
 
   /* Motion: three speeds, two curves */
   --fast: 120ms;
@@ -111,7 +112,7 @@ table { text-indent: 0; border-color: inherit; border-collapse: collapse; }
 button { font: inherit; color: inherit; background: none; cursor: pointer; }
 summary { cursor: pointer; }
 summary::-webkit-details-marker { display: none; }
-::selection { background: var(--brand-flash); }
+::selection { background: var(--ink); color: #fff; }
 :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: var(--r-xs); }
 * { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
 
@@ -139,7 +140,7 @@ summary::-webkit-details-marker { display: none; }
 /* Tags: pills, step 3 fill with step 11 text */
 .tag {
   display: inline-flex; flex-shrink: 0; align-items: center; gap: 4px;
-  height: 20px; padding: 0 8px; border-radius: 999px;
+  height: 20px; padding: 0 7px; border: 1px solid currentColor;
   font-size: 11.5px; font-weight: 500; white-space: nowrap; letter-spacing: 0;
   background: var(--hover); color: var(--muted);
 }
@@ -149,23 +150,23 @@ summary::-webkit-details-marker { display: none; }
 .tag--purple { background: var(--purple-soft); color: var(--purple); }
 .tag--sky { background: var(--sky-soft); color: var(--sky); }
 .tag--red { background: var(--red-soft); color: var(--red); }
-.dot { display: inline-block; flex-shrink: 0; width: 6px; height: 6px; border-radius: 999px; background: var(--signal); }
+.dot { display: inline-block; flex-shrink: 0; width: 6px; height: 6px; background: var(--signal); }
 .dot--green { background: var(--green); }
 
 /* Buttons: one brand button per view, the rest outlined */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 36px; padding: 0 16px; border-radius: 999px;
+  height: 36px; padding: 0 16px; border: 1px solid transparent;
   font-size: 14px; font-weight: 500; white-space: nowrap; letter-spacing: -0.01em;
   transition: background-color var(--fast) var(--ease-out), border-color var(--fast) var(--ease-out), color var(--fast) var(--ease-out), transform var(--normal) var(--ease-spring);
 }
 .btn:active { transform: scale(0.96); }
 .btn--lg { height: 44px; padding: 0 20px; font-size: 15px; }
-.btn--primary { background: var(--brand); color: #fff; }
+.btn--primary { background: var(--brand); border-color: var(--brand); color: #fff; }
 .btn--primary:hover { background: var(--brand-hover); }
-.btn--ghost { border: 1px solid var(--line-strong); background: var(--panel); color: var(--ink); }
+.btn--ghost { border-color: var(--frame); background: var(--panel); color: var(--ink); }
 .btn--ghost:hover { background: var(--hover); }
-.btn--white { background: #fff; color: var(--ink); }
+.btn--white { background: #fff; border-color: #fff; color: var(--ink); }
 .btn--white:hover { background: var(--brand-soft); }
 .btn--ghost-dark { border: 1px solid rgb(255 255 255 / 0.28); color: #fff; }
 .btn--ghost-dark:hover { border-color: #fff; }
@@ -188,7 +189,7 @@ summary::-webkit-details-marker { display: none; }
   border-bottom: 1px solid transparent;
   transition: border-color var(--normal) var(--ease-out);
 }
-.site-header.is-scrolled, .site-header.is-open { border-bottom-color: var(--line); }
+.site-header.is-scrolled, .site-header.is-open { border-bottom-color: var(--frame); }
 .site-header__in { position: relative; display: flex; align-items: center; gap: 24px; height: var(--header-h); }
 .site-header__logo { flex-shrink: 0; }
 
@@ -207,7 +208,7 @@ summary::-webkit-details-marker { display: none; }
 .nav__panel {
   position: absolute; top: calc(100% - 4px); left: 50%; z-index: 60;
   width: min(1100px, calc(100vw - 32px));
-  border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--panel); box-shadow: var(--shadow-pop);
+  border: 1px solid var(--frame); border-radius: 0; background: var(--panel); box-shadow: none;
   opacity: 0; visibility: hidden; transform: translate(-50%, 4px);
   transition: opacity var(--normal) var(--ease-out), transform var(--normal) var(--ease-out), visibility var(--normal);
 }
@@ -223,7 +224,7 @@ summary::-webkit-details-marker { display: none; }
 .menu__item:hover { background: var(--hover); }
 .menu__item b { display: block; font-size: 14px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
 .menu__item small { display: block; margin-top: 2px; font-size: 13px; line-height: 1.4; color: var(--muted); }
-.menu__aside { padding: 20px 12px 16px; background: var(--tint); border-left: 1px solid var(--line); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
+.menu__aside { padding: 20px 12px 16px; background: var(--tint); border-left: 1px solid var(--frame); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
 .menu__aside .menu__label + .menu__link { margin-top: 0; }
 .menu__link { display: block; padding: 7px 12px; border-radius: var(--r-sm); font-size: 14px; font-weight: 500; color: var(--ink); transition: background-color var(--fast) var(--ease-out); }
 .menu__link:hover { background: var(--pressed); }
@@ -273,11 +274,12 @@ summary::-webkit-details-marker { display: none; }
 }
 
 /* ═══ Footer ═══ */
-.site-footer { border-top: 1px solid var(--line); background: var(--panel); }
+.site-footer { border-top: 1px solid var(--frame); background: var(--panel); }
 .site-footer__in { display: grid; gap: 40px; padding-block: 56px 48px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .site-footer__brand { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .site-footer__brand p { max-width: 280px; font-size: 14px; line-height: 1.6; color: var(--muted); }
-.site-footer__col h2 { font-size: 13px; font-weight: 500; color: var(--faint); letter-spacing: 0; }
+.site-footer__col h2 { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.site-footer__col h2::before { content: "[ "; } .site-footer__col h2::after { content: " ]"; }
 .site-footer__col ul { margin-top: 14px; font-size: 14px; }
 .site-footer__col li + li { margin-top: 10px; }
 .site-footer__col a { color: var(--muted); transition: color var(--fast); }
@@ -287,7 +289,7 @@ summary::-webkit-details-marker { display: none; }
   .site-footer__in { grid-template-columns: 1.5fr repeat(5, minmax(0, 1fr)); }
   .site-footer__brand { grid-column: auto; }
 }
-.site-footer__base { border-top: 1px solid var(--line); }
+.site-footer__base { border-top: 1px solid var(--frame); }
 .site-footer__base-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-block: 20px; font-size: 13px; color: var(--faint); }
 .site-footer__legal { display: flex; flex-wrap: wrap; gap: 20px; }
 .site-footer__base a:hover { color: var(--ink); }
