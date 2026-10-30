@@ -67,7 +67,7 @@ table.tb { width: 100%; border-collapse: collapse; }
 .q i { background: var(--signal); } .q i.off { background: var(--line-2); }
 
 /* Sections */
-.works { padding: 28px 0 8px; }
+.works { padding-top: 28px; padding-bottom: 8px; }
 .works .row { display: grid; grid-template-columns: 220px repeat(7, 1fr); border: 1px solid var(--ink); }
 .works .row > * { height: 64px; display: grid; place-items: center; border-left: 1px solid var(--ink); font-weight: 600; letter-spacing: -.01em; color: #3a3a3a; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -331,7 +331,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .closed .won .tag { background: var(--green-3); color: var(--green-11); }
 
 /* Tools it replaces */
-.replace { padding: 120px 0 40px; }
+.replace { padding-top: 120px; padding-bottom: 40px; }
 .replace .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--ink); margin-top: 32px; }
 .replace .tool { padding: 18px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; }
 .replace .tool + .tool { border-left: 1px solid var(--ink); }
@@ -344,7 +344,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .replace .sum { display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 1px solid var(--ink); border-top: 0; padding: 16px 18px; background: var(--ink); color: #fff; }
 
 /* Security */
-.sec2 { padding: 120px 0 40px; }
+.sec2 { padding-top: 120px; padding-bottom: 40px; }
 .sec2 .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ink); margin-top: 32px; }
 .sec2 .grid4 > div { padding: 20px 18px; display: flex; flex-direction: column; gap: 10px; min-height: 190px; }
 .sec2 .grid4 > div + div { border-left: 1px solid var(--ink); }
@@ -353,7 +353,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .sec2 p { margin: 0; color: var(--ink-2); font-size: 13.5px; }
 
 /* Pricing */
-.pricing { padding: 120px 0 40px; }
+.pricing { padding-top: 120px; padding-bottom: 40px; }
 .plans { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ink); margin-top: 32px; }
 .plan { padding: 22px 18px; display: flex; flex-direction: column; gap: 12px; }
 .plan + .plan { border-left: 1px solid var(--ink); }
@@ -369,7 +369,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .fine { color: var(--ink-2); margin-top: 12px; }
 
 /* FAQ */
-.faq { padding: 120px 0 40px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; }
+.faq { padding-top: 120px; padding-bottom: 40px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; }
 .faq details { border-top: 1px solid var(--ink); padding: 16px 0; }
 .faq details:last-child { border-bottom: 1px solid var(--ink); }
 .faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
@@ -379,7 +379,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .faq details p { color: var(--ink-2); margin: 10px 0 0; max-width: 640px; }
 
 /* Closing */
-.closing { margin: 120px 0 0; }
+.closing { margin-top: 120px; }
 .closing .band { text-align: center; padding: 80px 24px; }
 .closing h2 { max-width: 760px; margin: 0 auto 26px; }
 

@@ -1,0 +1,55 @@
+/* The product pages (Outbound LinkedIn, Omniscient CRM, Deal Room), written by tools/products/gen.py. Product
+   shots use the home page's shot styles (home.css); this file lays out the hero, feature rows and the rest. */
+.om-product .p-hero { text-align: center; padding-top: 72px; padding-bottom: 36px; }
+.om-product .p-hero h1 { font-size: clamp(36px, 5.6vw, 68px); max-width: 900px; }
+.om-product .p-heroshot { margin-bottom: 40px; }
+.om-product .p-shot { padding: 36px; }
+.om-product .p-shot .app { min-height: 0; }
+.om-product .p-shot .canvas, .om-product .p-shot .unify, .om-product .p-shot .meet, .om-product .p-shot .send, .om-product .p-shot .ctx { min-height: 0; }
+.om-product .p-heroshot .p-shot { padding: 48px; }
+
+.om-product .p-feats { display: flex; flex-direction: column; gap: 88px; padding-top: 72px; }
+.om-product .p-feat { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.om-product .p-feat--flip .p-feat__shot { order: 2; }
+.om-product .p-feat__text { max-width: 440px; }
+.om-product .p-feat__text h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.08; letter-spacing: -0.03em; margin: 10px 0 12px; }
+.om-product .p-feat__text p { color: var(--ink-2); font-size: 16px; line-height: 1.55; margin: 0; }
+.om-product .p-num { color: var(--ink-2); }
+
+.om-product .p-sechead { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.om-product .p-sechead .mono { color: var(--ink-2); }
+.om-product .p-included { padding-top: 120px; }
+.om-product .p-included ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--ink); margin: 0; padding: 0; list-style: none; }
+.om-product .p-included li { display: flex; gap: 10px; align-items: flex-start; padding: 18px 16px; font-weight: 500; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-height: 76px; }
+.om-product .p-included li:nth-child(5n) { border-right: 0; }
+.om-product .p-included li:nth-last-child(-n+5) { border-bottom: 0; }
+.om-product .p-included li::before { content: ""; width: 8px; height: 8px; margin-top: 7px; background: var(--ink); flex: none; }
+
+.om-product .p-others { padding-top: 120px; }
+.om-product .p-others__grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+.om-product .p-other { display: flex; flex-direction: column; gap: 8px; padding: 20px; transition: background-color var(--fast) var(--ease-out); }
+.om-product .p-other + .p-other { border-left: 1px solid var(--ink); }
+.om-product .p-other:hover { background: var(--fill); }
+.om-product .p-other__tile { height: 120px; border: 1px solid var(--ink); position: relative; margin-bottom: 6px; display: grid; place-items: center; }
+.om-product .p-other__tile svg { width: 28px; height: 28px; position: relative; z-index: 1; }
+.om-product .p-other__tile.b-blue { background: var(--band-blue); } .om-product .p-other__tile.b-cream { background: var(--band-cream); } .om-product .p-other__tile.b-lav { background: var(--band-lav); }
+.om-product .p-other__tile::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); mix-blend-mode: multiply; opacity: .3; }
+.om-product .p-other b { font: 600 20px/1.1 "Inter Tight", sans-serif; letter-spacing: -0.02em; }
+.om-product .p-other small { color: var(--ink-2); font-size: 14px; }
+.om-product .p-other .mono { margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .om-product .p-shot, .om-product .p-heroshot .p-shot { padding: 14px; }
+  .om-product .p-feats { gap: 56px; padding-top: 40px; }
+  .om-product .p-feat { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .om-product .p-feat--flip .p-feat__shot { order: 0; }
+  .om-product .p-feat__text { order: -1; }
+  .om-product .p-included ul { grid-template-columns: 1fr 1fr; }
+  .om-product .p-included li:nth-child(5n) { border-right: 1px solid var(--line); }
+  .om-product .p-included li:nth-child(2n) { border-right: 0; }
+  .om-product .p-included li:nth-last-child(-n+5) { border-bottom: 1px solid var(--line); }
+  .om-product .p-included li:nth-last-child(-n+2) { border-bottom: 0; }
+  .om-product .p-others__grid { grid-template-columns: 1fr; }
+  .om-product .p-other + .p-other { border-left: 0; border-top: 1px solid var(--ink); }
+  .om-product .p-included, .om-product .p-others { padding-top: 72px; }
+}
