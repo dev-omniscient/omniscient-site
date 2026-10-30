@@ -14,7 +14,7 @@ def face(n, s=28):
 
 
 def logo(n, s=16, alt=""):
-    ext = "jpg" if n == "outlook" else "svg"
+    ext = "jpg" if n == "outlook" else "png" if n in ("pipedrive", "attio", "teams") else "svg"
     return f'<img class="lg" src="{L}{n}.{ext}" alt="{alt}" width="{s}" height="{s}">'
 
 
@@ -92,8 +92,9 @@ CRM = [
      shot(f'<div class="thread2" style="padding:16px"><div class="ask">What is blocking the Pallet Cloud deal?</div><div class="ans">{OWL}<div class="body">The CFO has not been involved yet.<ul><li><span>Marcus Lee signs anything over $20,000.<span class="cite">Call, Oct 21</span></span></li><li><span>They need it live before January 15.<span class="cite">Call, Oct 21</span></span></li></ul></div></div></div>', "b-lav", f'<span style="display:flex;align-items:center;gap:8px">{OWL}<b>Ask Omniscient</b></span>')),
     ("Pipeline and forecast", "See every open deal by stage, with amounts, close dates and next steps. The forecast adds them up by month.",
      shot('<div class="facts" style="margin:14px;grid-template-columns:repeat(4,1fr)"><div><small>Discovery</small>$186,000</div><div><small>Proposal</small>$248,500</div><div><small>Negotiation</small>$94,000</div><div><small>Won this month</small>$61,000</div></div><div class="tl" style="margin:0 14px 14px"><div><span class="tag t-yellow">Proposal</span>Harbor &amp; Pine<span class="when">$126,500</span></div><div><span class="tag t-blue">Discovery</span>Pallet Cloud<span class="when">$30,000</span></div><div><span class="tag t-purple">Negotiation</span>Verda Robotics<span class="when">$61,000</span></div></div>', "b-sand", '<b>Pipeline <span>Q4</span></b>')),
-    ("Switch from your CRM in one click", "Sign in to HubSpot, Salesforce, Attio or Pipedrive and bring your accounts, contacts, deals and notes over. You can run both side by side first.",
-     shot('<div class="works" style="padding:16px"><div class="row" style="grid-template-columns:repeat(2,1fr)">' + "".join(f'<span class="wl">{logo(k, 20, n)}{n}</span>' for k, n in [("hubspot", "HubSpot"), ("salesforce", "Salesforce")]) + '</div></div><div class="bulk"><span class="sub">Accounts, contacts, deals and notes</span><span class="grow"></span><span class="ui-btn pri">Connect HubSpot</span></div>', "b-blue")),
+    ("We migrate you from your current CRM", "Send us an export from HubSpot, Salesforce, Pipedrive, Attio or a spreadsheet. We map your fields, move your companies, contacts, deals and notes, and check the result with you. You can run both side by side until you are ready.",
+     shot('<div class="works" style="padding:16px 16px 0"><div class="row" style="grid-template-columns:repeat(4,1fr)">' + "".join(f'<span class="wl">{logo(k, 18, n)}<span class="hide-s">{n}</span></span>' for k, n in [("hubspot", "HubSpot"), ("salesforce", "Salesforce"), ("pipedrive", "Pipedrive"), ("attio", "Attio")]) + '</div></div>'
+          '<div class="tl" style="margin:14px"><div><span class="tag t-green">Done</span>Export received: 4,210 contacts, 860 deals<span class="when">Mon</span></div><div><span class="tag t-green">Done</span>Fields mapped, including 12 custom fields<span class="when">Tue</span></div><div><span class="tag t-yellow">In review</span>Test import checked with you<span class="when">Wed</span></div><div><span class="tag t-gray">Next</span>Full migration<span class="when">Thu</span></div></div>', "b-blue", '<b>Your migration</b>')),
 ]
 
 # ---- Deal Room shots ----
@@ -148,9 +149,10 @@ PAGES = [
         "h1": "A CRM that fills itself in.", "h1b": "Emails, calls and leads in one place.",
         "lede": "Omniscient records your emails, meetings and calls, keeps one record for every lead, and answers questions about any account.",
         "hero": CRM_HERO, "feats": CRM,
-        "list": ["Email and calendar capture", "One record per lead", "Inbound, outbound and event leads", "Call notes from transcripts", "Facts with quotes", "Deal updates you approve", "Ask Omniscient", "Pipeline and forecast", "Custom fields and views", "One-click import"],
+        "list": ["Email and calendar capture", "One record per lead", "Inbound, outbound and event leads", "Call notes from transcripts", "Facts with quotes", "Deal updates you approve", "Ask Omniscient", "Pipeline and forecast", "Custom fields and views", "Migration from your CRM"],
         "faq": [
-            ("Do I have to leave my current CRM?", "No. Connect your email and calendar and run both side by side. When you are ready, import from HubSpot, Salesforce, Attio or Pipedrive in one click."),
+            ("Do I have to leave my current CRM?", "No. Connect your email and calendar and run both side by side. When you are ready, we migrate your companies, contacts, deals and notes for you."),
+            ("How does migration work?", "Send us an export from your CRM or a spreadsheet. We map your fields to Omniscient, run a test import and check it with you, then move everything over. We support HubSpot, Salesforce, Pipedrive and Attio."),
             ("Does a bot join my calls?", "Only if you want one. Omniscient reads the transcripts Google Meet, Zoom and Teams already create. The call recording add-on sends a bot when you would rather Omniscient record the call."),
             ("Who can see my emails?", "You choose per inbox: share everything, share only that a conversation happened, or keep it private."),
             ("What if Omniscient gets a fact wrong?", "Every fact shows the quote it came from. Deal updates wait for you to accept or skip them, and values your team typed are never changed."),
