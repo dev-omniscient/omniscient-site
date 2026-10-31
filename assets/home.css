@@ -415,3 +415,142 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .om-home .signup .btn { height: 46px; border-left: 1px solid var(--ink); }
 
 .om-home .grow { flex: 1; }
+
+/* ---------- Room to breathe ----------
+   More space on the homepage: a wider page, bigger gaps between sections and between each section's words and its
+   screenshot, larger body text, and more padding inside the product frames and cards. Phones get a lighter version. */
+.om-home .wrap { max-width: 1320px; }
+@media (min-width: 768px) { .om-home .wrap { padding-inline: 48px; } }
+.om-home .hero { padding-top: 120px; padding-bottom: 72px; }
+.om-home .kicker { margin-bottom: 32px; }
+.om-home .lede { font-size: 19px; line-height: 1.55; max-width: 600px; margin: 32px auto 40px; }
+.om-home .note { margin-top: 16px; }
+.om-home .hero .band { margin-top: 24px; }
+.om-home .band { padding: 72px; }
+.om-home .works { padding-top: 48px; padding-bottom: 24px; }
+.om-home .chapter { padding-top: 200px; padding-bottom: 64px; }
+.om-home .chapter:first-of-type { padding-top: 160px; }
+.om-home .chead { gap: 48px; margin-bottom: 48px; }
+.om-home .chead p { font-size: 17px; line-height: 1.6; max-width: 460px; }
+.om-home .stages { margin-bottom: 24px; }
+.om-home .stage { padding-top: 128px; padding-bottom: 32px; }
+.om-home .stage .node { top: 132px; }
+.om-home .shead { gap: 64px; margin-bottom: 56px; }
+.om-home .shead p { font-size: 17px; line-height: 1.6; max-width: 500px; }
+.om-home .shead ul { margin-top: 24px; gap: 10px; font-size: 15px; }
+.om-home .replace, .om-home .sec2, .om-home .pricing, .om-home .faq { padding-top: 200px; padding-bottom: 48px; }
+.om-home .replace .grid5, .om-home .sec2 .grid4, .om-home .plans { margin-top: 56px; }
+.om-home .replace .tool { padding: 28px 24px; min-height: 240px; }
+.om-home .replace .tool p, .om-home .sec2 p { font-size: 14.5px; line-height: 1.55; }
+.om-home .replace .sum { padding: 20px 24px; }
+.om-home .sec2 .grid4 > div { padding: 32px 28px; min-height: 230px; gap: 14px; }
+.om-home .plan { padding: 32px 28px; gap: 16px; }
+.om-home .plan ul { gap: 10px; font-size: 14.5px; }
+.om-home .fine { margin-top: 20px; }
+.om-home .faq { gap: 96px; }
+.om-home .faq details { padding: 22px 0; }
+.om-home .closing { margin-top: 200px; margin-bottom: 120px; }
+.om-home .closing .band { padding: 120px 32px; }
+.om-home .closing h2 { margin-bottom: 36px; }
+@media (max-width: 900px) {
+  .om-home .hero { padding-top: 72px; padding-bottom: 40px; }
+  .om-home .lede { font-size: 17px; margin: 24px auto 32px; }
+  .om-home .band { padding: 16px; }
+  .om-home .chapter, .om-home .chapter:first-of-type { padding-top: 120px; padding-bottom: 32px; }
+  .om-home .chead, .om-home .shead { gap: 20px; margin-bottom: 32px; }
+  .om-home .chead p, .om-home .shead p { font-size: 16px; }
+  .om-home .stage { padding-top: 72px; }
+  .om-home .stage .node { top: 76px; }
+  .om-home .replace, .om-home .sec2, .om-home .pricing, .om-home .faq { padding-top: 120px; }
+  .om-home .replace .grid5, .om-home .sec2 .grid4, .om-home .plans { margin-top: 32px; }
+  .om-home .faq { gap: 24px; }
+  .om-home .closing { margin-top: 120px; margin-bottom: 64px; }
+  .om-home .closing .band { padding: 72px 20px; }
+}
+
+/* ---------- Replace five tools: a drawn scene per tool ----------
+   Each card shows the part of Omniscient that replaces the tool, drawn like the product shots above: white frames
+   with black borders on a dotted gray ground. They build in once when the row comes into view. */
+.replace .tool .art.ra { height: 188px; display: flex; align-items: center; justify-content: center; padding: 14px; background-color: var(--fill); background-image: radial-gradient(#cfcfcf 1px, transparent 1px); background-size: 14px 14px; text-align: left; font-size: 10.5px; line-height: 1.25; }
+.ra > :first-child { width: 100%; position: relative; z-index: 1; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.replace .tool:hover .ra > :first-child { transform: translateY(-3px); }
+.ra svg { width: 11px; height: 11px; flex: none; }
+.ra b { font-weight: 600; }
+.ra i { font-style: normal; }
+
+/* Lead database: a search and three scored leads. */
+.ra-leads .rw { background: #fff; border: 1px solid var(--ink); }
+.ra-leads .rq { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px; border-bottom: 1px solid var(--ink); font: 500 9.5px var(--mono); white-space: nowrap; overflow: hidden; }
+.ra-leads .rq span { overflow: hidden; text-overflow: ellipsis; }
+.ra-leads .rl { display: grid; grid-template-columns: 20px 1fr auto; gap: 7px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.ra-leads .rl:last-child { border-bottom: 0; }
+.ra-leads .av { width: 20px; height: 20px; font-size: 7.5px; }
+.ra-leads .nm { min-width: 0; } .ra-leads .nm b, .ra-leads .nm i { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ra-leads .nm i { color: var(--ink-2); font-size: 9px; margin-top: 1px; }
+.ra-leads .sc { font: 600 10px var(--mono); padding: 1px 4px; background: var(--ink); color: #fff; }
+.ra-leads .sc.lo { background: #fff; color: var(--ink); border: 1px solid var(--ink); padding: 0 3px; }
+
+/* LinkedIn outreach: a three-step sequence with an approval. */
+.ra-li .seq { display: flex; flex-direction: column; align-items: stretch; }
+.ra-li .sn { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px; background: #fff; border: 1px solid var(--ink); white-space: nowrap; }
+.ra-li .sn b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ra-li .sn.on { outline: 1px solid var(--ink); }
+.ra-li .ok { font-size: 9px; padding: 0 4px; border: 1px solid currentColor; color: var(--green-11); background: var(--green-3); }
+.ra-li .ap { font-size: 9px; padding: 1px 5px; background: var(--ink); color: #fff; }
+.ra-li .mut { font-size: 9px; color: var(--ink-2); }
+.ra-li .wt { position: relative; display: block; height: 18px; padding-left: calc(50% + 6px); font: 500 8.5px/18px var(--mono); color: var(--ink-2); }
+.ra-li .wt::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--ink); }
+
+/* CRM: a small pipeline board, the open deal in black. */
+.ra-crm .kb { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; align-items: start; }
+.ra-crm .col { display: flex; flex-direction: column; gap: 4px; padding: 4px; background: #fff; border: 1px solid var(--ink); min-height: 120px; }
+.ra-crm .ch { font: 500 8.5px var(--mono); color: var(--ink-2); padding: 1px 1px 4px; border-bottom: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ra-crm .cd { display: flex; flex-direction: column; gap: 1px; padding: 4px 5px; border: 1px solid var(--ink); background: #fff; }
+.ra-crm .cd b { font-size: 9.5px; } .ra-crm .cd i { font: 500 8.5px var(--mono); color: var(--ink-2); }
+.ra-crm .cd.hot { background: var(--ink); color: #fff; } .ra-crm .cd.hot i { color: #c9c9c9; }
+.ra-crm .cd.won { border-color: var(--green-11); background: var(--green-3); } .ra-crm .cd.won i { color: var(--green-11); }
+
+/* Call notes: the call's waveform and the facts pulled from it. */
+.ra-call .cw { background: #fff; border: 1px solid var(--ink); padding: 8px 9px 4px; }
+.ra-call .wave { display: flex; align-items: flex-end; gap: 2px; height: 30px; padding-bottom: 6px; }
+.ra-call .wave i { width: 3px; background: var(--ink); transform-origin: bottom; }
+.ra-call .wave span { margin-left: auto; align-self: flex-start; font: 500 8.5px var(--mono); color: var(--ink-2); }
+.ra-call .fx { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid var(--line); white-space: nowrap; }
+.ra-call .fx > span { font-size: 8.5px; padding: 0 4px; border: 1px solid currentColor; flex: none; }
+.ra-call .fx b { font-size: 10px; overflow: hidden; text-overflow: ellipsis; }
+.ra-call .t-b { color: var(--green-11); background: var(--green-3); } .ra-call .t-t { color: var(--yellow-11); background: var(--yellow-3); } .ra-call .t-d { color: var(--purple-11); background: var(--purple-3); }
+
+/* Proposals and content: the buyer's proposal page, and that they've read it. */
+.ra-prop { position: relative; }
+.ra-prop .pp { background: #0f1115; border: 1px solid var(--ink); color: #fff; padding-bottom: 7px; }
+.ra-prop .ph { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px 7px; font-size: 8.5px; color: #a3a3a3; white-space: nowrap; }
+.ra-prop .ph span { font: 600 8.5px var(--mono); color: #fff; } .ra-prop .ph i { overflow: hidden; text-overflow: ellipsis; }
+.ra-prop .hero { margin: 0 7px; padding: 9px 8px; background: #222a35; border: 1px solid #2a2f37; }
+.ra-prop .hero b { display: block; font: 600 10.5px/1.2 "Inter Tight", sans-serif; letter-spacing: -.01em; margin-bottom: 7px; }
+.ra-prop .play { display: inline-block; font-size: 8.5px; font-weight: 600; background: #fff; color: #0f1115; padding: 2px 6px; }
+.ra-prop .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 6px 7px 0; }
+.ra-prop .tiles i { aspect-ratio: 16 / 9; border: 1px solid #2a2f37; background: #161b22; }
+.ra-prop .seen { position: absolute; z-index: 2; right: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 6px; background: #fff; border: 1px solid var(--ink); font: 500 9px var(--mono); }
+
+/* They build in once, when the row comes into view. */
+.grid5[data-anim] .ra-leads .rl, .grid5[data-anim] .ra-li .sn, .grid5[data-anim] .ra-li .wt, .grid5[data-anim] .ra-crm .cd, .grid5[data-anim] .ra-call .fx, .grid5[data-anim] .ra-prop .tiles i, .grid5[data-anim] .ra-prop .seen { opacity: 0; transform: translateY(5px); transition: opacity .4s, transform .4s cubic-bezier(.2,.8,.2,1); }
+.grid5[data-anim] .ra-call .wave i { transform: scaleY(.15); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.grid5.in .ra-leads .rl, .grid5.in .ra-li .sn, .grid5.in .ra-li .wt, .grid5.in .ra-crm .cd, .grid5.in .ra-call .fx, .grid5.in .ra-prop .tiles i, .grid5.in .ra-prop .seen { opacity: 1; transform: none; }
+.grid5.in .ra-call .wave i { transform: none; }
+.ra-leads .rl:nth-child(3), .ra-li > .seq > :nth-child(2), .ra-li > .seq > :nth-child(3), .ra-crm .col:nth-child(2) .cd, .ra-call .fx:nth-of-type(3), .ra-prop .tiles i:nth-child(2) { transition-delay: .1s !important; }
+.ra-leads .rl:nth-child(4), .ra-li > .seq > :nth-child(4), .ra-li > .seq > :nth-child(5), .ra-crm .col:nth-child(3) .cd, .ra-call .fx:nth-of-type(4), .ra-prop .tiles i:nth-child(3) { transition-delay: .2s !important; }
+.ra-prop .seen { transition-delay: .45s !important; }
+.ra-call .wave i:nth-child(1) { height: 30%; } .ra-call .wave i:nth-child(2) { height: 55%; } .ra-call .wave i:nth-child(3) { height: 80%; } .ra-call .wave i:nth-child(4) { height: 45%; }
+.ra-call .wave i:nth-child(5) { height: 100%; } .ra-call .wave i:nth-child(6) { height: 60%; } .ra-call .wave i:nth-child(7) { height: 35%; } .ra-call .wave i:nth-child(8) { height: 70%; }
+.ra-call .wave i:nth-child(9) { height: 90%; } .ra-call .wave i:nth-child(10) { height: 40%; } .ra-call .wave i:nth-child(11) { height: 25%; } .ra-call .wave i:nth-child(12) { height: 65%; }
+.ra-call .wave i:nth-child(13) { height: 85%; } .ra-call .wave i:nth-child(14) { height: 50%; } .ra-call .wave i:nth-child(15) { height: 30%; } .ra-call .wave i:nth-child(16) { height: 75%; }
+.ra-call .wave i:nth-child(17) { height: 45%; } .ra-call .wave i:nth-child(18) { height: 20%; }
+@media (max-width: 900px) {
+  .replace .tool .art.ra { height: 220px; }
+  .ra > :first-child { max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid5[data-anim] .ra *, .grid5[data-anim] .ra .wave i { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+.replace .grid5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 900px) { .replace .grid5 { grid-template-columns: minmax(0, 1fr); } }
