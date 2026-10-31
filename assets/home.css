@@ -554,3 +554,25 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 }
 .replace .grid5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 900px) { .replace .grid5 { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Three things it does ----------
+   One section per job, a full screen each: a short title and one line on the left, and one big product screen on
+   the right that runs off the edge of the page. */
+.shows { padding-top: 40px; }
+.show { display: grid; grid-template-columns: minmax(300px, 32%) minmax(0, 1fr); min-height: calc(100vh - 64px); padding: 48px 0; }
+.show-txt { align-self: center; padding: 0 56px 0 max(48px, calc((100vw - 1320px) / 2 + 48px)); }
+.show-txt h2 { font: 600 32px/1.08 "Inter Tight", sans-serif; letter-spacing: -.035em; max-width: 15ch; }
+.show-txt p { margin: 18px 0 0; font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 380px; }
+.show-stage { position: relative; overflow: hidden; border: 1px solid var(--ink); border-right: 0; background-color: var(--fill); background-image: radial-gradient(#cfcfcf 1px, transparent 1px); background-size: 16px 16px; min-height: 640px; }
+.show-stage .shot { position: absolute; left: 72px; top: 72px; }
+.show-stage .shot > * { zoom: 1.28; width: 1080px; }
+.show-stage .app { min-height: 760px; }
+.show-stage .prop { min-height: 760px; }
+@media (max-width: 900px) {
+  .show { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 56px 0; gap: 28px; }
+  .show-txt { padding: 0 16px; }
+  .show-txt h2 { font-size: 28px; }
+  .show-stage { min-height: 460px; margin-left: 16px; }
+  .show-stage .shot { left: 20px; top: 24px; }
+  .show-stage .shot > * { zoom: .9; width: 880px; }
+}

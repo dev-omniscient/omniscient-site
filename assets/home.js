@@ -1,14 +1,16 @@
-// The home page's arrow: one line through nine stages, drawn as you scroll, and each product shot playing once.
+// The home page's product shots: each one plays once when it comes into view. (The arrow through the old nine
+// stages draws only where that markup is.)
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const host = document.getElementById("flow");
-  const ink = host.querySelector(".flow .ink"), head = host.querySelector(".flow .head");
-  const stages = [...host.querySelectorAll(".stage")];
+  const ink = host?.querySelector(".flow .ink"), head = host?.querySelector(".flow .head");
+  const stages = host ? [...host.querySelectorAll(".stage")] : [];
   const chev = [...document.querySelectorAll(".chev a")];
   const order = stages.map((s) => s.id);
 
   // One arrow through all nine stages, drawn to 40% down the screen. A stage's box fills when the arrow reaches it.
   function draw() {
+    if (!host) return;
     const r = host.getBoundingClientRect();
     const target = reduce ? r.height : Math.max(0, Math.min(r.height, innerHeight * 0.4 - r.top));
     ink.style.height = target + "px";
