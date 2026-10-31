@@ -415,3 +415,55 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .om-home .signup .btn { height: 46px; border-left: 1px solid var(--ink); }
 
 .om-home .grow { flex: 1; }
+
+/* ---------- Room to breathe ----------
+   More space on the homepage: a wider page, bigger gaps between sections and between each section's words and its
+   screenshot, larger body text, and more padding inside the product frames and cards. Phones get a lighter version. */
+.om-home .wrap { max-width: 1320px; }
+@media (min-width: 768px) { .om-home .wrap { padding-inline: 48px; } }
+.om-home .hero { padding-top: 120px; padding-bottom: 72px; }
+.om-home .kicker { margin-bottom: 32px; }
+.om-home .lede { font-size: 19px; line-height: 1.55; max-width: 600px; margin: 32px auto 40px; }
+.om-home .note { margin-top: 16px; }
+.om-home .hero .band { margin-top: 24px; }
+.om-home .band { padding: 72px; }
+.om-home .works { padding-top: 48px; padding-bottom: 24px; }
+.om-home .chapter { padding-top: 200px; padding-bottom: 64px; }
+.om-home .chapter:first-of-type { padding-top: 160px; }
+.om-home .chead { gap: 48px; margin-bottom: 48px; }
+.om-home .chead p { font-size: 17px; line-height: 1.6; max-width: 460px; }
+.om-home .stages { margin-bottom: 24px; }
+.om-home .stage { padding-top: 128px; padding-bottom: 32px; }
+.om-home .stage .node { top: 132px; }
+.om-home .shead { gap: 64px; margin-bottom: 56px; }
+.om-home .shead p { font-size: 17px; line-height: 1.6; max-width: 500px; }
+.om-home .shead ul { margin-top: 24px; gap: 10px; font-size: 15px; }
+.om-home .replace, .om-home .sec2, .om-home .pricing, .om-home .faq { padding-top: 200px; padding-bottom: 48px; }
+.om-home .replace .grid5, .om-home .sec2 .grid4, .om-home .plans { margin-top: 56px; }
+.om-home .replace .tool { padding: 28px 24px; min-height: 240px; }
+.om-home .replace .tool p, .om-home .sec2 p { font-size: 14.5px; line-height: 1.55; }
+.om-home .replace .sum { padding: 20px 24px; }
+.om-home .sec2 .grid4 > div { padding: 32px 28px; min-height: 230px; gap: 14px; }
+.om-home .plan { padding: 32px 28px; gap: 16px; }
+.om-home .plan ul { gap: 10px; font-size: 14.5px; }
+.om-home .fine { margin-top: 20px; }
+.om-home .faq { gap: 96px; }
+.om-home .faq details { padding: 22px 0; }
+.om-home .closing { margin-top: 200px; margin-bottom: 120px; }
+.om-home .closing .band { padding: 120px 32px; }
+.om-home .closing h2 { margin-bottom: 36px; }
+@media (max-width: 900px) {
+  .om-home .hero { padding-top: 72px; padding-bottom: 40px; }
+  .om-home .lede { font-size: 17px; margin: 24px auto 32px; }
+  .om-home .band { padding: 16px; }
+  .om-home .chapter, .om-home .chapter:first-of-type { padding-top: 120px; padding-bottom: 32px; }
+  .om-home .chead, .om-home .shead { gap: 20px; margin-bottom: 32px; }
+  .om-home .chead p, .om-home .shead p { font-size: 16px; }
+  .om-home .stage { padding-top: 72px; }
+  .om-home .stage .node { top: 76px; }
+  .om-home .replace, .om-home .sec2, .om-home .pricing, .om-home .faq { padding-top: 120px; }
+  .om-home .replace .grid5, .om-home .sec2 .grid4, .om-home .plans { margin-top: 32px; }
+  .om-home .faq { gap: 24px; }
+  .om-home .closing { margin-top: 120px; margin-bottom: 64px; }
+  .om-home .closing .band { padding: 72px 20px; }
+}

@@ -15,7 +15,8 @@
     head.style.top = target + "px";
     let current = -1;
     stages.forEach((s, i) => {
-      const y = s.getBoundingClientRect().top - r.top + 60;
+      const node = s.querySelector(".node");
+      const y = (node || s).getBoundingClientRect().top - r.top + (node ? node.offsetHeight / 2 : 60);
       const reached = y <= target;
       s.classList.toggle("reached", reached);
       if (reached) current = i;
