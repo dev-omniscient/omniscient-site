@@ -1,48 +1,41 @@
 /* ═══════════════════════════════════════════════════════════════════════
    OMNISCIENT WEBSITE · BLOG COVERS
-   One cover for every post, drawn in HTML and CSS: the app's gray fill with grain, a 1px black frame, and one framed line drawing
-   in the middle. No text. Rules: docs/blog.md.
+   One cover for every post, drawn in HTML and CSS: the whole cover is one white panel on a dot grid with a 1px black frame,
+   corner marks and one line drawing in the middle. No background around it and no text. Rules: docs/blog.md.
    The cover is a container, so the same markup scales from a list card to the post hero to the 1200x630 share image.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .cover {
   --band: #f5f5f5;
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
   container-type: inline-size;
   position: relative; display: block; overflow: hidden;
   aspect-ratio: 1200 / 630;
   border: 1px solid var(--frame);
-  background: var(--band);
+  background: #fff;
   color: var(--ink);
 }
-.cover::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: var(--grain); mix-blend-mode: multiply; opacity: .32; pointer-events: none; }
 
-
-
-/* Art: a white framed panel on a dot grid, holding one line drawing */
+/* Art: the whole cover is one white panel on a dot grid, holding one line drawing */
 .cover__art {
-  position: absolute; z-index: 1; top: 7cqi; bottom: 7cqi; left: 50%; translate: -50% 0;
-  display: grid; place-items: center; aspect-ratio: 5 / 4;
-  border: 1px solid var(--frame); background: #fff;
+  position: absolute; inset: 0;
   background-image: radial-gradient(circle, var(--line-strong) 1px, transparent 1.2px);
   background-size: 2.4cqi 2.4cqi; background-position: center;
-  transition: transform var(--slow) var(--ease-out);
 }
-.cover__art svg { width: 64%; height: auto; overflow: visible; }
+.cover__art svg { position: absolute; top: 18%; left: 50%; height: 64%; width: auto; aspect-ratio: 200 / 160; translate: -50% 0; overflow: visible; transition: transform var(--slow) var(--ease-out); }
 .cover__art svg * { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
 .cover__art svg .fill { fill: var(--ink); }
 .cover__art svg .paper { fill: #fff; }
 .cover__art svg .soft { fill: var(--band); }
 .cover__art svg .point { fill: var(--signal); stroke: none; }
 .cover__art svg .gray { stroke: var(--faint); }
-/* Corner marks on the panel */
-.cover__art::before, .cover__art::after { content: ""; position: absolute; width: 1.4cqi; height: 1.4cqi; border: 0 solid var(--frame); }
-.cover__art::before { top: 1.2cqi; left: 1.2cqi; border-top-width: 1px; border-left-width: 1px; }
-.cover__art::after { bottom: 1.2cqi; right: 1.2cqi; border-bottom-width: 1px; border-right-width: 1px; }
+/* Corner marks */
+.cover__art::before, .cover__art::after { content: ""; position: absolute; width: 2cqi; height: 2cqi; border: 0 solid var(--frame); }
+.cover__art::before { top: 2cqi; left: 2cqi; border-top-width: 1px; border-left-width: 1px; }
+.cover__art::after { bottom: 2cqi; right: 2cqi; border-bottom-width: 1px; border-right-width: 1px; }
 
-/* A cover inside a link answers the pointer: the panel lifts a little */
-a:hover > .cover .cover__art, a.cover:hover .cover__art { transform: translateY(-0.8cqi); }
-@media (prefers-reduced-motion: reduce) { .cover__art { transition: none; } a:hover > .cover .cover__art, a.cover:hover .cover__art { transform: none; } }
+/* A cover inside a link answers the pointer: the drawing lifts a little */
+a:hover > .cover .cover__art svg, a.cover:hover .cover__art svg { transform: translateY(-1.2%); }
+@media (prefers-reduced-motion: reduce) { .cover__art svg { transition: none; } a:hover > .cover .cover__art svg, a.cover:hover .cover__art svg { transform: none; } }
 
 /* Share image: exactly 1200x630, for tools/blog/covers.mjs */
 .cover--og { width: 1200px; height: 630px; aspect-ratio: auto; }

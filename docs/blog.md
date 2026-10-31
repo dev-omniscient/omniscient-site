@@ -6,12 +6,14 @@ Preview every cover at `/docs/blog-covers.html` (run `python3 -m http.server 800
 
 ## The parts
 
-1. **Band.** The app's gray fill (#f5f5f5) with grain and a 1px black frame, the same bands as the home page.
-2. **Art.** A white framed panel in the middle, on a dot grid with corner marks, holding one line drawing. Black 1.5px lines, square ends, one emerald point.
+The cover is one white panel that fills the whole frame. Never put a background or margin around it.
+
+1. **Panel.** White, on a dot grid, with a 1px black frame and corner marks.
+2. **Drawing.** One line drawing in the middle, 64% of the cover's height. Black 1.5px lines, square ends, one emerald point.
 
 ## Categories
 
-Every cover uses the same gray. The drawing says the category.
+Every cover looks the same. The drawing says the category.
 
 | Category | Class | Drawing |
 |---|---|---|
@@ -30,7 +32,7 @@ The cover is a CSS container, so type and spacing scale with its width.
 
 | Where | Markup | Notes |
 |---|---|---|
-| Blog list | `.post-grid` > `a.post-card` > `.cover`, then the meta and title | The art panel lifts a little on hover. |
+| Blog list | `.post-grid` > `a.post-card` > `.cover`, then the meta and title | The drawing lifts a little on hover. |
 | Post hero | `.post-cover` > `.cover` | Under the post title. |
 | Share image | `.cover--og` | Exactly 1200x630. Written by the script below. |
 
