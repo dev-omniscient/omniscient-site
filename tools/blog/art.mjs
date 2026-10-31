@@ -18,15 +18,8 @@ export const CATEGORIES = {
   company: "Company",
 };
 
-const MARK = `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="mark__point" cx="10" cy="10" r="2.6"/></svg>`;
-
-// The cover's markup. title is HTML: put the gray half in a <span>.
-export function cover({ category, title, slug = "", art = category, og = false }) {
-  const cls = ["cover", `cover--${category}`, art ? "" : "cover--text", og ? "cover--og" : ""].filter(Boolean).join(" ");
-  return `<div class="${cls}"><div class="cover__in">
-  <div class="cover__top"><span class="cover__label">${CATEGORIES[category]}</span></div>
-  <h2 class="cover__title">${title}</h2>
-  <div class="cover__foot"><span class="cover__logo">${MARK}Omniscient</span><span class="cover__url">tryomniscient.com/blog${slug ? `/${slug}` : ""}</span></div>
-  ${art ? `<div class="cover__art">${ART[art]}</div>` : ""}
-</div></div>`;
+// The cover's markup: the band and the drawing, no text. The post's title and category sit outside it.
+export function cover({ category, art = category, og = false }) {
+  const cls = ["cover", `cover--${category}`, og ? "cover--og" : ""].filter(Boolean).join(" ");
+  return `<div class="${cls}" role="img" aria-label="${CATEGORIES[category]}"><div class="cover__art">${ART[art]}</div></div>`;
 }

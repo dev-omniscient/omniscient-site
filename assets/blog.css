@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    OMNISCIENT WEBSITE · BLOG COVERS
-   One cover for every post, drawn in HTML and CSS: a pastel band with grain, a 1px black frame, a mono label in
-   brackets, a two-tone title, and a framed line drawing on the right. Rules: docs/blog.md.
+   One cover for every post, drawn in HTML and CSS: a pastel band with grain, a 1px black frame, and one framed line drawing
+   in the middle. No text. Rules: docs/blog.md.
    The cover is a container, so the same markup scales from a list card to the post hero to the 1200x630 share image.
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -25,42 +25,17 @@
 .cover--product { --band: #f5e2d4; }
 .cover--company { --band: #f3dfe4; }
 
-.cover__in {
-  position: relative; z-index: 1; height: 100%;
-  display: grid; grid-template-columns: 1fr 38%; grid-template-rows: auto 1fr auto;
-  column-gap: 5cqi; padding: 5cqi;
-}
-
-/* Top row: the category in brackets and the O */
-.cover__top { grid-column: 1; display: flex; align-items: center; gap: 1.6cqi; }
-.cover__label { font: 500 max(11px, 1.6cqi)/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
-.cover__label::before { content: "[ "; } .cover__label::after { content: " ]"; }
-
-/* Title: the point in black, the rest in gray */
-.cover__title {
-  grid-column: 1; align-self: end;
-  font: 600 max(18px, 5.4cqi)/1.02 "Inter Tight", var(--font);
-  letter-spacing: -.045em; text-wrap: balance;
-}
-.cover__title span { color: rgb(10 10 10 / .42); }
-
-/* Foot: the lockup and the address */
-.cover__foot { grid-column: 1; display: flex; align-items: center; justify-content: space-between; gap: 2cqi; margin-top: 3.2cqi; padding-top: 2cqi; border-top: 1px solid var(--frame); }
-.cover__logo { display: inline-flex; align-items: center; gap: 1cqi; font-size: max(10px, 1.4cqi); font-weight: 400; letter-spacing: .22em; text-transform: uppercase; }
-.cover__logo svg { width: 2.2cqi; height: 2.2cqi; min-width: 12px; min-height: 12px; }
-.cover__logo .mark__point { fill: var(--signal); }
-.cover__url { font: 400 max(10px, 1.3cqi)/1 var(--mono); color: rgb(10 10 10 / .55); }
 
 /* Art: a white framed panel on a dot grid, holding one line drawing */
 .cover__art {
-  grid-column: 2; grid-row: 1 / -1;
-  position: relative; display: grid; place-items: center;
+  position: absolute; z-index: 1; top: 7cqi; bottom: 7cqi; left: 50%; translate: -50% 0;
+  display: grid; place-items: center; aspect-ratio: 5 / 4;
   border: 1px solid var(--frame); background: #fff;
   background-image: radial-gradient(circle, var(--line-strong) 1px, transparent 1.2px);
   background-size: 2.4cqi 2.4cqi; background-position: center;
   transition: transform var(--slow) var(--ease-out);
 }
-.cover__art svg { width: 70%; height: auto; overflow: visible; }
+.cover__art svg { width: 64%; height: auto; overflow: visible; }
 .cover__art svg * { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
 .cover__art svg .fill { fill: var(--ink); }
 .cover__art svg .paper { fill: #fff; }
@@ -75,19 +50,6 @@
 /* A cover inside a link answers the pointer: the panel lifts a little */
 a:hover > .cover .cover__art, a.cover:hover .cover__art { transform: translateY(-0.8cqi); }
 @media (prefers-reduced-motion: reduce) { .cover__art { transition: none; } a:hover > .cover .cover__art, a.cover:hover .cover__art { transform: none; } }
-
-/* Small covers (list cards, phones): no foot, a smaller panel */
-@container (max-width: 520px) {
-  .cover__in { grid-template-columns: 1fr 34%; grid-template-rows: auto 1fr; padding: 6cqi; column-gap: 6cqi; }
-  .cover__foot { display: none; }
-  .cover__title { font-size: max(17px, 6.4cqi); }
-  .cover__label { font-size: max(10px, 2.4cqi); }
-  .cover__art svg { width: 84%; }
-}
-
-/* Text-only cover, for posts with no drawing: the title takes the whole band */
-.cover--text .cover__in { grid-template-columns: 1fr; }
-.cover--text .cover__title { font-size: max(20px, 7cqi); max-width: 88%; }
 
 /* Share image: exactly 1200x630, for tools/blog/covers.mjs */
 .cover--og { width: 1200px; height: 630px; aspect-ratio: auto; }

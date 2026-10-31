@@ -16,7 +16,7 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
 | `assets/home.css`, `assets/home.js` | The home page (`docs/home-v3.md`): hero, three chapters (Pipeline, CRM, Deal Room) on one arrow drawn as you scroll, nine stages with product shots, tools it replaces, security, pricing and questions. |
 | `product/linkedin-outbound/`, `product/crm/`, `product/deal-room/` | The three product pages, written by `tools/products/gen.py` (edit the copy there, then run it and `node tools/layout.mjs`). Styles in `assets/product.css`, shots reuse `assets/home.css`, `assets/product.js` plays each shot once. |
-| `assets/blog.css` | Blog covers (`docs/blog.md`): one cover per post, used as the list card, the post hero and the share image. |
+| `assets/blog.css` | Blog covers (`docs/blog.md`): one cover per post, a pastel band with a line drawing and no text, used as the list card, the post hero and the share image. |
 | `tools/blog/` | `art.mjs` holds the cover markup and drawings. `covers.mjs` writes `docs/blog-covers.html` and each post's share image. |
 | `assets/img/people/` | Portraits used in the product shots, from Unsplash (free to use, credited in the footer). |
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |

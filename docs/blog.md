@@ -1,16 +1,13 @@
 # Blog covers
 
-Every post on `/blog/` gets one cover, drawn in HTML and CSS. No photos, no stock art and no AI images, so covers stay sharp and match the site. The same markup is the list card, the post hero and the 1200x630 share image.
+Every post on `/blog/` gets one cover, drawn in HTML and CSS. Covers hold no text: the title and category sit next to the cover on the page. No photos, no stock art and no AI images, so covers stay sharp and match the site. The same markup is the list card, the post hero and the 1200x630 share image.
 
 Preview every cover at `/docs/blog-covers.html` (run `python3 -m http.server 8000` first). Docs are hidden from visitors.
 
 ## The parts
 
-1. **Band.** A pastel ground with grain and a 1px black frame, the same bands as the home page.
-2. **Label.** The category in mono capitals, in brackets: `[ PIPELINE ]`.
-3. **Title.** Inter Tight 600, tight tracking, two tones. The point in black, the rest in gray (`<span>`). Six to ten words.
-4. **Foot.** A black rule, the one-line logo on the left, the post's address in mono on the right. Hidden on small covers.
-5. **Art.** A white framed panel on a dot grid with corner marks, holding one line drawing. Black 1.5px lines, square ends, one emerald point. Hidden on `cover--text`.
+1. **Band.** A pastel ground with grain and a 1px black frame, the same bands as the home page. The color says the category.
+2. **Art.** A white framed panel in the middle, on a dot grid with corner marks, holding one line drawing. Black 1.5px lines, square ends, one emerald point.
 
 ## Categories
 
@@ -23,7 +20,7 @@ Preview every cover at `/docs/blog-covers.html` (run `python3 -m http.server 800
 | Product | `cover--product` | peach #f5e2d4 | Four squares, one black |
 | Company | `cover--company` | pink #f3dfe4 | Three people, the middle one in black |
 
-The drawings and the cover markup live in `tools/blog/art.mjs` (`cover({ category, title, slug })`). A new drawing follows the same rules: 200x160 view box, classes `fill`, `paper`, `soft`, `gray` and one `point`.
+The drawings and the cover markup live in `tools/blog/art.mjs` (`cover({ category })`). A new drawing follows the same rules: 200x160 view box, classes `fill`, `paper`, `soft`, `gray` and one `point`.
 
 ## Sizes
 
@@ -31,7 +28,7 @@ The cover is a CSS container, so type and spacing scale with its width.
 
 | Where | Markup | Notes |
 |---|---|---|
-| Blog list | `.post-grid` > `a.post-card` > `.cover` | Under 520px wide the foot hides and the drawing grows. The art panel lifts 0.8% on hover. |
+| Blog list | `.post-grid` > `a.post-card` > `.cover`, then the meta and title | The art panel lifts a little on hover. |
 | Post hero | `.post-cover` > `.cover` | Under the post title. |
 | Share image | `.cover--og` | Exactly 1200x630. Written by the script below. |
 
@@ -43,7 +40,7 @@ The cover is a CSS container, so type and spacing scale with its width.
 
 - Square corners, black frames, no shadows, no gradients, no emoji.
 - One emerald point per cover, in the drawing. Nothing else is green.
-- Sentence case. No "·" and no exclamation marks.
+- No text on the cover.
 
 ## Running cost
 

@@ -10,7 +10,7 @@ import { cover, CATEGORIES } from "./art.mjs";
 
 const root = new URL("../..", import.meta.url).pathname;
 
-// 1. The preview page: every category at hero, card and text sizes
+// 1. The preview page: every category at hero and card sizes
 const samples = {
   pipeline: "Write the first line <span>your buyer reads to the end</span>",
   crm: "A CRM that fills itself <span>from every email and call</span>",
@@ -19,7 +19,7 @@ const samples = {
   product: "New in October <span>what shipped this month</span>",
   company: "Why we built Omniscient <span>the whole deal in one place</span>",
 };
-const card = (category, title) => `<a class="post-card" href="#">${cover({ category, title })}
+const card = (category, title) => `<a class="post-card" href="#">${cover({ category })}
     <span class="post-card__meta"><span>${CATEGORIES[category]}</span><span>Oct 31, 2026</span><span>6 min</span></span>
     <span class="post-card__title">${title.replace(/<\/?span>/g, "")}</span></a>`;
 const preview = `<!DOCTYPE html>
@@ -37,12 +37,9 @@ const preview = `<!DOCTYPE html>
 <body>
 <!-- Written by tools/blog/covers.mjs. Open with python3 -m http.server 8000, then /docs/blog-covers.html -->
 <main class="wrap">
-  <section class="sec"><p class="eyebrow">[ Post hero ]</p><div class="hero-cover post-cover">${cover({ category: "pipeline", title: samples.pipeline, slug: "first-line" })}</div></section>
+  <section class="sec"><p class="eyebrow">[ Post hero ]</p><div class="hero-cover post-cover">${cover({ category: "pipeline" })}</div></section>
   <section class="sec"><p class="eyebrow">[ Blog list ]</p><div class="post-grid">
     ${Object.entries(samples).map(([c, t]) => card(c, t)).join("\n    ")}
-  </div></section>
-  <section class="sec"><p class="eyebrow">[ Text only ]</p><div class="post-grid">
-    ${card("company", samples.company).replace(/<div class="cover__art">[\s\S]*?<\/svg><\/div>/, "").replace("cover cover--company", "cover cover--company cover--text")}
   </div></section>
 </main>
 </body>
