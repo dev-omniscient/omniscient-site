@@ -58,3 +58,53 @@
   }), { threshold: 0.12 });
   document.querySelectorAll("[data-anim]").forEach((el) => io.observe(el));
 })();
+
+// The three sections: each screen is sized to fit its frame in full, the words on the left switch to the screen in
+// the middle of the view, and that screen plays what's going on in it, again every 10 seconds while it stays there.
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const shows = [...document.querySelectorAll(".show")];
+  if (!shows.length) return;
+  const fits = [...document.querySelectorAll(".screen-fit")];
+  function fit() {
+    const phone = innerWidth <= 900;
+    fits.forEach((f) => {
+      const c = f.firstElementChild;
+      const w = phone ? 560 : Number(f.dataset.w) || 920;
+      c.style.width = w + "px";
+      c.style.zoom = String(Math.min(1.2, f.clientWidth / w));
+    });
+  }
+  addEventListener("resize", fit);
+  fit();
+
+  const count = (el) => {
+    const to = Number(el.dataset.count);
+    if (reduce) return void (el.textContent = to.toLocaleString("en-US"));
+    const t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 1400);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))).toLocaleString("en-US");
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  function play(show) {
+    const stage = show.querySelector(".show-stage");
+    stage.classList.remove("in");
+    void stage.offsetWidth;
+    stage.classList.add("in");
+    stage.querySelectorAll("[data-count]").forEach(count);
+  }
+  let current = null, timer = 0;
+  function activate(show) {
+    if (show === current) return;
+    current = show;
+    document.querySelectorAll(".st").forEach((s) => s.classList.toggle("on", s.dataset.for === show.id));
+    play(show);
+    clearInterval(timer);
+    if (!reduce) timer = setInterval(() => play(show), 10000);
+  }
+  const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && activate(e.target)), { rootMargin: "-45% 0px -45% 0px" });
+  shows.forEach((s) => io.observe(s));
+})();
