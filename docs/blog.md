@@ -6,21 +6,23 @@ Preview every cover at `/docs/blog-covers.html` (run `python3 -m http.server 800
 
 ## The parts
 
-1. **Band.** A pale green ground with grain and a 1px black frame, the same bands as the home page. The color says the category.
+1. **Band.** The app's gray fill (#f5f5f5) with grain and a 1px black frame, the same bands as the home page.
 2. **Art.** A white framed panel in the middle, on a dot grid with corner marks, holding one line drawing. Black 1.5px lines, square ends, one emerald point.
 
 ## Categories
 
-| Category | Class | Band | Drawing |
-|---|---|---|---|
-| Pipeline | `cover--pipeline` | mint #d5ebe0 | A line rising to the point |
-| CRM | `cover--crm` | moss #edf3e9 | A table with the open row in green |
-| Deal Room | `cover--deal-room` | sea #d7ece8 | A site with a player and three tiles |
-| Guides | `cover--guides` | sage #e4ecdf | Three steps, the last one green |
-| Product | `cover--product` | fern #dcefdf | Four squares, one green |
-| Company | `cover--company` | leaf #e6f2ea | Three people, the middle one in green |
+Every cover uses the same gray. The drawing says the category.
 
-The drawings and the cover markup live in `tools/blog/art.mjs` (`cover({ category })`). A new drawing follows the same rules: 200x160 view box, classes `fill` (green), `paper`, `soft`, `gray` and one `point` (`point on` turns it white on a fill).
+| Category | Class | Drawing |
+|---|---|---|
+| Pipeline | `cover--pipeline` | A line rising to the point |
+| CRM | `cover--crm` | A table with the open row in black |
+| Deal Room | `cover--deal-room` | A site with a player and three tiles |
+| Guides | `cover--guides` | Three steps, the last one black |
+| Product | `cover--product` | Four squares, one black |
+| Company | `cover--company` | Three people, the middle one in black |
+
+The drawings and the cover markup live in `tools/blog/art.mjs` (`cover({ category })`). A new drawing follows the same rules: 200x160 view box, classes `fill`, `paper`, `soft`, `gray` and one `point`.
 
 ## Sizes
 
@@ -39,7 +41,7 @@ The cover is a CSS container, so type and spacing scale with its width.
 ## Rules
 
 - Square corners, black frames, no shadows, no gradients, no emoji.
-- Lines and frames are black. Green fills mark the one thing that matters, and one emerald point sits in each drawing.
+- One emerald point per cover, in the drawing. Nothing else is green.
 - No text on the cover.
 
 ## Running cost
