@@ -1,0 +1,54 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   OMNISCIENT WEBSITE · BLOG COVERS
+   One cover for every post, drawn in HTML and CSS: the whole cover is one white panel on a dot grid with a 1px black frame,
+   corner marks and one line drawing in the middle. No background around it and no text. Rules: docs/blog.md.
+   The cover is a container, so the same markup scales from a list card to the post hero to the 1200x630 share image.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.cover {
+  --band: #f5f5f5;
+  container-type: inline-size;
+  position: relative; display: block; overflow: hidden;
+  aspect-ratio: 1200 / 630;
+  border: 1px solid var(--frame);
+  background: #fff;
+  color: var(--ink);
+}
+
+/* Art: the whole cover is one white panel on a dot grid, holding one line drawing */
+.cover__art {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, var(--line-strong) 1px, transparent 1.2px);
+  background-size: 2.4cqi 2.4cqi; background-position: center;
+}
+.cover__art svg { position: absolute; top: 18%; left: 50%; height: 64%; width: auto; aspect-ratio: 200 / 160; translate: -50% 0; overflow: visible; transition: transform var(--slow) var(--ease-out); }
+.cover__art svg * { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
+.cover__art svg .fill { fill: var(--ink); }
+.cover__art svg .paper { fill: #fff; }
+.cover__art svg .soft { fill: var(--band); }
+.cover__art svg .point { fill: var(--signal); stroke: none; }
+.cover__art svg .gray { stroke: var(--faint); }
+/* Corner marks */
+.cover__art::before, .cover__art::after { content: ""; position: absolute; width: 2cqi; height: 2cqi; border: 0 solid var(--frame); }
+.cover__art::before { top: 2cqi; left: 2cqi; border-top-width: 1px; border-left-width: 1px; }
+.cover__art::after { bottom: 2cqi; right: 2cqi; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* A cover inside a link answers the pointer: the drawing lifts a little */
+a:hover > .cover .cover__art svg, a.cover:hover .cover__art svg { transform: translateY(-1.2%); }
+@media (prefers-reduced-motion: reduce) { .cover__art svg { transition: none; } a:hover > .cover .cover__art svg, a.cover:hover .cover__art svg { transform: none; } }
+
+/* Share image: exactly 1200x630, for tools/blog/covers.mjs */
+.cover--og { width: 1200px; height: 630px; aspect-ratio: auto; }
+
+/* ═══ Post cards (blog list) ═══ */
+.post-grid { display: grid; gap: 32px 24px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .post-grid { grid-template-columns: repeat(3, 1fr); } }
+.post-card { display: flex; flex-direction: column; gap: 12px; }
+.post-card__meta { display: flex; gap: 12px; font: 400 12px/1.4 var(--mono); color: var(--muted); }
+.post-card__title { font-size: 17px; line-height: 1.3; font-weight: 600; letter-spacing: -.02em; }
+.post-card:hover .post-card__title { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.post-card--lead { grid-column: 1 / -1; }
+
+/* Post hero: the cover sits under the title, full width of the reading column and a bit wider */
+.post-cover { margin-block: 32px 48px; }
