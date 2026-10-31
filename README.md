@@ -16,7 +16,7 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 | `assets/base.css` | Brand tokens, reset, type, tags, buttons, the header with the Product and Resources menus, the phone menu, footer, reading pages. |
 | `assets/home.css`, `assets/home.js` | The home page (`docs/home-v3.md`): hero, three chapters (Pipeline, CRM, Deal Room) on one arrow drawn as you scroll, nine stages with product shots, tools it replaces, security, pricing and questions. |
 | `product/linkedin-outbound/`, `product/crm/`, `product/deal-room/` | The three product pages, written by `tools/products/gen.py` (edit the copy there, then run it and `node tools/layout.mjs`). Styles in `assets/product.css`, shots reuse `assets/home.css`, `assets/product.js` plays each shot once. |
-| `assets/blog.css` | Blog covers (`docs/blog.md`): one cover per post, a pastel band with a line drawing and no text, used as the list card, the post hero and the share image. |
+| `assets/blog.css` | Blog covers (`docs/blog.md`): one cover per post, a pale green band with a line drawing and no text, used as the list card, the post hero and the share image. |
 | `tools/blog/` | `art.mjs` holds the cover markup and drawings. `covers.mjs` writes `docs/blog-covers.html` and each post's share image. |
 | `assets/img/people/` | Portraits used in the product shots, from Unsplash (free to use, credited in the footer). |
 | `assets/site.js` | Opens and closes the menus, the phone menu, the header line on scroll and scroll reveals. |
@@ -36,9 +36,10 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 - **Privacy or Terms:** edit the text in `privacy/index.html` or `terms/index.html` and change the
   "Last updated" date. Google's OAuth review reads these pages, so keep the URLs `/privacy` and `/terms`.
 - **Footer year:** it is plain text in `partials/footer.html`. Change it each January.
-- **Brand:** follow `docs/brand.md` in the app repo. Black and white with plain grays, and emerald as the one signal
-  (shared with Claritia). Square corners everywhere, 1px black frames, no shadows, mono section labels in brackets,
-  pastel bands with grain behind product shots. No gradients. The logo is the O: a ring with an emerald point.
+- **Brand:** follow `docs/brand.md` in the app repo, with one change on the site: Claritia's green (#0C8C5E) is the
+  primary color. It marks buttons, links, the open row, the current tab and bullets. Text stays black, frames stay
+  black, and the bands with grain behind product shots are pale greens (mint, sage, sea, leaf, moss, fern). Square
+  corners everywhere, 1px black frames, no shadows, mono section labels in brackets. No gradients. The logo is the O: a ring with an emerald point.
 - **Site plan:** `docs/site-architecture.md` (menus, sitemap, page template, build order). Hidden from visitors.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.
