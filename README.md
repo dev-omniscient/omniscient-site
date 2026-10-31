@@ -36,7 +36,7 @@ The app itself lives at app.tryomniscient.com. This repo is only the marketing s
 - **Footer year:** it is plain text in `partials/footer.html`. Change it each January.
 - **Brand:** follow `docs/brand.md` in the app repo. Black and white with plain grays, and emerald as the one signal
   (shared with Claritia). Square corners everywhere, 1px black frames, no shadows, mono section labels in brackets,
-  pastel bands with grain behind product shots. No gradients. The logo is the O: a ring with an emerald point.
+  gray bands with grain behind product shots (the app's #f5f5f5 and #ebebeb). No gradients. The logo is the O: a ring with an emerald point.
 - **Site plan:** `docs/site-architecture.md` (menus, sitemap, page template, build order). Hidden from visitors.
 
 Preview locally: `python3 -m http.server 8000`, then open http://localhost:8000.

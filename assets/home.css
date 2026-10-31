@@ -1,10 +1,11 @@
 /* The home page (docs/home-v3.md): the hero, three chapters on one arrow, nine stages with product shots,
    tools it replaces, security, pricing, questions. Shared header, footer and tokens are in base.css. */
 .om-home {
-  --ink: #0a0a0a; --ink-2: #6b6b6b; --ink-3: #a3a3a3; --line: #e5e5e5; --line-2: #d4d4d4; --fill: #f5f5f5; --fill-2: #ebebeb; --paper: #ffffff;
+  --ink: #0a0a0a; --ink-2: #737373; --ink-3: #a3a3a3; --line: #e5e5e5; --line-2: #d4d4d4; --fill: #f5f5f5; --fill-2: #ebebeb; --paper: #ffffff;
   --signal: #0c8c5e; --green-3: #e8f5ef; --green-11: #0a7a52; --yellow-3: #fff6d6; --yellow-11: #8a6200; --yellow-9: #f2b600;
   --blue-3: #e8effc; --blue-11: #1d4ed8; --blue-9: #2563eb; --purple-3: #f1ecfe; --purple-11: #5230c2; --gray-11: #525252;
-  --band-blue: #dce6f2; --band-sand: #ece3d2; --band-lav: #e4def3; --band-pink: #f3dfe4; --band-cream: #f1ecdf; --band-peach: #f5e2d4;
+  /* Bands use the app's two fills: hover (#f5f5f5) and pressed (#ebebeb) */
+  --band-gray: #f5f5f5; --band-stone: #ebebeb;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
   --gutter: 64px;
 }
@@ -25,11 +26,11 @@ h1 span { display: block; }
 .signup .btn { height: 46px; border: 0; border-left: 1px solid var(--ink); }
 .note { color: var(--ink-3); margin-top: 12px; }
 
-/* Bands: pastel ground with grain, holding a product frame */
+/* Bands: the app's gray fills with grain, holding a product frame */
 .band { position: relative; padding: 48px; border: 1px solid var(--ink); overflow: hidden; }
 .band::before { content: ""; position: absolute; inset: 0; background-image: var(--grain); mix-blend-mode: multiply; opacity: .32; pointer-events: none; }
 .band > * { position: relative; }
-.b-blue { background: var(--band-blue); } .b-sand { background: var(--band-sand); } .b-lav { background: var(--band-lav); } .b-pink { background: var(--band-pink); } .b-cream { background: var(--band-cream); } .b-peach { background: var(--band-peach); }
+.b-gray { background: var(--band-gray); } .b-stone { background: var(--band-stone); }
 
 /* App frame (the real app's square style) */
 .app { background: var(--paper); border: 1px solid var(--ink); display: grid; grid-template-columns: 196px 1fr; font-size: 12.5px; text-align: left; min-height: 380px; }
@@ -150,7 +151,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .conv { display: flex; flex-direction: column; min-width: 0; }
 .msgs { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
 .bub { max-width: 82%; border: 1px solid var(--ink); padding: 8px 10px; background: #fff; }
-.bub.me { align-self: flex-end; background: var(--band-blue); }
+.bub.me { align-self: flex-end; background: var(--band-gray); }
 .bub .m { color: var(--ink-2); font-size: 10.5px; margin-bottom: 2px; }
 .reply { margin: 0 14px 14px; border: 1px solid var(--ink); }
 .reply .tx { padding: 10px 12px; min-height: 64px; }
@@ -202,7 +203,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .sig i { width: 6px; height: 6px; background: var(--signal); flex: none; }
 
 /* Campaign lead magnet */
-.magnet { margin-top: 8px; display: flex; gap: 10px; align-items: center; border: 1px dashed var(--ink); padding: 8px; background: var(--band-cream); }
+.magnet { margin-top: 8px; display: flex; gap: 10px; align-items: center; border: 1px dashed var(--ink); padding: 8px; background: var(--band-stone); }
 .magnet .pdf { width: 30px; height: 38px; border: 1px solid var(--ink); background: #fff; display: grid; place-items: center; font: 500 8px var(--mono); flex: none; }
 .magnet b { font-weight: 600; display: block; }
 .magnet small { color: var(--ink-2); font-size: 11px; }
@@ -357,7 +358,7 @@ h3 { font: 600 clamp(24px, 2.8vw, 34px)/1.08 "Inter Tight", sans-serif; letter-s
 .plans { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ink); margin-top: 32px; }
 .plan { padding: 22px 18px; display: flex; flex-direction: column; gap: 12px; }
 .plan + .plan { border-left: 1px solid var(--ink); }
-.plan.pop { background: var(--band-cream); position: relative; }
+.plan.pop { background: var(--band-stone); position: relative; }
 .plan.pop::before { content: ""; position: absolute; inset: 0; background-image: var(--grain); mix-blend-mode: multiply; opacity: .25; pointer-events: none; }
 .plan > * { position: relative; }
 .plan .pn { display: flex; align-items: center; gap: 8px; font-weight: 600; }
