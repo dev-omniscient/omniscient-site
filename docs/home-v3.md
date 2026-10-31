@@ -11,21 +11,20 @@ The home page after folk's layout, in the app's square style. Replaces home v2 (
 ## Order
 1. Hero: headline, one line on what Omniscient does, email field to start a trial, the Companies screen.
 2. Works with: Gmail, Outlook, LinkedIn, HubSpot, Salesforce, Zoom, Slack.
-3. Three chapters on one arrow. Each chapter has a stage bar (pipeline chevrons) that stays at the top while you read it.
-   - Pipeline: 01 Scout, 02 Campaigns, 03 Inbox.
-   - CRM: 04 Unify, 05 Call intelligence, 06 Omniscient Context.
-   - Deal Room: 07 Curate content, 08 Build proposal, 09 Send and close.
+3. Three things it does, a full screen each, after Lightfield: a short title and one line on the left, and one big
+   product screen on the right that runs off the edge of the page. On phones the words sit above the screen.
+   - Build high-quality pipeline: Scout.
+   - Unify all conversations: the CRM, one person's record with every source flowing into it.
+   - Close deals with Netflix-like proposals: the Deal Room proposal, with rows for each person.
 4. Replace five tools with one.
 5. Security, Pricing, Questions, a closing band with the trial form.
 
-## The arrow
-`assets/home.js` draws one black line down the left of the three chapters as you scroll, to 40% of the screen height.
-A stage's number box fills black when the line reaches it, and its chevron in the stage bar fills black; earlier
-stages get a check. Each product shot plays once when it comes into view (rows arrive, approvals tick, a reply types,
-the deal turns Won). With reduced motion, the line is drawn in full and nothing moves.
+## Motion
+`assets/home.js` plays each product shot once when it comes into view (rows arrive, sources slide in, tiles fill).
+With reduced motion, nothing moves.
 
 ## Copy
-Plain and specific: each heading names the feature, each paragraph says what it does, each list names the parts.
+Plain and specific: each heading says what it does in a few words, with one line under it. No lists.
 No stories and no claims the product can't back. The owl is called Omniscient on the site.
 
 ## Running cost
